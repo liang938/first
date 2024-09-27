@@ -1,0 +1,66 @@
+C251 COMPILER V5.60.0,  move                                                               11/07/23  13:22:19  PAGE 1   
+
+
+C251 COMPILER V5.60.0, COMPILATION OF MODULE move
+OBJECT MODULE PLACED IN .\Out_File\move.obj
+COMPILER INVOKED BY: D:\Keil5\C251\BIN\C251.EXE ..\USER\src\move.c XSMALL INTR2 WARNINGLEVEL(3) BROWSE INCDIR(..\..\Libr
+                    -aries\libraries;..\..\Libraries\seekfree_libraries;..\..\Libraries\seekfree_peripheral;..\CODE;..\USER\inc;..\USER\src) 
+                    -DEBUG PRINT(.\Out_File\move.lst) TABS(2) OBJECT(.\Out_File\move.obj) 
+
+stmt  level    source
+
+    1          #include "headfile.h"
+    2          
+    3          int encoder_left;                       //左轮编码器计数
+    4          int encoder_right;                      //右轮编码器计数
+    5          extern PID_InitTypeDef PID_Left;        //左轮结构体变量
+    6          extern PID_InitTypeDef PID_Right;       //右轮结构体变量
+    7          extern int leftspeed;                   //左轮差速度
+    8          extern int rightspeed;                  //右轮差速度
+    9          extern int encoder_num;                 //编码器积分
+   10          
+   11          void Getspeed()                                   //获取当前速度
+   12          {
+   13   1        encoder_left = ctimer_count_read(CTIM3_P04);    //读取数值
+   14   1        encoder_right = ctimer_count_read(CTIM0_P34);   //读取数值
+   15   1        ctimer_count_clean(CTIM3_P04);                  //清除计数值，开始下一轮计数
+   16   1        ctimer_count_clean(CTIM0_P34);                  //清除计数值，开始下一轮计数
+   17   1        encoder_num += (encoder_left+encoder_right)/100;
+   18   1      }
+   19          
+   20          void Speedcontrol(int left_speed, int right_speed)                //电机控制    
+   21          {
+   22   1        PID_Calc_Incremental(&PID_Left, left_speed, encoder_left);      //左轮输出值计算  
+   23   1        PID_Calc_Incremental(&PID_Right, right_speed, encoder_right);   //右轮输出值计算
+   24   1        pwm_duty(PWMA_CH2P_P62, (int)PID_Left.Total_Out);               //设置左轮pwm
+   25   1        pwm_duty(PWMA_CH3P_P64, (int)PID_Right.Total_Out);              //设置右轮pwm
+   26   1      }
+   27          
+   28          void Sendspeed()
+   29          {
+   30   1        printf("%d,%d,%d,%d\n",encoder_left,leftspeed,encoder_right,rightspeed);
+   31   1      }
+
+
+Module Information          Static   Overlayable
+------------------------------------------------
+  code size            =       178     ------
+  ecode size           =    ------     ------
+  data size            =    ------     ------
+  idata size           =    ------     ------
+  pdata size           =    ------     ------
+  xdata size           =    ------     ------
+  xdata-const size     =    ------     ------
+  edata size           =         4     ------
+  bit size             =    ------     ------
+  ebit size            =    ------     ------
+  bitaddressable size  =    ------     ------
+  ebitaddressable size =    ------     ------
+  far data size        =    ------     ------
+  huge data size       =    ------     ------
+  const size           =    ------     ------
+  hconst size          =        13     ------
+End of Module Information.
+
+
+C251 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,137 @@
+C251 COMPILER V5.60.0,  main                                                               16/07/23  12:33:01  PAGE 1   
+
+
+C251 COMPILER V5.60.0, COMPILATION OF MODULE main
+OBJECT MODULE PLACED IN .\Out_File\main.obj
+COMPILER INVOKED BY: D:\Keil5\C251\BIN\C251.EXE ..\USER\src\main.c XSMALL INTR2 WARNINGLEVEL(3) BROWSE INCDIR(..\..\Libr
+                    -aries\libraries;..\..\Libraries\seekfree_libraries;..\..\Libraries\seekfree_peripheral;..\CODE;..\USER\inc;..\USER\src) 
+                    -DEBUG PRINT(.\Out_File\main.lst) TABS(2) OBJECT(.\Out_File\main.obj) 
+
+stmt  level    source
+
+    1          /*      每日一拜 好过省赛             天天参拜 稳过国赛        */
+    2          /* \\ \\ \\ \\ \\ \\ \\ || || || || || || // // // // // // // //
+    3          \\ \\ \\ \\ \\ \\ \\        _ooOoo_          // // // // // // //
+    4          \\ \\ \\ \\ \\ \\          o8888888o            // // // // // //
+    5          \\ \\ \\ \\ \\             88" . "88               // // // // //
+    6          \\ \\ \\ \\                (| -_- |)                  // // // //
+    7          \\ \\ \\                   O\  =  /O                     // // //
+    8          \\ \\                   ____/`---'\____                     // //
+    9          \\                    .'  \\|     |//  `.                      //
+   10          ==                   /  \\|||  :  |||//  \                     ==
+   11          ==                  /  _||||| -:- |||||-  \                    ==
+   12          ==                  |   | \\\  -  /// |   |                    ==
+   13          ==                  | \_|  ''\---/''  |   |                    ==
+   14          ==                  \  .-\__  `-`  ___/-. /                    ==
+   15          ==                ___`. .'  /--.--\  `. . ___                  ==
+   16          ==              ."" '<  `.___\_<|>_/___.'  >'"".               ==
+   17          ==            | | :  `- \`.;`\ _ /`;.`/ - ` : | |              \\
+   18          //            \  \ `-.   \_ __\ /__ _/   .-` /  /              \\
+   19          //      ========`-.____`-.___\_____/___.-`____.-'========      \\
+   20          //                           `=---='                           \\
+   21          // //   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  \\ \\
+   22          // // //      佛祖保佑      永无BUG      永不修改        \\ \\ \\
+   23          // // // // // // || || || || || || || || || || \\ \\ \\ \\ \\ */
+   24          
+   25          #include "headfile.h"
+   26          
+   27          float Speed = 130;                //预设速度  
+   28          bit flag = 1;                     //判断是否经过10ms
+   29          bit Stop_flag = 0;                //判断是否冲出赛道
+   30          bit Barrier_flag = 0;             //判断是否开始避障
+   31          bit Garage_in_flag = 0;           //判断是否入车库
+   32          bit Garage_out_flag = 0;          //判断是否出车库
+   33          bit encoder_start = 0;            //开始积分标志
+   34          int element_num = 0;              //经过元素的数量
+   35          int encoder_num = 0;              //编码器积分
+   36          
+   37          PID_InitTypeDef PID_Left;         //左轮PID
+   38          PID_InitTypeDef PID_Right;        //右轮PID
+   39          PID_InitTypeDef PID_Servos;       //舵机PID
+   40          extern int encoder_left;          //左轮编码器计数
+   41          extern int encoder_right;         //游轮编码器计数
+   42          
+   43          bit first_barrier=0;
+   44          
+   45          void main()
+   46          {
+   47   1        Init_all();                                 //初始化所有
+   48   1        while(1)
+   49   1        {
+   50   2      //    if(element_num==3)                        //元素数量检测、十字和环岛
+   51   2      //    {
+   52   2      //      if(encoder_start==0)
+   53   2      //      {
+   54   2      //        encoder_num=0;
+   55   2      //        encoder_start=1;
+   56   2      //      }
+   57   2      //      if(encoder_num>1700)
+C251 COMPILER V5.60.0,  main                                                               16/07/23  12:33:01  PAGE 2   
+
+   58   2      //        Garage_in();
+   59   2      //    }
+   60   2      
+   61   2      //    if(encoder_num>2000)                        //编码器积分
+   62   2      //    {
+   63   2      //      Stop_flag=1;
+   64   2      //    }
+   65   2      
+   66   2      //出入库
+   67   2          if(Garage_out_flag==0)                  //如果没有出库
+   68   2            Garage_out();                         //出库
+   69   2          if(P26==0)                              //如果检测到磁铁
+   70   2            Garage_in_flag=1;                     //开启入库标志
+   71   2          if(Garage_in_flag==1)                   //如果检测到入库标志
+   72   2            Garage_in();                          //开始入库
+   73   2      
+   74   2      //避障
+   75   2      //    if(P33==0&&first_barrier==0)            //如果检测到障碍
+   76   2      //      Barrier_flag=1;                     //开启避障标志位
+   77   2      //    if(Barrier_flag==1)                     //如果检测到障碍
+   78   2      //      Avoid_barrier();                      //开始避障
+   79   2      
+   80   2          if(Stop_flag == 0)                      //未冲出赛道
+   81   2          {
+   82   3            if(flag == 0)                         //10ms读取一次电感值，计算偏差，并调整自身姿态
+   83   3            {
+   84   4              ADC_Read();                         //读取电感值
+   85   4              Pos_Deviation();                    //位置偏差计算
+   86   4              Servos_Control();                   //调整车身姿态
+   87   4              //Sendspeed();
+   88   4              flag = 1;                           //10ms标志位改变，进入下一次寻迹
+   89   4            }
+   90   3          }
+   91   2          else                                    //冲出赛道
+   92   2          {
+   93   3            pwm_duty(PWMB_CH1_P74,840);
+   94   3            pwm_duty(PWMA_CH2P_P62, 0);           //左轮pwm置0  
+   95   3            pwm_duty(PWMA_CH3P_P64, 0);           //右轮pwm置0
+   96   3            P52=0;
+   97   3            while(1);
+   98   3          }
+   99   2        }
+  100   1      }
+
+
+Module Information          Static   Overlayable
+------------------------------------------------
+  code size            =       102     ------
+  ecode size           =    ------     ------
+  data size            =    ------     ------
+  idata size           =    ------     ------
+  pdata size           =    ------     ------
+  xdata size           =    ------     ------
+  xdata-const size     =    ------     ------
+  edata size           =       176     ------
+  bit size             =         7     ------
+  ebit size            =    ------     ------
+  bitaddressable size  =    ------     ------
+  ebitaddressable size =    ------     ------
+  far data size        =    ------     ------
+  huge data size       =    ------     ------
+  const size           =    ------     ------
+  hconst size          =        20     ------
+End of Module Information.
+
+
+C251 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

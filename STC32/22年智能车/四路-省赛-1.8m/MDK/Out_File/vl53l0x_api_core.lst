@@ -1,0 +1,324 @@
+C251 COMPILER V5.60.0,  vl53l0x_api_core                                                   13/04/24  20:07:04  PAGE 1   
+
+
+C251 COMPILER V5.60.0, COMPILATION OF MODULE vl53l0x_api_core
+OBJECT MODULE PLACED IN .\Out_File\vl53l0x_api_core.obj
+COMPILER INVOKED BY: D:\keil5\keil5_MDK\keil5_MDK_32\C251\BIN\C251.EXE ..\VL53L0X\core\src\vl53l0x_api_core.c XSMALL INT
+                    -R2 WARNINGLEVEL(3) BROWSE INCDIR(..\..\Libraries\libraries;..\..\Libraries\seekfree_libraries;..\..\Libraries\seekfree_p
+                    -eripheral;..\CODE;..\USER\inc;..\USER\src) DEBUG PRINT(.\Out_File\vl53l0x_api_core.lst) OBJECT(.\Out_File\vl53l0x_api_co
+                    -re.obj) 
+
+stmt  level    source
+
+    1          /*******************************************************************************
+    2           Copyright © 2016, STMicroelectronics International N.V.
+    3           All rights reserved.
+    4          
+    5           Redistribution and use in source and binary forms, with or without
+    6           modification, are permitted provided that the following conditions are met:
+    7           * Redistributions of source code must retain the above copyright
+    8           notice, this list of conditions and the following disclaimer.
+    9           * Redistributions in binary form must reproduce the above copyright
+   10           notice, this list of conditions and the following disclaimer in the
+   11           documentation and/or other materials provided with the distribution.
+   12           * Neither the name of STMicroelectronics nor the
+   13           names of its contributors may be used to endorse or promote products
+   14           derived from this software without specific prior written permission.
+   15          
+   16           THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+   17           ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+   18           WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND
+   19           NON-INFRINGEMENT OF INTELLECTUAL PROPERTY RIGHTS ARE DISCLAIMED.
+   20           IN NO EVENT SHALL STMICROELECTRONICS INTERNATIONAL N.V. BE LIABLE FOR ANY
+   21           DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+   22           (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+   23           LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+   24           ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+   25           (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+   26           SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+   27           ******************************************************************************/
+   28          
+   29          #include "vl53l0x_api.h"
+*** ERROR C318 IN LINE 29 OF ..\VL53L0X\core\src\vl53l0x_api_core.c: can't open file 'vl53l0x_api.h'
+   30          #include "vl53l0x_api_core.h"
+*** ERROR C318 IN LINE 30 OF ..\VL53L0X\core\src\vl53l0x_api_core.c: can't open file 'vl53l0x_api_core.h'
+   31          #include "vl53l0x_api_calibration.h"
+*** ERROR C318 IN LINE 31 OF ..\VL53L0X\core\src\vl53l0x_api_core.c: can't open file 'vl53l0x_api_calibration.h'
+   32          
+   33          
+   34          #ifndef __KERNEL__
+   35          #include <stdlib.h>
+   36          #endif
+   37          #define LOG_FUNCTION_START(fmt, ...) \
+   38                  _LOG_FUNCTION_START(TRACE_MODULE_API, fmt, ##__VA_ARGS__)
+   39          #define LOG_FUNCTION_END(status, ...) \
+   40                  _LOG_FUNCTION_END(TRACE_MODULE_API, status, ##__VA_ARGS__)
+   41          #define LOG_FUNCTION_END_FMT(status, fmt, ...) \
+   42                  _LOG_FUNCTION_END_FMT(TRACE_MODULE_API, status, fmt, ##__VA_ARGS__)
+   43          
+   44          VL53L0X_Error VL53L0X_reverse_bytes(uint8_t *data, uint32_t size)
+*** ERROR C25 IN LINE 44 OF ..\VL53L0X\core\src\vl53l0x_api_core.c: syntax error near '*'
+   45          {
+*** ERROR C42 IN LINE 45 OF ..\VL53L0X\core\src\vl53l0x_api_core.c: 'VL53L0X_reverse_bytes': not in formal parameter lis
+             -t
+   46                  VL53L0X_Error Status = VL53L0X_ERROR_NONE;
+   47                  uint8_t tempData;
+   48                  uint32_t mirrorIndex;
+   49                  uint32_t middle = size/2;
+   50                  uint32_t index;
+C251 COMPILER V5.60.0,  vl53l0x_api_core                                                   13/04/24  20:07:04  PAGE 2   
+
+   51          
+   52                  for (index = 0; index < middle; index++) {
+   53                          mirrorIndex              = size - index - 1;
+   54                          tempData                 = data[index];
+   55                          data[index]              = data[mirrorIndex];
+   56                          data[mirrorIndex] = tempData;
+   57                  }
+   58                  return Status;
+   59          }
+   60          
+   61          VL53L0X_Error VL53L0X_measurement_poll_for_completion(VL53L0X_DEV Dev)
+   62          {
+   63                  VL53L0X_Error Status = VL53L0X_ERROR_NONE;
+   64                  uint8_t NewDataReady = 0;
+   65                  uint32_t LoopNb;
+   66          
+   67                  LOG_FUNCTION_START("");
+*** ERROR C307 IN LINE 67 OF ..\VL53L0X\core\src\vl53l0x_api_core.c: macro 'LOG_FUNCTION_START': parameter count mismatc
+             -h
+   68          
+   69                  LoopNb = 0;
+   70          
+   71                  do {
+   72                          Status = VL53L0X_GetMeasurementDataReady(Dev, &NewDataReady);
+   73                          if (Status != 0)
+   74                                  break; /* the error is set */
+   75          
+   76                          if (NewDataReady == 1)
+   77                                  break; /* done note that status == 0 */
+   78          
+   79                          LoopNb++;
+   80                          if (LoopNb >= VL53L0X_DEFAULT_MAX_LOOP) {
+   81                                  Status = VL53L0X_ERROR_TIME_OUT;
+   82                                  break;
+   83                          }
+   84          
+   85                          VL53L0X_PollingDelay(Dev);
+   86                  } while (1);
+   87          
+   88                  LOG_FUNCTION_END(Status);
+*** ERROR C307 IN LINE 88 OF ..\VL53L0X\core\src\vl53l0x_api_core.c: macro 'LOG_FUNCTION_END': parameter count mismatch
+   89          
+   90                  return Status;
+   91          }
+   92          
+   93          
+   94          uint8_t VL53L0X_decode_vcsel_period(uint8_t vcsel_period_reg)
+   95          {
+   96                  /*!
+   97                   * Converts the encoded VCSEL period register value into the real
+   98                   * period in PLL clocks
+   99                   */
+  100          
+  101                  uint8_t vcsel_period_pclks = 0;
+  102          
+  103                  vcsel_period_pclks = (vcsel_period_reg + 1) << 1;
+  104          
+  105                  return vcsel_period_pclks;
+  106          }
+  107          
+  108          uint8_t VL53L0X_encode_vcsel_period(uint8_t vcsel_period_pclks)
+  109          {
+  110                  /*!
+  111                   * Converts the encoded VCSEL period register value into the real period
+  112                   * in PLL clocks
+  113                   */
+C251 COMPILER V5.60.0,  vl53l0x_api_core                                                   13/04/24  20:07:04  PAGE 3   
+
+  114          
+  115                  uint8_t vcsel_period_reg = 0;
+  116          
+  117                  vcsel_period_reg = (vcsel_period_pclks >> 1) - 1;
+  118          
+  119                  return vcsel_period_reg;
+  120          }
+  121          
+  122          
+  123          uint32_t VL53L0X_isqrt(uint32_t num)
+  124          {
+  125                  /*
+  126                   * Implements an integer square root
+  127                   *
+  128                   * From: http://en.wikipedia.org/wiki/Methods_of_computing_square_roots
+  129                   */
+  130          
+  131                  uint32_t  res = 0;
+  132                  uint32_t  bit = 1 << 30;
+  133                  /* The second-to-top bit is set:
+  134                   *      1 << 14 for 16-bits, 1 << 30 for 32 bits */
+  135          
+  136                   /* "bit" starts at the highest power of four <= the argument. */
+  137                  while (bit > num)
+  138                          bit >>= 2;
+  139          
+  140          
+  141                  while (bit != 0) {
+  142                          if (num >= res + bit) {
+  143                                  num -= res + bit;
+  144                                  res = (res >> 1) + bit;
+  145                          } else
+  146                                  res >>= 1;
+  147          
+  148                          bit >>= 2;
+  149                  }
+  150          
+  151                  return res;
+  152          }
+  153          
+  154          
+  155          uint32_t VL53L0X_quadrature_sum(uint32_t a, uint32_t b)
+  156          {
+  157                  /*
+  158                   * Implements a quadrature sum
+  159                   *
+  160                   * rea = sqrt(a^2 + b^2)
+  161                   *
+  162                   * Trap overflow case max input value is 65535 (16-bit value)
+  163                   * as internal calc are 32-bit wide
+  164                   *
+  165                   * If overflow then seta output to maximum
+  166                   */
+  167                  uint32_t  res = 0;
+  168          
+  169                  if (a > 65535 || b > 65535)
+  170                          res = 65535;
+  171                  else
+  172                          res = VL53L0X_isqrt(a * a + b * b);
+*** WARNING C34 IN LINE 172 OF ..\VL53L0X\core\src\vl53l0x_api_core.c: 'a': missing declaration specifiers
+*** ERROR C42 IN LINE 172 OF ..\VL53L0X\core\src\vl53l0x_api_core.c: 'a': not in formal parameter list
+*** WARNING C34 IN LINE 172 OF ..\VL53L0X\core\src\vl53l0x_api_core.c: 'b': missing declaration specifiers
+*** ERROR C42 IN LINE 172 OF ..\VL53L0X\core\src\vl53l0x_api_core.c: 'b': not in formal parameter list
+  173          
+  174                  return res;
+  175          }
+C251 COMPILER V5.60.0,  vl53l0x_api_core                                                   13/04/24  20:07:04  PAGE 4   
+
+  176          
+  177          
+  178          VL53L0X_Error VL53L0X_device_read_strobe(VL53L0X_DEV Dev)
+  179          {
+  180                  VL53L0X_Error Status = VL53L0X_ERROR_NONE;
+  181                  uint8_t strobe;
+  182                  uint32_t LoopNb;
+  183                  LOG_FUNCTION_START("");
+*** ERROR C307 IN LINE 183 OF ..\VL53L0X\core\src\vl53l0x_api_core.c: macro 'LOG_FUNCTION_START': parameter count mismat
+             -ch
+  184          
+  185                  Status |= VL53L0X_WrByte(Dev, 0x83, 0x00);
+  186          
+  187                  /* polling
+  188                   * use timeout to avoid deadlock*/
+  189                  if (Status == VL53L0X_ERROR_NONE) {
+  190                          LoopNb = 0;
+  191                          do {
+  192                                  Status = VL53L0X_RdByte(Dev, 0x83, &strobe);
+  193                                  if ((strobe != 0x00) || Status != VL53L0X_ERROR_NONE)
+  194                                                  break;
+  195          
+  196                                  LoopNb = LoopNb + 1;
+  197                          } while (LoopNb < VL53L0X_DEFAULT_MAX_LOOP);
+  198          
+  199                          if (LoopNb >= VL53L0X_DEFAULT_MAX_LOOP)
+  200                                  Status = VL53L0X_ERROR_TIME_OUT;
+  201          
+  202                  }
+  203          
+  204                  Status |= VL53L0X_WrByte(Dev, 0x83, 0x01);
+  205          
+  206                  LOG_FUNCTION_END(Status);
+*** ERROR C307 IN LINE 206 OF ..\VL53L0X\core\src\vl53l0x_api_core.c: macro 'LOG_FUNCTION_END': parameter count mismatch
+  207                  return Status;
+  208          
+  209          }
+  210          
+  211          VL53L0X_Error VL53L0X_get_info_from_device(VL53L0X_DEV Dev, uint8_t option)
+  212          {
+  213          
+  214                  VL53L0X_Error Status = VL53L0X_ERROR_NONE;
+  215                  uint8_t byte;
+  216                  uint32_t TmpDWord;
+  217                  uint8_t ModuleId;
+  218                  uint8_t Revision;
+  219                  uint8_t ReferenceSpadCount = 0;
+  220                  uint8_t ReferenceSpadType = 0;
+  221                  uint32_t PartUIDUpper = 0;
+  222                  uint32_t PartUIDLower = 0;
+  223                  uint32_t OffsetFixed1104_mm = 0;
+  224                  int16_t OffsetMicroMeters = 0;
+  225                  uint32_t DistMeasTgtFixed1104_mm = 400 << 4;
+  226                  uint32_t DistMeasFixed1104_400_mm = 0;
+  227                  uint32_t SignalRateMeasFixed1104_400_mm = 0;
+  228                  char ProductId[19];
+  229                  char *ProductId_tmp;
+*** WARNING C34 IN LINE 229 OF ..\VL53L0X\core\src\vl53l0x_api_core.c: 'ProductId_tmp': missing declaration specifiers
+*** ERROR C42 IN LINE 229 OF ..\VL53L0X\core\src\vl53l0x_api_core.c: 'ProductId_tmp': not in formal parameter list
+  230                  uint8_t ReadDataFromDeviceDone;
+*** WARNING C34 IN LINE 230 OF ..\VL53L0X\core\src\vl53l0x_api_core.c: 'uint8_t': missing declaration specifiers
+*** ERROR C42 IN LINE 230 OF ..\VL53L0X\core\src\vl53l0x_api_core.c: 'uint8_t': not in formal parameter list
+*** ERROR C25 IN LINE 230 OF ..\VL53L0X\core\src\vl53l0x_api_core.c: syntax error near 'ReadDataFromDeviceDone'
+*** WARNING C34 IN LINE 230 OF ..\VL53L0X\core\src\vl53l0x_api_core.c: 'ReadDataFromDeviceDone': missing declaration spe
+             -cifiers
+*** ERROR C42 IN LINE 230 OF ..\VL53L0X\core\src\vl53l0x_api_core.c: 'ReadDataFromDeviceDone': not in formal parameter l
+C251 COMPILER V5.60.0,  vl53l0x_api_core                                                   13/04/24  20:07:04  PAGE 5   
+
+             -ist
+  231                  FixPoint1616_t SignalRateMeasFixed400mmFix = 0;
+*** WARNING C34 IN LINE 231 OF ..\VL53L0X\core\src\vl53l0x_api_core.c: 'FixPoint1616_t': missing declaration specifiers
+*** ERROR C42 IN LINE 231 OF ..\VL53L0X\core\src\vl53l0x_api_core.c: 'FixPoint1616_t': not in formal parameter list
+*** ERROR C25 IN LINE 231 OF ..\VL53L0X\core\src\vl53l0x_api_core.c: syntax error near 'SignalRateMeasFixed400mmFix'
+*** ERROR C142 IN LINE 231 OF ..\VL53L0X\core\src\vl53l0x_api_core.c: illegal initialization
+  232                  uint8_t NvmRefGoodSpadMap[VL53L0X_REF_SPAD_BUFFER_SIZE];
+*** WARNING C34 IN LINE 232 OF ..\VL53L0X\core\src\vl53l0x_api_core.c: 'uint8_t': missing declaration specifiers
+*** ERROR C42 IN LINE 232 OF ..\VL53L0X\core\src\vl53l0x_api_core.c: 'uint8_t': not in formal parameter list
+*** ERROR C25 IN LINE 232 OF ..\VL53L0X\core\src\vl53l0x_api_core.c: syntax error near 'NvmRefGoodSpadMap'
+*** ERROR C67 IN LINE 232 OF ..\VL53L0X\core\src\vl53l0x_api_core.c: 'VL53L0X_REF_SPAD_BUFFER_SIZE': undefined identifie
+             -r
+*** WARNING C34 IN LINE 232 OF ..\VL53L0X\core\src\vl53l0x_api_core.c: 'NvmRefGoodSpadMap': missing declaration specifie
+             -rs
+*** ERROR C42 IN LINE 232 OF ..\VL53L0X\core\src\vl53l0x_api_core.c: 'NvmRefGoodSpadMap': not in formal parameter list
+  233                  int i;
+*** ERROR C42 IN LINE 233 OF ..\VL53L0X\core\src\vl53l0x_api_core.c: 'i': not in formal parameter list
+  234          
+  235          
+  236                  LOG_FUNCTION_START("");
+*** ERROR C25 IN LINE 236 OF ..\VL53L0X\core\src\vl53l0x_api_core.c: syntax error near '"string"'
+*** ERROR C42 IN LINE 236 OF ..\VL53L0X\core\src\vl53l0x_api_core.c: '_LOG_FUNCTION_START': not in formal parameter list
+*** ERROR C307 IN LINE 236 OF ..\VL53L0X\core\src\vl53l0x_api_core.c: macro 'LOG_FUNCTION_START': parameter count mismat
+             -ch
+  237          
+  238                  ReadDataFromDeviceDone = VL53L0X_GETDEVICESPECIFICPARAMETER(Dev,
+*** ERROR C142 IN LINE 238 OF ..\VL53L0X\core\src\vl53l0x_api_core.c: illegal initialization
+*** ERROR C67 IN LINE 238 OF ..\VL53L0X\core\src\vl53l0x_api_core.c: 'Dev': undefined identifier
+  239                                  ReadDataFromDeviceDone);
+*** ERROR C67 IN LINE 239 OF ..\VL53L0X\core\src\vl53l0x_api_core.c: 'ReadDataFromDeviceDone': undefined identifier
+*** WARNING C140 IN LINE 239 OF ..\VL53L0X\core\src\vl53l0x_api_core.c: 'VL53L0X_GETDEVICESPECIFICPARAMETER' undefined; 
+             -assuming 'extern int VL53L0X_GETDEVICESPECIFICPARAMETER()'
+*** ERROR C53 IN LINE 239 OF ..\VL53L0X\core\src\vl53l0x_api_core.c: redefinition of 'ReadDataFromDeviceDone': different
+             - basic types
+  240          
+  241                  /* This access is done only once after that a GetDeviceInfo or
+  242                   * datainit is done*/
+  243                  if (ReadDataFromDeviceDone != 7) {
+*** ERROR C25 IN LINE 243 OF ..\VL53L0X\core\src\vl53l0x_api_core.c: syntax error near 'if'
+*** ERROR C25 IN LINE 243 OF ..\VL53L0X\core\src\vl53l0x_api_core.c: syntax error near '!='
+  244          
+  245                          Status |= VL53L0X_WrByte(Dev, 0x80, 0x01);
+*** ERROR C25 IN LINE 245 OF ..\VL53L0X\core\src\vl53l0x_api_core.c: syntax error near '|='
+*** ERROR C25 IN LINE 245 OF ..\VL53L0X\core\src\vl53l0x_api_core.c: syntax error near '0x80'
+  246                          Status |= VL53L0X_WrByte(Dev, 0xFF, 0x01);
+*** ERROR C25 IN LINE 246 OF ..\VL53L0X\core\src\vl53l0x_api_core.c: syntax error near '|='
+*** ERROR C25 IN LINE 246 OF ..\VL53L0X\core\src\vl53l0x_api_core.c: syntax error near '0xFF'
+*** ERROR C7 IN LINE 246 OF ..\VL53L0X\core\src\vl53l0x_api_core.c: compilation aborted
+
+C251 COMPILATION COMPLETE.  9 WARNING(S),  37 ERROR(S)

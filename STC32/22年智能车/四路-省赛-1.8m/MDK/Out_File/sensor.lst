@@ -1,0 +1,194 @@
+C251 COMPILER V5.60.0,  sensor                                                             13/04/24  19:59:54  PAGE 1   
+
+
+C251 COMPILER V5.60.0, COMPILATION OF MODULE sensor
+OBJECT MODULE PLACED IN .\Out_File\sensor.obj
+COMPILER INVOKED BY: D:\keil5\keil5_MDK\keil5_MDK_32\C251\BIN\C251.EXE ..\USER\src\sensor.c XSMALL INTR2 WARNINGLEVEL(3)
+                    - BROWSE INCDIR(..\..\Libraries\libraries;..\..\Libraries\seekfree_libraries;..\..\Libraries\seekfree_peripheral;..\CODE;
+                    -..\USER\inc;..\USER\src) DEBUG PRINT(.\Out_File\sensor.lst) OBJECT(.\Out_File\sensor.obj) 
+
+stmt  level    source
+
+    1          #include "headfile.h"
+    2          
+    3          int ADC_MIN = 0;                                                                                        //电感采集最小值
+    4          int ADC_MAX = 100;                                                                              //电感采集最大值
+    5          int READ_MAX = 100;                                                                             //电感归一化后最大值(不需要修改)
+    6          int temp;                                                                                                                       //中值滤波临时变量
+    7          int ad[4][3];                                                                                                   //二维数组，存储四路adc连续采集三次的电感值
+    8          int sensor[4];                                                                                          //滤波后的当前四路电感值
+    9          int cross_num=0;                                                                                        //防止十字误判
+   10          int cross_flag=0;                                                                                       //十字标志位
+   11          int time_count=0;                                                                                       //时间积分变量
+   12          int servos_flag=0;                                                                              //判断是否为环岛
+   13          int servos_middle = 840;                                                        //舵机中间位置
+   14          int leftspeed,rightspeed;                                                       //左右电机差速度
+   15          float l,lm,rm,r;                                                                                        //左、左中、右中、右四路电感
+   16          float speed_add=0;                                                                              //直道加速
+   17          float speed_err=0;                                                                              //转弯速度增益
+   18          float sensor_err;                                                                                       //电感偏差值
+   19          float servos_err;                                                                                       //舵机偏差值
+   20          extern float Speed;                                                                             //预设速度
+   21          extern bit Stop_flag;                                                                   //冲出赛道标志
+   22          extern bit Barrier_flag;                                                        //避障标志位
+   23          extern int element_num;                                                         //经过元素的数量
+   24          extern PID_InitTypeDef PID_Servos;              //舵机结构体变量
+   25          
+   26          void ADC_Read()                                                                                                                         //电感采集
+   27          {
+   28   1              int i;
+   29   1              for(i=0;i<3;i++)                                                                                                                //连续采集3次
+   30   1              {
+   31   2                      ad[0][i] = adc_once(ADC_P00, ADC_8BIT);         //一路电感
+   32   2                      ad[1][i] = adc_once(ADC_P05, ADC_8BIT);         //二路电感
+   33   2                      ad[2][i] = adc_once(ADC_P06, ADC_8BIT);         //三路电感
+   34   2                      ad[3][i] = adc_once(ADC_P16, ADC_8BIT);         //四路电感
+   35   2              }
+   36   1              for(i=0;i<4;i++)                                                                                                                //中值滤波,取连续采集三次电感值的中间值 
+   37   1              {
+   38   2                      if(ad[i][0]>ad[i][1])
+   39   2                      {
+   40   3                              temp = ad[i][0];
+   41   3                              ad[i][0] = ad[i][1];
+   42   3                              ad[i][1] = temp;
+   43   3                      }
+   44   2                      if(ad[i][1]>ad[i][2])
+   45   2                      {
+   46   3                              temp = ad[i][0];
+   47   3                              ad[i][0] = ad[i][1];
+   48   3                              ad[i][1] = temp;
+   49   3                      }
+   50   2                      if(ad[i][0]>ad[i][1])
+   51   2                      {
+   52   3                              temp = ad[i][0];
+   53   3                              ad[i][0] = ad[i][1];
+   54   3                              ad[i][1] = temp;
+   55   3                      }
+   56   2                      ad[i][1] = (ad[i][1]>ADC_MAX)?ADC_MAX:ad[i][1];                                 //对电感值进行限幅处理
+   57   2                      ad[i][1] = 100*(ad[i][1]-ADC_MIN)/(ADC_MAX-ADC_MIN);            //归一化,将电感值限制在0~100之间
+C251 COMPILER V5.60.0,  sensor                                                             13/04/24  19:59:54  PAGE 2   
+
+   58   2              }
+   59   1              l = ad[0][1];                                   //左电感
+   60   1              lm = ad[1][1];                          //左中电感
+   61   1              rm = ad[2][1];                          //右中电感
+   62   1              r = ad[3][1];                                   //右电感
+   63   1              circle_judge();
+   64   1      }
+   65          
+   66          //位置偏差计算
+   67          void Pos_Deviation()    
+   68          {
+   69   1              if(cross_flag==1)                                                                                                       //如果判断为十字，开始时间积分，防止在经过十字时多次判断为十字
+   70   1              {                                                                       
+   71   2                      cross_num+=1;                                                                                                           //开始十字时间积分
+   72   2                      if(cross_num==20)                                                                                               //如果十字时间积分等于100ms
+   73   2                      {
+   74   3                              cross_flag=0;                                                                                                   //十字标志清零
+   75   3                              cross_num=0;                                                                                                    //十字时间积分清零
+   76   3                      }
+   77   2              }
+   78   1              else    
+   79   1              {
+   80   2                      if(servos_flag==0&&lm>50&&rm>50)                                                                                                                        //如果是十字
+   81   2                      {
+   82   3                              cross_flag=1;                                                                                                                                                                                           //十字标志开启
+   83   3                              element_num+=1;                                                                                                                                                                                 //元素数量加一
+   84   3                      }
+   85   2              }
+   86   1              if(servos_flag!=0)                                                                                                                                                                                      //如果是环岛
+   87   1                      circle_move();                                                                                                                                                                                          //环岛寻迹
+   88   1              else                                                                                                                                                                                                                                            //如果是正常路段
+   89   1                      sensor_err = 100*(1.2*(l-r)+(lm-rm))/((l+r)+0.5*(lm+rm));                       //差比和算法,偏差值小于零向右转，大于零向左
+             -转 
+   90   1              if(-50<sensor_err&&sensor_err<50)                                                                                                                               //在直道上
+   91   1              {
+   92   2                      speed_add = 0;                                                                                                                                                                                          //直道加速
+   93   2                      speed_err       =       250;                                                                                                                                                                                    //直道差速大小
+   94   2                      PID_Servos.KP = 0.5;                                                                                                                                                                    
+   95   2                      PID_Servos.KI = 0;
+   96   2                      PID_Servos.KD = 5;
+   97   2              }
+   98   1              else
+   99   1              {
+  100   2                      speed_add = 0;                                                                                                                                                                                          //弯道取消加速
+  101   2                      speed_err       =       200;                                                                                                                                                                                    //弯道差速大小
+  102   2                      PID_Servos.KP = 1;
+  103   2                      PID_Servos.KI = 0;
+  104   2                      PID_Servos.KD = 20;
+  105   2              }
+  106   1      }
+  107          
+  108          void Servos_Control()                                                                                                                                                                                           //车身姿态调整
+  109          {
+  110   1              if(servos_flag!=0)                                                              //如果在环岛中
+  111   1                      time_count+=1;                                                                  //开始时间积分
+  112   1              printf("%.0f,%.0f,%.0f,%.0f,%.0f,%d,%d\n",l,lm,rm,r,sensor_err,servos_flag,element_num);
+  113   1      //舵机控制
+  114   1              PID_Calc_Positional(&PID_Servos, 0, sensor_err);                                                                                                                        //舵机输出值计算
+  115   1              pwm_duty(PWMB_CH1_P74,servos_middle-(int)PID_Servos.Total_Out);                                                         //舵机控制  
+  116   1      
+  117   1      //电机差速
+  118   1              if(sensor_err<0)                                                                                                                                                                                                                                                        //向左转
+  119   1              {
+  120   2                      leftspeed = (int)((Speed+speed_add)*(1+PID_Servos.Total_Out/speed_err));                //左轮加速
+  121   2                      rightspeed = (int)(Speed+speed_add);                                                                                                                                                            //右轮速度不变
+  122   2              }
+C251 COMPILER V5.60.0,  sensor                                                             13/04/24  19:59:54  PAGE 3   
+
+  123   1              else                                                                                                                                                                                                                                                                                                    //向右转
+  124   1              {                               
+  125   2                      leftspeed = (int)(Speed+speed_add);                                                                                                                                                                     //左轮速度不变
+  126   2                      rightspeed = (int)((Speed+speed_add)*(1-PID_Servos.Total_Out/speed_err));               //右轮加速
+  127   2              }
+  128   1              Speedcontrol(leftspeed, rightspeed);                                                                                                                                                                    //调整当前速度
+  129   1      }
+  130          
+  131          
+  132          
+  133          
+  134          
+  135          
+  136          
+  137          
+  138          
+  139          
+  140          
+  141          
+  142          
+  143          
+  144          
+  145          
+  146          
+  147          
+  148          
+  149          
+  150          
+  151          
+  152          
+  153          
+  154          
+
+
+Module Information          Static   Overlayable
+------------------------------------------------
+  code size            =       876     ------
+  ecode size           =    ------     ------
+  data size            =    ------     ------
+  idata size           =    ------     ------
+  pdata size           =    ------     ------
+  xdata size           =    ------     ------
+  xdata-const size     =    ------     ------
+  edata size           =        86     ------
+  bit size             =    ------     ------
+  ebit size            =    ------     ------
+  bitaddressable size  =    ------     ------
+  ebitaddressable size =    ------     ------
+  far data size        =    ------     ------
+  huge data size       =    ------     ------
+  const size           =    ------     ------
+  hconst size          =        96     ------
+End of Module Information.
+
+
+C251 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

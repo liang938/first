@@ -1,0 +1,221 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: μVision V5.25.3.0
+Copyright (C) 2018 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: 1 gyy123, 1, LIC=8VZI6-DV87H-49CG3-A8538-M23WJ-QZL6A
+ 
+Tool Versions:
+Toolchain:       PK251 Prof. Developers Kit  Version: 5.60.0.0
+Toolchain Path:  D:\keil5\keil5_MDK\keil5_MDK_32\C251\BIN
+C Compiler:      C251.exe V5.60.0.0
+Assembler:       A251.exe V4.69.13.0
+Linker/Locator:  L251.exe V4.66.93.0
+Library Manager: LIB251.exe V4.30.1.0
+Hex Converter:   OH251.exe V1.47.0.0
+CPU DLL:         S251.DLL V3.129.0.0
+Dialog DLL:      DCORE51.DLL V2.81.6.0
+Target DLL:      MON251.DLL V2.51.0.0
+Dialog DLL:      TCORE51.DLL V2.66.4.0
+ 
+<h2>Project:</h2>
+C:\Users\gyy123\Desktop\smartcar\STC32\22年智能车\四路-省赛-1.8m\MDK\STC32G.uvproj
+Project File Date:  04/13/2024
+
+<h2>Output:</h2>
+Build target 'STC32G12K128'
+compiling main.c...
+..\USER\src\main.c(36): error C67: 'vl53l0x_dev': undefined identifier
+compiling vl53l0x_api.c...
+..\VL53L0X\core\src\vl53l0x_api.c(29): error C318: can't open file 'vl53l0x_api.h'
+..\VL53L0X\core\src\vl53l0x_api.c(30): error C318: can't open file 'vl53l0x_tuning.h'
+..\VL53L0X\core\src\vl53l0x_api.c(31): error C318: can't open file 'vl53l0x_interrupt_threshold_settings.h'
+..\VL53L0X\core\src\vl53l0x_api.c(32): error C318: can't open file 'vl53l0x_api_core.h'
+..\VL53L0X\core\src\vl53l0x_api.c(33): error C318: can't open file 'vl53l0x_api_calibration.h'
+..\VL53L0X\core\src\vl53l0x_api.c(34): error C318: can't open file 'vl53l0x_api_strings.h'
+..\VL53L0X\core\src\vl53l0x_api.c(53): error C25: syntax error near '*'
+..\VL53L0X\core\src\vl53l0x_api.c(54): error C42: 'VL53L0X_GetVersion': not in formal parameter list
+..\VL53L0X\core\src\vl53l0x_api.c(56): error C307: macro 'LOG_FUNCTION_START': parameter count mismatch
+..\VL53L0X\core\src\vl53l0x_api.c(64): error C307: macro 'LOG_FUNCTION_END': parameter count mismatch
+..\VL53L0X\core\src\vl53l0x_api.c(68): warning C34: 'pPalSpecVersion': missing declaration specifiers
+..\VL53L0X\core\src\vl53l0x_api.c(68): error C42: 'pPalSpecVersion': not in formal parameter list
+..\VL53L0X\core\src\vl53l0x_api.c(72): error C307: macro 'LOG_FUNCTION_START': parameter count mismatch
+..\VL53L0X\core\src\vl53l0x_api.c(80): error C307: macro 'LOG_FUNCTION_END': parameter count mismatch
+..\VL53L0X\core\src\vl53l0x_api.c(85): warning C34: 'pProductRevisionMajor': missing declaration specifiers
+..\VL53L0X\core\src\vl53l0x_api.c(85): error C42: 'pProductRevisionMajor': not in formal parameter list
+..\VL53L0X\core\src\vl53l0x_api.c(85): warning C34: 'uint8_t': missing declaration specifiers
+..\VL53L0X\core\src\vl53l0x_api.c(85): error C42: 'uint8_t': not in formal parameter list
+..\VL53L0X\core\src\vl53l0x_api.c(85): error C25: syntax error near '*'
+..\VL53L0X\core\src\vl53l0x_api.c(85): warning C34: 'pProductRevisionMinor': missing declaration specifiers
+..\VL53L0X\core\src\vl53l0x_api.c(85): error C42: 'pProductRevisionMinor': not in formal parameter list
+..\VL53L0X\core\src\vl53l0x_api.c(90): error C307: macro 'LOG_FUNCTION_START': parameter count mismatch
+..\VL53L0X\core\src\vl53l0x_api.c(94): error C142: illegal initialization
+..\VL53L0X\core\src\vl53l0x_api.c(95): error C142: illegal initialization
+..\VL53L0X\core\src\vl53l0x_api.c(95): error C67: 'revision_id': undefined identifier
+..\VL53L0X\core\src\vl53l0x_api.c(97): error C25: syntax error near ')'
+..\VL53L0X\core\src\vl53l0x_api.c(97): error C42: '_LOG_FUNCTION_END': not in formal parameter list
+..\VL53L0X\core\src\vl53l0x_api.c(97): error C307: macro 'LOG_FUNCTION_END': parameter count mismatch
+..\VL53L0X\core\src\vl53l0x_api.c(98): error C25: syntax error near 'return'
+..\VL53L0X\core\src\vl53l0x_api.c(98): warning C34: 'Status': missing declaration specifiers
+..\VL53L0X\core\src\vl53l0x_api.c(100): error C25: syntax error near '}'
+..\VL53L0X\core\src\vl53l0x_api.c(102): error C25: syntax error near 'Dev'
+..\VL53L0X\core\src\vl53l0x_api.c(104): error C42: 'VL53L0X_GetDeviceInfo': not in formal parameter list
+..\VL53L0X\core\src\vl53l0x_api.c(106): error C307: macro 'LOG_FUNCTION_START': parameter count mismatch
+..\VL53L0X\core\src\vl53l0x_api.c(110): error C307: macro 'LOG_FUNCTION_END': parameter count mismatch
+..\VL53L0X\core\src\vl53l0x_api.c(115): warning C34: 'pDeviceErrorStatus': missing declaration specifiers
+..\VL53L0X\core\src\vl53l0x_api.c(115): error C42: 'pDeviceErrorStatus': not in formal parameter list
+..\VL53L0X\core\src\vl53l0x_api.c(120): error C307: macro 'LOG_FUNCTION_START': parameter count mismatch
+..\VL53L0X\core\src\vl53l0x_api.c(125): error C142: illegal initialization
+..\VL53L0X\core\src\vl53l0x_api.c(125): error C67: 'VL53L0X_DeviceError': undefined identifier
+..\VL53L0X\core\src\vl53l0x_api.c(125): error C67: 'RangeStatus': undefined identifier
+..\VL53L0X\core\src\vl53l0x_api.c(127): error C25: syntax error near ')'
+..\VL53L0X\core\src\vl53l0x_api.c(127): error C42: '_LOG_FUNCTION_END': not in formal parameter list
+..\VL53L0X\core\src\vl53l0x_api.c(127): error C307: macro 'LOG_FUNCTION_END': parameter count mismatch
+..\VL53L0X\core\src\vl53l0x_api.c(128): error C25: syntax error near 'return'
+..\VL53L0X\core\src\vl53l0x_api.c(128): warning C34: 'Status': missing declaration specifiers
+..\VL53L0X\core\src\vl53l0x_api.c(129): error C25: syntax error near '}'
+..\VL53L0X\core\src\vl53l0x_api.c(132): error C25: syntax error near 'ErrorCode'
+..\VL53L0X\core\src\vl53l0x_api.c(134): error C42: 'VL53L0X_GetDeviceErrorString': not in formal parameter list
+..\VL53L0X\core\src\vl53l0x_api.c(137): error C307: macro 'LOG_FUNCTION_START': parameter count mismatch
+..\VL53L0X\core\src\vl53l0x_api.c(141): error C307: macro 'LOG_FUNCTION_END': parameter count mismatch
+..\VL53L0X\core\src\vl53l0x_api.c(146): warning C34: 'pRangeStatusString': missing declaration specifiers
+..\VL53L0X\core\src\vl53l0x_api.c(146): error C42: 'pRangeStatusString': not in formal parameter list
+..\VL53L0X\core\src\vl53l0x_api.c(149): error C307: macro 'LOG_FUNCTION_START': parameter count mismatch
+..\VL53L0X\core\src\vl53l0x_api.c(154): error C307: macro 'LOG_FUNCTION_END': parameter count mismatch
+..\VL53L0X\core\src\vl53l0x_api.c(159): warning C34: 'pPalErrorString': missing declaration specifiers
+..\VL53L0X\core\src\vl53l0x_api.c(159): error C42: 'pPalErrorString': not in formal parameter list
+..\VL53L0X\core\src\vl53l0x_api.c(162): error C307: macro 'LOG_FUNCTION_START': parameter count mismatch
+..\VL53L0X\core\src\vl53l0x_api.c(166): error C307: macro 'LOG_FUNCTION_END': parameter count mismatch
+..\VL53L0X\core\src\vl53l0x_api.c(171): warning C34: 'pPalStateString': missing declaration specifiers
+..\VL53L0X\core\src\vl53l0x_api.c(171): error C42: 'pPalStateString': not in formal parameter list
+..\VL53L0X\core\src\vl53l0x_api.c(174): error C307: macro 'LOG_FUNCTION_START': parameter count mismatch
+..\VL53L0X\core\src\vl53l0x_api.c(178): error C307: macro 'LOG_FUNCTION_END': parameter count mismatch
+..\VL53L0X\core\src\vl53l0x_api.c(182): warning C34: 'pPalState': missing declaration specifiers
+..\VL53L0X\core\src\vl53l0x_api.c(182): error C42: 'pPalState': not in formal parameter list
+..\VL53L0X\core\src\vl53l0x_api.c(185): error C307: macro 'LOG_FUNCTION_START': parameter count mismatch
+..\VL53L0X\core\src\vl53l0x_api.c(187): error C142: illegal initialization
+..\VL53L0X\core\src\vl53l0x_api.c(187): error C67: 'Dev': undefined identifier
+..\VL53L0X\core\src\vl53l0x_api.c(187): error C67: 'PalState': undefined identifier
+..\VL53L0X\core\src\vl53l0x_api.c(187): warning C140: 'PALDevDataGet' undefined; assuming 'extern int PALDevDataGet()'
+..\VL53L0X\core\src\vl53l0x_api.c(189): error C25: syntax error near ')'
+..\VL53L0X\core\src\vl53l0x_api.c(189): error C7: compilation aborted
+compiling vl53l0x_api_calibration.c...
+..\VL53L0X\core\src\vl53l0x_api_calibration.c(29): error C318: can't open file 'vl53l0x_api.h'
+..\VL53L0X\core\src\vl53l0x_api_calibration.c(30): error C318: can't open file 'vl53l0x_api_core.h'
+..\VL53L0X\core\src\vl53l0x_api_calibration.c(31): error C318: can't open file 'vl53l0x_api_calibration.h'
+..\VL53L0X\core\src\vl53l0x_api_calibration.c(48): error C142: illegal initialization
+..\VL53L0X\core\src\vl53l0x_api_calibration.c(51): warning C34: 'VL53L0X_Error': missing declaration specifiers
+..\VL53L0X\core\src\vl53l0x_api_calibration.c(51): error C42: 'VL53L0X_Error': not in formal parameter list
+..\VL53L0X\core\src\vl53l0x_api_calibration.c(51): error C25: syntax error near 'VL53L0X_perform_xtalk_calibration'
+..\VL53L0X\core\src\vl53l0x_api_calibration.c(51): error C25: syntax error near 'Dev'
+..\VL53L0X\core\src\vl53l0x_api_calibration.c(54): error C42: 'VL53L0X_perform_xtalk_calibration': not in formal parameter list
+..\VL53L0X\core\src\vl53l0x_api_calibration.c(174): error C142: illegal initialization
+..\VL53L0X\core\src\vl53l0x_api_calibration.c(174): error C67: 'XTalkCompensationRateMegaCps': undefined identifier
+..\VL53L0X\core\src\vl53l0x_api_calibration.c(177): error C25: syntax error near 'if'
+..\VL53L0X\core\src\vl53l0x_api_calibration.c(177): error C25: syntax error near '=='
+..\VL53L0X\core\src\vl53l0x_api_calibration.c(177): error C25: syntax error near ')'
+..\VL53L0X\core\src\vl53l0x_api_calibration.c(178): error C67: 'Dev': undefined identifier
+..\VL53L0X\core\src\vl53l0x_api_calibration.c(178): warning C140: 'VL53L0X_SetXTalkCompensationEnable' undefined; assuming 'extern int VL53L0X_SetXTalkCompensationEnable()'
+..\VL53L0X\core\src\vl53l0x_api_calibration.c(178): error C143: 'scalar': initializer is not a constant
+..\VL53L0X\core\src\vl53l0x_api_calibration.c(181): error C25: syntax error near 'if'
+..\VL53L0X\core\src\vl53l0x_api_calibration.c(181): error C25: syntax error near '=='
+..\VL53L0X\core\src\vl53l0x_api_calibration.c(181): error C25: syntax error near ')'
+..\VL53L0X\core\src\vl53l0x_api_calibration.c(182): error C67: 'Dev': undefined identifier
+..\VL53L0X\core\src\vl53l0x_api_calibration.c(183): error C67: 'XTalkCompensationRateMegaCps': undefined identifier
+..\VL53L0X\core\src\vl53l0x_api_calibration.c(183): warning C140: 'VL53L0X_SetXTalkCompensationRateMegaCps' undefined; assuming 'extern int VL53L0X_SetXTalkCompensationRateMegaCps()'
+..\VL53L0X\core\src\vl53l0x_api_calibration.c(183): error C143: 'scalar': initializer is not a constant
+..\VL53L0X\core\src\vl53l0x_api_calibration.c(185): error C25: syntax error near '}'
+..\VL53L0X\core\src\vl53l0x_api_calibration.c(187): warning C34: 'Status': missing declaration specifiers
+..\VL53L0X\core\src\vl53l0x_api_calibration.c(188): error C25: syntax error near '}'
+..\VL53L0X\core\src\vl53l0x_api_calibration.c(190): error C25: syntax error near 'Dev'
+..\VL53L0X\core\src\vl53l0x_api_calibration.c(190): error C7: compilation aborted
+compiling vl53l0x_api_core.c...
+..\VL53L0X\core\src\vl53l0x_api_core.c(29): error C318: can't open file 'vl53l0x_api.h'
+..\VL53L0X\core\src\vl53l0x_api_core.c(30): error C318: can't open file 'vl53l0x_api_core.h'
+..\VL53L0X\core\src\vl53l0x_api_core.c(31): error C318: can't open file 'vl53l0x_api_calibration.h'
+..\VL53L0X\core\src\vl53l0x_api_core.c(44): error C25: syntax error near '*'
+..\VL53L0X\core\src\vl53l0x_api_core.c(45): error C42: 'VL53L0X_reverse_bytes': not in formal parameter list
+..\VL53L0X\core\src\vl53l0x_api_core.c(67): error C307: macro 'LOG_FUNCTION_START': parameter count mismatch
+..\VL53L0X\core\src\vl53l0x_api_core.c(88): error C307: macro 'LOG_FUNCTION_END': parameter count mismatch
+..\VL53L0X\core\src\vl53l0x_api_core.c(172): warning C34: 'a': missing declaration specifiers
+..\VL53L0X\core\src\vl53l0x_api_core.c(172): error C42: 'a': not in formal parameter list
+..\VL53L0X\core\src\vl53l0x_api_core.c(172): warning C34: 'b': missing declaration specifiers
+..\VL53L0X\core\src\vl53l0x_api_core.c(172): error C42: 'b': not in formal parameter list
+..\VL53L0X\core\src\vl53l0x_api_core.c(183): error C307: macro 'LOG_FUNCTION_START': parameter count mismatch
+..\VL53L0X\core\src\vl53l0x_api_core.c(206): error C307: macro 'LOG_FUNCTION_END': parameter count mismatch
+..\VL53L0X\core\src\vl53l0x_api_core.c(229): warning C34: 'ProductId_tmp': missing declaration specifiers
+..\VL53L0X\core\src\vl53l0x_api_core.c(229): error C42: 'ProductId_tmp': not in formal parameter list
+..\VL53L0X\core\src\vl53l0x_api_core.c(230): warning C34: 'uint8_t': missing declaration specifiers
+..\VL53L0X\core\src\vl53l0x_api_core.c(230): error C42: 'uint8_t': not in formal parameter list
+..\VL53L0X\core\src\vl53l0x_api_core.c(230): error C25: syntax error near 'ReadDataFromDeviceDone'
+..\VL53L0X\core\src\vl53l0x_api_core.c(230): warning C34: 'ReadDataFromDeviceDone': missing declaration specifiers
+..\VL53L0X\core\src\vl53l0x_api_core.c(230): error C42: 'ReadDataFromDeviceDone': not in formal parameter list
+..\VL53L0X\core\src\vl53l0x_api_core.c(231): warning C34: 'FixPoint1616_t': missing declaration specifiers
+..\VL53L0X\core\src\vl53l0x_api_core.c(231): error C42: 'FixPoint1616_t': not in formal parameter list
+..\VL53L0X\core\src\vl53l0x_api_core.c(231): error C25: syntax error near 'SignalRateMeasFixed400mmFix'
+..\VL53L0X\core\src\vl53l0x_api_core.c(231): error C142: illegal initialization
+..\VL53L0X\core\src\vl53l0x_api_core.c(232): warning C34: 'uint8_t': missing declaration specifiers
+..\VL53L0X\core\src\vl53l0x_api_core.c(232): error C42: 'uint8_t': not in formal parameter list
+..\VL53L0X\core\src\vl53l0x_api_core.c(232): error C25: syntax error near 'NvmRefGoodSpadMap'
+..\VL53L0X\core\src\vl53l0x_api_core.c(232): error C67: 'VL53L0X_REF_SPAD_BUFFER_SIZE': undefined identifier
+..\VL53L0X\core\src\vl53l0x_api_core.c(232): warning C34: 'NvmRefGoodSpadMap': missing declaration specifiers
+..\VL53L0X\core\src\vl53l0x_api_core.c(232): error C42: 'NvmRefGoodSpadMap': not in formal parameter list
+..\VL53L0X\core\src\vl53l0x_api_core.c(233): error C42: 'i': not in formal parameter list
+..\VL53L0X\core\src\vl53l0x_api_core.c(236): error C25: syntax error near '"string"'
+..\VL53L0X\core\src\vl53l0x_api_core.c(236): error C42: '_LOG_FUNCTION_START': not in formal parameter list
+..\VL53L0X\core\src\vl53l0x_api_core.c(236): error C307: macro 'LOG_FUNCTION_START': parameter count mismatch
+..\VL53L0X\core\src\vl53l0x_api_core.c(238): error C142: illegal initialization
+..\VL53L0X\core\src\vl53l0x_api_core.c(238): error C67: 'Dev': undefined identifier
+..\VL53L0X\core\src\vl53l0x_api_core.c(239): error C67: 'ReadDataFromDeviceDone': undefined identifier
+..\VL53L0X\core\src\vl53l0x_api_core.c(239): warning C140: 'VL53L0X_GETDEVICESPECIFICPARAMETER' undefined; assuming 'extern int VL53L0X_GETDEVICESPECIFICPARAMETER()'
+..\VL53L0X\core\src\vl53l0x_api_core.c(239): error C53: redefinition of 'ReadDataFromDeviceDone': different basic types
+..\VL53L0X\core\src\vl53l0x_api_core.c(243): error C25: syntax error near 'if'
+..\VL53L0X\core\src\vl53l0x_api_core.c(243): error C25: syntax error near '!='
+..\VL53L0X\core\src\vl53l0x_api_core.c(245): error C25: syntax error near '|='
+..\VL53L0X\core\src\vl53l0x_api_core.c(245): error C25: syntax error near '0x80'
+..\VL53L0X\core\src\vl53l0x_api_core.c(246): error C25: syntax error near '|='
+..\VL53L0X\core\src\vl53l0x_api_core.c(246): error C25: syntax error near '0xFF'
+..\VL53L0X\core\src\vl53l0x_api_core.c(246): error C7: compilation aborted
+compiling vl53l0x_api_ranging.c...
+..\VL53L0X\core\src\vl53l0x_api_ranging.c(29): error C318: can't open file 'vl53l0x_api.h'
+..\VL53L0X\core\src\vl53l0x_api_ranging.c(30): error C318: can't open file 'vl53l0x_api_core.h'
+compiling vl53l0x_api_strings.c...
+..\VL53L0X\core\src\vl53l0x_api_strings.c(29): error C318: can't open file 'vl53l0x_api.h'
+..\VL53L0X\core\src\vl53l0x_api_strings.c(30): error C318: can't open file 'vl53l0x_api_core.h'
+..\VL53L0X\core\src\vl53l0x_api_strings.c(31): error C318: can't open file 'vl53l0x_api_strings.h'
+..\VL53L0X\core\src\vl53l0x_api_strings.c(45): error C25: syntax error near 'Dev'
+..\VL53L0X\core\src\vl53l0x_api_strings.c(48): error C42: 'VL53L0X_check_part_used': not in formal parameter list
+..\VL53L0X\core\src\vl53l0x_api_strings.c(51): warning C34: 'ProductId_tmp': missing declaration specifiers
+..\VL53L0X\core\src\vl53l0x_api_strings.c(51): error C42: 'ProductId_tmp': not in formal parameter list
+..\VL53L0X\core\src\vl53l0x_api_strings.c(53): error C25: syntax error near '"string"'
+..\VL53L0X\core\src\vl53l0x_api_strings.c(53): error C42: '_LOG_FUNCTION_START': not in formal parameter list
+..\VL53L0X\core\src\vl53l0x_api_strings.c(53): error C307: macro 'LOG_FUNCTION_START': parameter count mismatch
+..\VL53L0X\core\src\vl53l0x_api_strings.c(55): error C142: illegal initialization
+..\VL53L0X\core\src\vl53l0x_api_strings.c(55): error C67: 'Dev': undefined identifier
+..\VL53L0X\core\src\vl53l0x_api_strings.c(55): warning C140: 'VL53L0X_get_info_from_device' undefined; assuming 'extern int VL53L0X_get_info_from_device()'
+..\VL53L0X\core\src\vl53l0x_api_strings.c(57): error C25: syntax error near 'if'
+..\VL53L0X\core\src\vl53l0x_api_strings.c(57): error C25: syntax error near '=='
+..\VL53L0X\core\src\vl53l0x_api_strings.c(57): error C25: syntax error near ')'
+..\VL53L0X\core\src\vl53l0x_api_strings.c(58): error C67: 'Dev': undefined identifier
+..\VL53L0X\core\src\vl53l0x_api_strings.c(58): error C67: 'ModuleId': undefined identifier
+..\VL53L0X\core\src\vl53l0x_api_strings.c(58): warning C140: 'VL53L0X_GETDEVICESPECIFICPARAMETER' undefined; assuming 'extern int VL53L0X_GETDEVICESPECIFICPARAMETER()'
+..\VL53L0X\core\src\vl53l0x_api_strings.c(58): error C143: 'scalar': initializer is not a constant
+..\VL53L0X\core\src\vl53l0x_api_strings.c(60): error C25: syntax error near 'if'
+..\VL53L0X\core\src\vl53l0x_api_strings.c(60): error C25: syntax error near '=='
+..\VL53L0X\core\src\vl53l0x_api_strings.c(62): error C25: syntax error near '->'
+..\VL53L0X\core\src\vl53l0x_api_strings.c(63): error C25: syntax error near '}'
+..\VL53L0X\core\src\vl53l0x_api_strings.c(64): error C67: 'Dev': undefined identifier
+..\VL53L0X\core\src\vl53l0x_api_strings.c(64): warning C40: 'int' converted to 'far' pointer
+..\VL53L0X\core\src\vl53l0x_api_strings.c(65): error C67: 'Dev': undefined identifier
+..\VL53L0X\core\src\vl53l0x_api_strings.c(66): error C67: 'ProductId': undefined identifier
+..\VL53L0X\core\src\vl53l0x_api_strings.c(66): error C143: 'scalar': initializer is not a constant
+..\VL53L0X\core\src\vl53l0x_api_strings.c(67): error C25: syntax error near '->'
+..\VL53L0X\core\src\vl53l0x_api_strings.c(68): error C25: syntax error near '}'
+..\VL53L0X\core\src\vl53l0x_api_strings.c(68): error C7: compilation aborted
+Target not created.
+Build Time Elapsed:  00:00:01
+</pre>
+</body>
+</html>

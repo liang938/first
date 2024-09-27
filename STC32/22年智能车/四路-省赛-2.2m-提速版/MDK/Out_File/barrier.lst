@@ -1,0 +1,114 @@
+C251 COMPILER V5.60.0,  barrier                                                            07/07/23  16:48:09  PAGE 1   
+
+
+C251 COMPILER V5.60.0, COMPILATION OF MODULE barrier
+OBJECT MODULE PLACED IN .\Out_File\barrier.obj
+COMPILER INVOKED BY: D:\Keil5\C251\BIN\C251.EXE ..\USER\src\barrier.c XSMALL INTR2 WARNINGLEVEL(3) BROWSE INCDIR(..\..\L
+                    -ibraries\libraries;..\..\Libraries\seekfree_libraries;..\..\Libraries\seekfree_peripheral;..\CODE;..\USER\inc;..\USER\sr
+                    -c) DEBUG PRINT(.\Out_File\barrier.lst) TABS(2) OBJECT(.\Out_File\barrier.obj) 
+
+stmt  level    source
+
+    1          #include "headfile.h"
+    2          
+    3          float angle = 0;                      //角度积分
+    4          
+    5          bit barrier_in=0;                     //回赛道标志
+    6          bit barrier_out=0;                    //出赛道标志
+    7          bit barrier_back=0;                   //入赛道回正标志
+    8          bit barrier_forward=0;                //入赛道前直行标志
+    9          int barrier_time=0;
+   10          int adc_rm = 0;
+   11          
+   12          extern bit flag;                      //判断是否经过10ms
+   13          extern bit Stop_flag;
+   14          extern bit Barrier_flag;              //避障标志位
+   15          extern bit first_barrier;
+   16          
+   17          void Avoid_barrier()                  //避障
+   18          {
+   19   1        while(1)
+   20   1        {
+   21   2          if(flag == 0)                       
+   22   2          {
+   23   3            adc_rm = adc_once(ADC_P06, ADC_8BIT);   //三路电感
+   24   3            mpu6050_get_gyro();
+   25   3            mpu_gyro_z = (mpu_gyro_z*2000)/32768;
+   26   3            angle += mpu_gyro_z*0.005;
+   27   3      //      printf("%.3f\n",angle);
+   28   3            if(barrier_out==0)
+   29   3            {
+   30   4              pwm_duty(PWMB_CH1_P74,840+60);                      
+   31   4              pwm_duty(PWMA_CH2P_P62, 4000);            
+   32   4              pwm_duty(PWMA_CH3P_P64, 4000);
+   33   4              if(25<angle&&angle<35)
+   34   4                barrier_out=1;
+   35   4            }
+   36   3            else if(barrier_in==0)
+   37   3            {
+   38   4              pwm_duty(PWMB_CH1_P74,840-60);                      
+   39   4              pwm_duty(PWMA_CH2P_P62, 3000);            
+   40   4              pwm_duty(PWMA_CH3P_P64, 3000);
+   41   4              if(-25<angle&&angle<-15)
+   42   4                barrier_in=1;       
+   43   4            }
+   44   3            else if(barrier_forward==0)
+   45   3            {
+   46   4              pwm_duty(PWMB_CH1_P74,840);                     
+   47   4              pwm_duty(PWMA_CH2P_P62, 3000);            
+   48   4              pwm_duty(PWMA_CH3P_P64, 3000);
+   49   4              barrier_time+=1;
+   50   4              if(barrier_time>25)
+   51   4              {
+   52   5                barrier_time=0;
+   53   5                barrier_forward=1;          
+   54   5              }
+   55   4            }
+   56   3            else if(barrier_back==0)
+   57   3            {
+C251 COMPILER V5.60.0,  barrier                                                            07/07/23  16:48:09  PAGE 2   
+
+   58   4              pwm_duty(PWMB_CH1_P74,840+60);                      
+   59   4              pwm_duty(PWMA_CH2P_P62, 2000);            
+   60   4              pwm_duty(PWMA_CH3P_P64, 4000);
+   61   4              barrier_time+=1;
+   62   4              if(barrier_time>55)
+   63   4                barrier_back=1;   
+   64   4            }
+   65   3            else
+   66   3            {
+   67   4              first_barrier=1;
+   68   4              Barrier_flag=0;
+   69   4              //Stop_flag=1;
+   70   4              break;
+   71   4            }
+   72   3            flag = 1;                       
+   73   3          }
+   74   2        }
+   75   1      }
+   76          
+   77          
+
+
+Module Information          Static   Overlayable
+------------------------------------------------
+  code size            =       384     ------
+  ecode size           =    ------     ------
+  data size            =    ------     ------
+  idata size           =    ------     ------
+  pdata size           =    ------     ------
+  xdata size           =    ------     ------
+  xdata-const size     =    ------     ------
+  edata size           =         8     ------
+  bit size             =         4     ------
+  ebit size            =    ------     ------
+  bitaddressable size  =    ------     ------
+  ebitaddressable size =    ------     ------
+  far data size        =    ------     ------
+  huge data size       =    ------     ------
+  const size           =    ------     ------
+  hconst size          =        20     ------
+End of Module Information.
+
+
+C251 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,249 @@
+C251 COMPILER V5.60.0,  circle                                                             16/04/24  16:11:44  PAGE 1   
+
+
+C251 COMPILER V5.60.0, COMPILATION OF MODULE circle
+OBJECT MODULE PLACED IN .\Out_File\circle.obj
+COMPILER INVOKED BY: D:\keil5\keil5_MDK\keil5_MDK_32\C251\BIN\C251.EXE ..\USER\src\circle.c XSMALL INTR2 WARNINGLEVEL(3)
+                    - BROWSE INCDIR(..\..\Libraries\libraries;..\..\Libraries\seekfree_libraries;..\..\Libraries\seekfree_peripheral;..\CODE;
+                    -..\USER\inc;..\USER\src) DEBUG PRINT(.\Out_File\circle.lst) OBJECT(.\Out_File\circle.obj) 
+
+stmt  level    source
+
+    1          #include "headfile.h"
+    2          
+    3          bit circle_num=0;
+    4          bit servos_flag_in=0;                                                                   //入环岛标志位
+    5          bit servos_flag_move=0;                                                         //环岛内标志位
+    6          bit servos_flag_out=0;                                                          //出环岛标志位
+    7          int forward_time=0;
+    8          extern int time_count;                                                          //时间积分
+    9          extern int element_num;                                                         //经过元素的数量
+   10          extern int ADC_MIN;                                                                             //电感采集最小值
+   11          extern int ADC_MAX;                                                                             //电感采集最大值
+   12          extern int READ_MAX;                                                                    //归一化后电感最大值
+   13          extern int servos_flag;                                                         //环岛标志位
+   14          extern bit Stop_flag;                                                                   //冲出赛道标志
+   15          extern float Speed;                                                                             //预设速度
+   16          extern float speed_err;                                                         //转向电机增益
+   17          extern float l,lm,rm,r;                                                         //左、左中、右中、右四路电感
+   18          extern float sensor_err;                                                        //电感偏差值
+   19          extern float servos_err;                                                        //舵机偏差值
+   20          extern int encoder_num;
+   21          extern PID_InitTypeDef PID_Servos;              //舵机PID
+   22          
+   23          //时间积分在sensor.c文件中，每调整一次速度积一次分，也就是5ms积一次分
+   24          
+   25          void circle_judge0()                                                                                                                                                                                                                                                    //环岛判断
+   26          {
+   27   1              if(READ_MAX-10<l&&READ_MAX-10<r&&servos_flag==0)                                                                                                                                                //如果左右横电感达到最大值并且不在环岛
+             -中
+   28   1              {
+   29   2                      P50=0;                                                                                                                                                                                                                                                                                  //开启蜂鸣器
+   30   2                      servos_flag=(lm>rm)?-1:-1;                                                                                                                                                                                                              //根据竖电感的值判断左右环岛
+   31   2              }
+   32   1              if(time_count==50&&servos_flag_in==0)                                                                                                                                                                   //还没有入环,time_count为入环前直行距离
+   33   1              {
+   34   2                      P50=1;                                                                                                                                                                                                                                                                                  //关闭蜂鸣器
+   35   2                      time_count=0;                                                                                                                                                                                                                                                           //时间积分清零
+   36   2                      servos_flag_in=1;                                                                                                                                                                                                                                               //开始入环
+   37   2              }
+   38   1              if(time_count==80&&servos_flag_in==1&&servos_flag_move==0)                                                                              //正在入环，time_count为打死角入环时
+             -间
+   39   1                      servos_flag_move=1;                                                                                                                                                                                                                                     //入环结束，开始环内寻迹
+   40   1              if((READ_MAX-lm<30||READ_MAX-rm<30)&&servos_flag_move==1&&servos_flag_out==0)   //如果任意竖电感值大于于30
+             -并且在环内并且还未出环
+   41   1              {
+   42   2                      time_count=0;                                                                                                                                                                                                                                                           //时间积分清零
+   43   2                      servos_flag_out=1;                                                                                                                                                                                                                                      //开始出环
+   44   2              }
+   45   1      }
+   46          
+   47          void circle_move0()                                                                                                                                                                                                     //环岛寻迹
+   48          {
+   49   1              if(servos_flag_out==1)                                                                                                                                                                          //出环
+   50   1              {
+   51   2                      if(time_count>200)                                                                                                                                                                                      //时间大于1s，给所有标志清零，防止在出环岛处重新误判为环岛
+   52   2                      {                                                                                                                                                                                                                                                                                            
+   53   3                              servos_flag=0;                                                                                                                                                                                          //环岛标志清零
+   54   3                              time_count=0;                                                                                                                                                                                                   //时间积分清零
+C251 COMPILER V5.60.0,  circle                                                             16/04/24  16:11:44  PAGE 2   
+
+   55   3                              servos_flag_in=0;                                                                                                                                                                                       //入环岛标志清零
+   56   3                              servos_flag_move=0;                                                                                                                                                                             //环内寻迹标志清零
+   57   3                              servos_flag_out=0;                                                                                                                                                                              //出环岛标志清零
+   58   3                              element_num+=1;                                                                                                                                                                                         //经过元素数量加一
+   59   3                              circle_num=1;                   
+   60   3                              encoder_num=0;                  
+   61   3                              Speed = 110;
+   62   3                              
+   63   3                      }
+   64   2                      else if(time_count>30)                                                                                                                                                                  //time_count为打死角出环岛时间
+   65   2                              sensor_err = 100*(1.2*(l-r)+(lm-rm))/((l+r)+0.5*(lm+rm));                       //出环岛寻迹
+   66   2                      else                                                                                                                                                                                                                                            
+   67   2                              sensor_err = (servos_flag==1)?80:-80;                                                                                                   //打死角出环岛
+   68   2              }
+   69   1              else if(servos_flag_move==1)                                                                                                                                                    //环内寻迹
+   70   1              {
+   71   2                              sensor_err = 100*(1.2*(l-r)+(lm-rm))/((l+r)+0.5*(lm+rm));                       //正常寻迹
+   72   2              }
+   73   1              else                                                                                                                                                                                                                                                    //入环岛
+   74   1              {
+   75   2                      if(servos_flag_in==0)                                                                                                                                                                           //如果没有开始入环
+   76   2                              sensor_err = (servos_flag==1)?-10:25;                                                                                           //向相反方向打偏角,防止车身向环岛方向偏移
+   77   2                      else                                                                                                                                                                                                                                            //如果开始入环
+   78   2                              sensor_err = (servos_flag==1)?80:-50;                                                                                                   //打死角入环
+   79   2              }
+   80   1      }
+   81          
+   82          
+   83          //*******************************************************************************************************
+             -********************************//
+   84          
+   85          
+   86          void circle_judge1()                                                                                                                                                                                                                                                    //环岛判断
+   87          {
+   88   1              if(READ_MAX==l&&READ_MAX==r&&servos_flag==0)                                                                                                                                            //如果左右横电感达到最大值并且不在环岛中
+   89   1              {
+   90   2                      P50=0;                                                                                                                                                                                                                                                                                  //开启蜂鸣器
+   91   2                      servos_flag=(lm>rm)?-1:-1;                                                                                                                                                                                                              //根据竖电感的值判断左右环岛
+   92   2              }
+   93   1              if(time_count==40&&servos_flag_in==0)                                                                                                                                                                   //还没有入环,time_count为检测到环岛后直行时间
+   94   1              {
+   95   2                      P50=1;                                                                                                                                                                                                                                                                                  //关闭蜂鸣器
+   96   2                      time_count=0;                                                                                                                                                                                                                                                           //时间积分清零
+   97   2                      servos_flag_in=1;                                                                                                                                                                                                                                               //开始入环
+   98   2              }
+   99   1              if(time_count==70&&servos_flag_in==1&&servos_flag_move==0)                                                                              //正在入环，time_count为打死角入环的
+             -时间
+  100   1                      servos_flag_move=1;                                                                                                                                                                                                                                     //入环结束，开始环内寻迹
+  101   1              if((READ_MAX-lm<45||READ_MAX-rm<45)&&servos_flag_move==1&&servos_flag_out==0)   //如果任意竖电感值小于40并
+             -且在环内并且还未出环
+  102   1              {
+  103   2                      time_count=0;                                                                                                                                                                                                                                                           //时间积分清零
+  104   2                      servos_flag_out=1;                                                                                                                                                                                                                                      //开始出环
+  105   2              }
+  106   1      }
+  107          
+  108          void circle_move1()                                                                                                                                                                                                     //环岛寻迹
+  109          {
+  110   1              if(servos_flag_out==1)                                                                                                                                                                          //出环
+  111   1              {
+  112   2                      if(time_count>200)                                                                                                                                                                                      //时间大于1s，所有标志清零，防止在出环岛处重新误判为环岛
+  113   2                      {                                                                                                                                                                                                                                                               
+  114   3                              servos_flag=0;                                                                                                                                                                                          //环岛标志清零
+  115   3                              time_count=0;                                                                                                                                                                                                   //时间积分清零
+  116   3                              servos_flag_in=0;                                                                                                                                                                                       //入环岛标志清零
+  117   3                              servos_flag_move=0;                                                                                                                                                                             //环内寻迹标志清零
+C251 COMPILER V5.60.0,  circle                                                             16/04/24  16:11:44  PAGE 3   
+
+  118   3                              servos_flag_out=0;                                                                                                                                                                              //出环岛标志清零
+  119   3                              element_num+=1;                                                                                                                                                                                         //经过元素数量加一
+  120   3                              circle_num=1;   
+  121   3                              encoder_num=0;
+  122   3                              Speed = 90;
+  123   3                      }
+  124   2                      else if(time_count>20)                                                                                                                                                                  //time_count为打死角出环岛时间
+  125   2                              sensor_err = 100*(1.6*(l-r)+1.2*(lm-rm))/((l+r)+0.5*(lm+rm));   //出环岛寻迹
+  126   2                      else                                                                                                                                                                                                                                            
+  127   2                              sensor_err = (servos_flag==1)?80:-80;                                                                                                   //打死角出环岛
+  128   2              }
+  129   1              else if(servos_flag_move==1)                                                                                                                                                    //环内寻迹
+  130   1              {
+  131   2                              sensor_err = 100*(1.6*(l-r)+1.2*(lm-rm))/((l+r)+0.5*(lm+rm));   //正常寻迹
+  132   2              }
+  133   1              else                                                                                                                                                                                                                                                    //入环岛
+  134   1              {
+  135   2                      if(servos_flag_in==0)                                                                                                                                                                           //如果没有开始入环
+  136   2                              sensor_err = (servos_flag==1)?-10:20;                                                                                           //向相反方向打偏角,防止车身向环岛方向偏移
+  137   2                      else                                                                                                                                                                                                                                            //如果开始入环
+  138   2                              sensor_err = (servos_flag==1)?80:-60;                                                                                                   //打死角入环
+  139   2              }
+  140   1      }
+  141          
+  142          
+  143          //*******************************************************************************************************
+             -********************************//
+  144          
+  145          
+  146          void circle_judge2()                                                                                                                                                                                                                                                    //环岛判断
+  147          {
+  148   1              if(READ_MAX-10<l&&READ_MAX-10<r&&servos_flag==0)                                                                                                                                                //如果左右横电感达到最大值并且不在环岛
+             -中
+  149   1              {
+  150   2                      P50=0;                                                                                                                                                                                                                                                                                  //开启蜂鸣器
+  151   2                      servos_flag=(lm>rm)?-1:-1;                                                                                                                                                                                                              //根据竖电感的值判断左右环岛
+  152   2              }
+  153   1              if(time_count==35&&servos_flag_in==0)                                                                                                                                                                   //还没有入环,time_count为检测到环岛后直行时间
+  154   1              {
+  155   2                      P50=1;                                                                                                                                                                                                                                                                                  //关闭蜂鸣器
+  156   2                      time_count=0;                                                                                                                                                                                                                                                           //时间积分清零
+  157   2                      servos_flag_in=1;                                                                                                                                                                                                                                               //开始入环
+  158   2              }
+  159   1              if(time_count==70&&servos_flag_in==1&&servos_flag_move==0)                                                                              //正在入环，time_count为打死角入环的
+             -时间
+  160   1                      servos_flag_move=1;                                                                                                                                                                                                                                     //入环结束，开始环内寻迹
+  161   1              if((READ_MAX-lm<45||READ_MAX-rm<45)&&servos_flag_move==1&&servos_flag_out==0)   //如果任意竖电感值小于40并
+             -且在环内并且还未出环
+  162   1              {
+  163   2                      time_count=0;                                                                                                                                                                                                                                                           //时间积分清零
+  164   2                      servos_flag_out=1;                                                                                                                                                                                                                                      //开始出环
+  165   2              }
+  166   1      }
+  167          
+  168          void circle_move2()                                                                                                                                                                                                     //环岛寻迹
+  169          {
+  170   1              if(servos_flag_out==1)                                                                                                                                                                          //出环
+  171   1              {
+  172   2                      if(time_count>200)                                                                                                                                                                                      //时间大于1s，所有标志清零，防止在出环岛处重新误判为环岛
+  173   2                      {                                                                                                                                                                                                                                                               
+  174   3                              servos_flag=0;                                                                                                                                                                                          //环岛标志清零
+  175   3                              time_count=0;                                                                                                                                                                                                   //时间积分清零
+  176   3                              servos_flag_in=0;                                                                                                                                                                                       //入环岛标志清零
+  177   3                              servos_flag_move=0;                                                                                                                                                                             //环内寻迹标志清零
+  178   3                              servos_flag_out=0;                                                                                                                                                                              //出环岛标志清零
+  179   3                              element_num+=1;                                                                                                                                                                                         //经过元素数量加一
+C251 COMPILER V5.60.0,  circle                                                             16/04/24  16:11:44  PAGE 4   
+
+  180   3                              Speed = 110;
+  181   3                      }
+  182   2                      else if(time_count>20)                                                                                                                                                                  //time_count为打死角出环岛时间
+  183   2                              sensor_err = 100*(1.6*(l-r)+1.2*(lm-rm))/((l+r)+0.5*(lm+rm));   //出环岛寻迹
+  184   2                      else                                                                                                                                                                                                                                            
+  185   2                              sensor_err = (servos_flag==1)?80:-80;                                                                                                   //打死角出环岛
+  186   2              }
+  187   1              else if(servos_flag_move==1)                                                                                                                                                    //环内寻迹
+  188   1              {
+  189   2                              sensor_err = 100*(1.6*(l-r)+1.2*(lm-rm))/((l+r)+0.5*(lm+rm));   //正常寻迹
+  190   2              }
+  191   1              else                                                                                                                                                                                                                                                    //入环岛
+  192   1              {
+  193   2                      if(servos_flag_in==0)                                                                                                                                                                           //如果没有开始入环
+  194   2                              sensor_err = (servos_flag==1)?-10:20;                                                                                           //向相反方向打偏角,防止车身向环岛方向偏移
+  195   2                      else                                                                                                                                                                                                                                            //如果开始入环
+  196   2                              sensor_err = (servos_flag==1)?80:-80;                                                                                                   //打死角入环
+  197   2              }
+  198   1      }
+
+
+Module Information          Static   Overlayable
+------------------------------------------------
+  code size            =      1373     ------
+  ecode size           =    ------     ------
+  data size            =    ------     ------
+  idata size           =    ------     ------
+  pdata size           =    ------     ------
+  xdata size           =    ------     ------
+  xdata-const size     =    ------     ------
+  edata size           =         2     ------
+  bit size             =         4     ------
+  ebit size            =    ------     ------
+  bitaddressable size  =    ------     ------
+  ebitaddressable size =    ------     ------
+  far data size        =    ------     ------
+  huge data size       =    ------     ------
+  const size           =    ------     ------
+  hconst size          =         6     ------
+End of Module Information.
+
+
+C251 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,58 @@
+C251 COMPILER V5.60.0,  vl53l0x_api_ranging                                                13/04/24  20:07:05  PAGE 1   
+
+
+C251 COMPILER V5.60.0, COMPILATION OF MODULE vl53l0x_api_ranging
+OBJECT MODULE PLACED IN .\Out_File\vl53l0x_api_ranging.obj
+COMPILER INVOKED BY: D:\keil5\keil5_MDK\keil5_MDK_32\C251\BIN\C251.EXE ..\VL53L0X\core\src\vl53l0x_api_ranging.c XSMALL 
+                    -INTR2 WARNINGLEVEL(3) BROWSE INCDIR(..\..\Libraries\libraries;..\..\Libraries\seekfree_libraries;..\..\Libraries\seekfre
+                    -e_peripheral;..\CODE;..\USER\inc;..\USER\src) DEBUG PRINT(.\Out_File\vl53l0x_api_ranging.lst) OBJECT(.\Out_File\vl53l0x_
+                    -api_ranging.obj) 
+
+stmt  level    source
+
+    1          /*******************************************************************************
+    2           Copyright © 2016, STMicroelectronics International N.V.
+    3           All rights reserved.
+    4          
+    5           Redistribution and use in source and binary forms, with or without
+    6           modification, are permitted provided that the following conditions are met:
+    7           * Redistributions of source code must retain the above copyright
+    8           notice, this list of conditions and the following disclaimer.
+    9           * Redistributions in binary form must reproduce the above copyright
+   10           notice, this list of conditions and the following disclaimer in the
+   11           documentation and/or other materials provided with the distribution.
+   12           * Neither the name of STMicroelectronics nor the
+   13           names of its contributors may be used to endorse or promote products
+   14           derived from this software without specific prior written permission.
+   15          
+   16           THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+   17           ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+   18           WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND
+   19           NON-INFRINGEMENT OF INTELLECTUAL PROPERTY RIGHTS ARE DISCLAIMED.
+   20           IN NO EVENT SHALL STMICROELECTRONICS INTERNATIONAL N.V. BE LIABLE FOR ANY
+   21           DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+   22           (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+   23           LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+   24           ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+   25           (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+   26           SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+   27           ******************************************************************************/
+   28          
+   29          #include "vl53l0x_api.h"
+*** ERROR C318 IN LINE 29 OF ..\VL53L0X\core\src\vl53l0x_api_ranging.c: can't open file 'vl53l0x_api.h'
+   30          #include "vl53l0x_api_core.h"
+*** ERROR C318 IN LINE 30 OF ..\VL53L0X\core\src\vl53l0x_api_ranging.c: can't open file 'vl53l0x_api_core.h'
+   31          
+   32          
+   33          #ifndef __KERNEL__
+   34          #include <stdlib.h>
+   35          #endif
+   36          #define LOG_FUNCTION_START(fmt, ...) \
+   37                  _LOG_FUNCTION_START(TRACE_MODULE_API, fmt, ##__VA_ARGS__)
+   38          #define LOG_FUNCTION_END(status, ...) \
+   39                  _LOG_FUNCTION_END(TRACE_MODULE_API, status, ##__VA_ARGS__)
+   40          #define LOG_FUNCTION_END_FMT(status, fmt, ...) \
+   41                  _LOG_FUNCTION_END_FMT(TRACE_MODULE_API, status, fmt, ##__VA_ARGS__)
+   42          
+
+C251 COMPILATION COMPLETE.  0 WARNING(S),  2 ERROR(S)

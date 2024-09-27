@@ -1,0 +1,375 @@
+C251 COMPILER V5.60.0,  zf_iic                                                             15/11/23  21:36:19  PAGE 1   
+
+
+C251 COMPILER V5.60.0, COMPILATION OF MODULE zf_iic
+OBJECT MODULE PLACED IN .\zf_iic.obj
+COMPILER INVOKED BY: D:\keil5\keil5_MDK\keil5_MDK_32\C251\BIN\C251.EXE ..\..\Libraries\seekfree_libraries\zf_iic.c INTR2
+                    - DEBUG PRINT(.\zf_iic.lst) OBJECT(.\zf_iic.obj) 
+
+stmt  level    source
+
+    1          /********************************************************************************************************
+             -*************
+    2           * COPYRIGHT NOTICE
+    3           * Copyright (c) 2020,逐飞科技
+    4           * All rights reserved.
+    5           * 技术讨论QQ群：一群：179029047(已满)  二群：244861897(已满)  三群：824575535
+    6           *
+    7           * 以下所有内容版权均属逐飞科技所有，未经允许不得用于商业用途，
+    8           * 欢迎各位使用并传播本程序，修改内容时必须保留逐飞科技的版权声明。
+    9           *
+   10           * @file                iic
+   11           * @company                     成都逐飞科技有限公司
+   12           * @author              逐飞科技(QQ790875685)
+   13           * @version             查看doc内version文件 版本说明
+   14           * @Software            MDK FOR C251 V5.60
+   15           * @Target core         STC32G12K128
+   16           * @Taobao              https://seekfree.taobao.com/
+   17           * @date                2020-4-14
+   18           ********************************************************************************************************
+             -************/
+   19          #pragma warning disable = 47
+   20          #include "zf_iic.h"
+*** ERROR C318 IN LINE 24 OF ..\..\Libraries\seekfree_libraries\zf_iic.h: can't open file 'common.h'
+*** ERROR C25 IN LINE 54 OF ..\..\Libraries\seekfree_libraries\zf_iic.h: syntax error near 'wait_time'
+*** ERROR C25 IN LINE 55 OF ..\..\Libraries\seekfree_libraries\zf_iic.h: syntax error near 'dev_add'
+*** ERROR C42 IN LINE 55 OF ..\..\Libraries\seekfree_libraries\zf_iic.h: 'iic_write_reg': not in formal parameter list
+*** WARNING C34 IN LINE 56 OF ..\..\Libraries\seekfree_libraries\zf_iic.h: 'uint8': missing declaration specifiers
+*** ERROR C42 IN LINE 56 OF ..\..\Libraries\seekfree_libraries\zf_iic.h: 'uint8': not in formal parameter list
+*** ERROR C25 IN LINE 56 OF ..\..\Libraries\seekfree_libraries\zf_iic.h: syntax error near 'iic_read_reg'
+*** ERROR C25 IN LINE 56 OF ..\..\Libraries\seekfree_libraries\zf_iic.h: syntax error near 'dev_add'
+*** ERROR C42 IN LINE 56 OF ..\..\Libraries\seekfree_libraries\zf_iic.h: 'iic_read_reg': not in formal parameter list
+*** WARNING C34 IN LINE 57 OF ..\..\Libraries\seekfree_libraries\zf_iic.h: 'uint8': missing declaration specifiers
+*** ERROR C42 IN LINE 57 OF ..\..\Libraries\seekfree_libraries\zf_iic.h: 'uint8': not in formal parameter list
+*** ERROR C25 IN LINE 57 OF ..\..\Libraries\seekfree_libraries\zf_iic.h: syntax error near 'iic_read_reg_bytes'
+*** ERROR C25 IN LINE 57 OF ..\..\Libraries\seekfree_libraries\zf_iic.h: syntax error near 'dev_add'
+*** ERROR C42 IN LINE 57 OF ..\..\Libraries\seekfree_libraries\zf_iic.h: 'iic_read_reg_bytes': not in formal parameter l
+             -ist
+*** ERROR C42 IN LINE 58 OF ..\..\Libraries\seekfree_libraries\zf_iic.h: 'iic_change_pin': not in formal parameter list
+   21          
+   22          
+   23          
+   24          //-------------------------------------------------------------------------------------------------------
+             -------------
+   25          //  @brief      内部使用用户无需关心
+   26          //  @param      NULL                    
+   27          //  @return     void
+   28          //  Sample usage:               无需用户调用，用户请使用h文件中的宏定义
+   29          //-------------------------------------------------------------------------------------------------------
+             -------------
+   30          void iic_delay_us(uint16 x)     //33.1776Mhz
+*** ERROR C25 IN LINE 30 OF ..\..\Libraries\seekfree_libraries\zf_iic.c: syntax error near 'x'
+   31          {
+*** ERROR C42 IN LINE 31 OF ..\..\Libraries\seekfree_libraries\zf_iic.c: 'iic_delay_us': not in formal parameter list
+   32              uint8 i;
+   33              while(x--)
+   34              {
+   35                          i = 9;
+   36                          while (--i);
+C251 COMPILER V5.60.0,  zf_iic                                                             15/11/23  21:36:19  PAGE 2   
+
+   37              }
+   38          }
+   39          
+   40          
+   41          //-------------------------------------------------------------------------------------------------------
+             -------------
+   42          //  @brief      内部使用用户无需关心
+   43          //  @param      NULL                    
+   44          //  @return     void
+   45          //  Sample usage:               无需用户调用，用户请使用h文件中的宏定义
+   46          //-------------------------------------------------------------------------------------------------------
+             -------------
+   47          uint8 wait(void)
+   48          {
+   49              uint16 count = 0;
+   50              uint8 ret = IIC_SEND_OK;
+   51              while (!(I2CMSST & 0x40))
+   52              {
+   53                  iic_delay_us(1);
+   54                  if(count++ >= 30)//等待超过30us，则退出等待。
+   55                  {
+   56                      ret = IIC_SEND_FAIL;
+   57                      break;
+   58                  }
+   59              }
+   60              I2CMSST &= ~0x40;
+   61              return ret;
+   62          }
+   63          
+   64          //-------------------------------------------------------------------------------------------------------
+             -------------
+   65          //  @brief      内部使用用户无需关心
+   66          //  @param      NULL                    
+   67          //  @return     void
+   68          //  Sample usage:               无需用户调用，用户请使用h文件中的宏定义
+   69          //-------------------------------------------------------------------------------------------------------
+             -------------
+   70          uint8 start(void)
+   71          {
+   72              uint8 ret;
+   73              I2CMSCR = 0x01;                             //发送start命令
+   74              ret = wait();
+   75              return ret;
+   76          }
+   77          
+   78          //-------------------------------------------------------------------------------------------------------
+             -------------
+   79          //  @brief      内部使用用户无需关心
+   80          //  @param      NULL                    
+   81          //  @return     void
+   82          //  Sample usage:               无需用户调用，用户请使用h文件中的宏定义
+   83          //-------------------------------------------------------------------------------------------------------
+             -------------
+   84          uint8 send_data(char dat)
+   85          {
+   86              uint8 ret;
+   87              I2CTXD = dat;                               //写数据到数据缓冲区
+   88              I2CMSCR = 0x02;                             //发送SEND命令
+   89              ret = wait();
+   90              return ret;
+   91          }
+   92          
+   93          //-------------------------------------------------------------------------------------------------------
+             -------------
+   94          //  @brief      内部使用用户无需关心
+   95          //  @param      NULL                    
+C251 COMPILER V5.60.0,  zf_iic                                                             15/11/23  21:36:19  PAGE 3   
+
+   96          //  @return     void
+   97          //  Sample usage:               无需用户调用，用户请使用h文件中的宏定义
+   98          //-------------------------------------------------------------------------------------------------------
+             -------------
+   99          uint8 recv_ack(void)
+  100          {
+  101              uint8 ret;
+  102              I2CMSCR = 0x03;                             //发送读ACK命令
+  103              ret = wait();
+  104              return ret;
+  105          }
+  106          
+  107          //-------------------------------------------------------------------------------------------------------
+             -------------
+  108          //  @brief      内部使用用户无需关心
+  109          //  @param      NULL                    
+  110          //  @return     void
+  111          //  Sample usage:               无需用户调用，用户请使用h文件中的宏定义
+  112          //-------------------------------------------------------------------------------------------------------
+             -------------
+  113          char recv_data(void)                                                    //接收数据
+  114          {
+  115              I2CMSCR = 0x04;                             //发送RECV命令
+  116              wait();
+  117              return I2CRXD;
+  118          }
+  119          
+  120          //-------------------------------------------------------------------------------------------------------
+             -------------
+  121          //  @brief      内部使用用户无需关心
+  122          //  @param      NULL                    
+  123          //  @return     void
+  124          //  Sample usage:               无需用户调用，用户请使用h文件中的宏定义
+  125          //-------------------------------------------------------------------------------------------------------
+             -------------
+  126          uint8 send_ack(void)
+  127          {
+  128                  uint8 ret;
+  129              I2CMSST = 0x00;                             //设置ACK信号
+  130              I2CMSCR = 0x05;                             //发送ACK命令
+  131              ret = wait();
+  132              return ret;
+  133          }
+  134          
+  135          //-------------------------------------------------------------------------------------------------------
+             -------------
+  136          //  @brief      内部使用用户无需关心
+  137          //  @param      NULL                    
+  138          //  @return     void
+  139          //  Sample usage:               无需用户调用，用户请使用h文件中的宏定义
+  140          //-------------------------------------------------------------------------------------------------------
+             -------------
+  141          void send_nak(void)
+  142          {
+  143              I2CMSST = 0x01;                             //设置NAK信号
+  144              I2CMSCR = 0x05;                             //发送ACK命令
+  145              wait();
+  146          }
+  147          
+  148          //-------------------------------------------------------------------------------------------------------
+             -------------
+  149          //  @brief      内部使用用户无需关心
+  150          //  @param      NULL                    
+  151          //  @return     void
+  152          //  Sample usage:               无需用户调用，用户请使用h文件中的宏定义
+  153          //-------------------------------------------------------------------------------------------------------
+C251 COMPILER V5.60.0,  zf_iic                                                             15/11/23  21:36:19  PAGE 4   
+
+             -------------
+  154          uint8 stop(void)
+  155          {
+  156              uint8 ret;
+  157              I2CMSCR = 0x06;                             //发送stop命令
+  158              ret = wait();
+  159              return ret;
+  160          }
+  161          
+  162          
+  163          
+  164          
+  165          //#define UNUSED(expr1, expr2) do { if(scl_pin == sda_pin); } while (0)
+  166          //-------------------------------------------------------------------------------------------------------
+             -------------
+  167          //  @brief      硬件IIC初始化
+  168          //  @param      iic_n           选择IIC模块
+  169          //  @param      wait_time       I2C总线速度（等待时钟数）控制: 速度设置为等待wait_time*2+1个时钟
+  170          //  @return     void
+  171          //  Sample usage:              
+  172          //-------------------------------------------------------------------------------------------------------
+             -------------
+  173          void iic_init(IICN_enum iic_n, IIC_PIN_enum scl_pin, IIC_PIN_enum sda_pin, uint32 wait_time)
+  174          {
+  175                  //UNUSED(scl_pin);
+  176                  //__attribute__ ((unused))(sda_pin);
+  177                  //UNUSED(scl_pin, sda_pin);
+  178          
+  179              P_SW2 &= ~(0x03<<4);
+  180              P_SW2 |= 1<<7;      //将EAXFR寄存器置1，这样才能使用特殊功能寄存器为扩展SFR，访问逻辑地址位于 XDATA 区域
+  181              switch(iic_n)
+  182              {
+  183              case IIC_1:
+  184                  P_SW2 |= (0x00<<4);     //SCL:P1.5      SDA:P1.4
+  185                  break;
+  186              case IIC_2:
+  187                  P_SW2 |= (0x01<<4);     //SCL:P2.5      SDA:P2.4
+  188                  break;
+  189              case IIC_3:
+  190                  P_SW2 |= (0x02<<4);     //SCL:P7.7      SDA:P7.6
+  191                  break;
+  192              case IIC_4:
+  193                  P_SW2 |= (0x03<<4);     //SCL:P3.2      SDA:P3.3
+  194                  break;
+  195              }
+  196          
+  197              I2CCFG |= 1<<6;             //主机模式
+  198              I2CCFG |= 1<<7;             //使能IIC
+  199              I2CCFG |= wait_time;//速度设置为等待wait_time*2+1个时钟
+  200              I2CMSST = 0x00;             //主机状态寄存器
+  201          
+  202          }
+  203          
+  204          //-------------------------------------------------------------------------------------------------------
+             -------------
+  205          //  @brief      写入一个字节数据到I2C设备指定寄存器地址
+  206          //  @param      iic_n       IIC模块(IIC_1,IIC_2,IIC_3,IIC_0)
+  207          //  @param      slaveid     从机地址(7位地址)
+  208          //  @param      reg         从机寄存器地址
+  209          //  @param      dat         需要发送的数据
+  210          //  @return                 返回的状态值 0：成功  1：失败
+  211          //  @since      v2.0
+  212          //  Sample usage:               iic_write_reg(0x2D, 0x50,2);     //写入数据2到0x50地址，从机地址为0x2D
+  213          //-------------------------------------------------------------------------------------------------------
+             -------------
+  214          uint8 iic_write_reg(uint8 dev_add, uint8 reg, uint8 dat)
+C251 COMPILER V5.60.0,  zf_iic                                                             15/11/23  21:36:19  PAGE 5   
+
+  215          {
+  216              if(start() != IIC_SEND_OK)
+  217                  return IIC_SEND_FAIL;
+  218              if(send_data((dev_add<<1) | 0x00) != IIC_SEND_OK)
+  219                  return IIC_SEND_FAIL;
+  220              if(recv_ack() != IIC_SEND_OK)
+  221                  return IIC_SEND_FAIL;
+  222              if(send_data(reg) != IIC_SEND_OK)
+  223                  return IIC_SEND_FAIL;
+  224              if(recv_ack() != IIC_SEND_OK)
+  225                  return IIC_SEND_FAIL;
+  226              if(send_data(dat) != IIC_SEND_OK)
+  227                  return IIC_SEND_FAIL;
+  228              if(recv_ack() != IIC_SEND_OK)
+  229                  return IIC_SEND_FAIL;
+  230              if(stop() != IIC_SEND_OK)
+  231                  return IIC_SEND_FAIL;
+  232          
+  233          
+  234              return IIC_SEND_OK;
+  235          }
+  236          
+  237          //-------------------------------------------------------------------------------------------------------
+             -------------
+  238          //  @brief      读取I2C设备指定地址寄存器的数据
+  239          //  @param      iic_n        I2C通道号及引脚
+  240          //  @param      dev_add     从机地址(7位地址)
+  241          //  @param      reg         从机寄存器地址
+  242          //  @param      dat         数据地址
+  243          //  @return                 读取的寄存器值
+  244          //  @since      v1.0
+  245          //  Sample usage:               uint8 value = iic_read_reg(i2c0, 0x2D, 0x50);//读取0x50地址的数据，从机地址为0x2
+             -D
+  246          //-------------------------------------------------------------------------------------------------------
+             -------------
+  247          uint8 iic_read_reg(uint8 dev_add, uint8 reg, uint8 *dat)
+*** ERROR C42 IN LINE 247 OF ..\..\Libraries\seekfree_libraries\zf_iic.c: 'dat': not in formal parameter list
+  248          {
+  249                  if(start() != IIC_SEND_OK)
+  250                  return IIC_SEND_FAIL;
+  251                  
+  252              if(send_data((dev_add<<1) | 0x00) != IIC_SEND_OK)
+  253                  return IIC_SEND_FAIL;
+  254              if(recv_ack() != IIC_SEND_OK)
+  255                  return IIC_SEND_FAIL;
+  256                  
+  257              if(send_data(reg) != IIC_SEND_OK)
+  258                  return IIC_SEND_FAIL;
+  259              if(recv_ack() != IIC_SEND_OK)
+  260                  return IIC_SEND_FAIL;
+  261                  
+  262                  
+  263          //   if(start() != IIC_SEND_OK)
+  264          //        return IIC_SEND_FAIL;
+  265             
+  266              if(send_data((dev_add<<1) | 0x01) != IIC_SEND_OK)
+  267                  return IIC_SEND_FAIL;
+  268                  
+  269              if(recv_ack() != IIC_SEND_OK)
+  270                  return IIC_SEND_FAIL;
+  271                  
+  272          
+  273              *dat = recv_data(); //读取数据
+*** ERROR C142 IN LINE 273 OF ..\..\Libraries\seekfree_libraries\zf_iic.c: illegal initialization
+*** WARNING C140 IN LINE 273 OF ..\..\Libraries\seekfree_libraries\zf_iic.c: 'recv_data' undefined; assuming 'extern int
+             - recv_data()'
+C251 COMPILER V5.60.0,  zf_iic                                                             15/11/23  21:36:19  PAGE 6   
+
+  274          
+  275                  
+  276              if(send_ack() != IIC_SEND_OK)
+*** ERROR C25 IN LINE 276 OF ..\..\Libraries\seekfree_libraries\zf_iic.c: syntax error near 'if'
+*** ERROR C25 IN LINE 276 OF ..\..\Libraries\seekfree_libraries\zf_iic.c: syntax error near '!='
+  277                  return IIC_SEND_FAIL;
+  278                  
+  279              if(stop() != IIC_SEND_OK)
+*** ERROR C25 IN LINE 279 OF ..\..\Libraries\seekfree_libraries\zf_iic.c: syntax error near '!='
+  280                  return IIC_SEND_FAIL;
+  281                  
+  282              return IIC_SEND_OK;
+  283          }
+  284          
+  285          //-------------------------------------------------------------------------------------------------------
+             -------------
+  286          //  @brief      读取I2C设备指定地址寄存器的数据
+  287          //  @param      iic_n       I2C通道号及引脚
+  288          //  @param      dev_add     从机地址(7位地址)
+  289          //  @param      reg         从机寄存器地址
+  290          //  @param      dat         读取的数据存储的地址
+  291          //  @param      num         读取字节数
+  292          //  @return     void
+  293          //  @since      v1.0
+  294          //  Sample usage:               uint8 value = i2c_read_reg(i2c0, 0x2D, 0x50, 10, buf);//读取0x50地址的数据，从机
+             -地址为0x2D开始的10个字节
+  295          //-------------------------------------------------------------------------------------------------------
+             -------------
+  296          uint8 iic_read_reg_bytes(uint8 dev_add, uint8 reg
+*** ERROR C25 IN LINE 296 OF ..\..\Libraries\seekfree_libraries\zf_iic.c: syntax error near 'dev_add'
+*** ERROR C7 IN LINE 296 OF ..\..\Libraries\seekfree_libraries\zf_iic.c: compilation aborted
+
+C251 COMPILATION COMPLETE.  3 WARNING(S),  22 ERROR(S)

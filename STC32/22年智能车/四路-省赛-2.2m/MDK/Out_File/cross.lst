@@ -1,0 +1,85 @@
+C251 COMPILER V5.60.0,  cross                                                              02/04/23  23:43:09  PAGE 1   
+
+
+C251 COMPILER V5.60.0, COMPILATION OF MODULE cross
+OBJECT MODULE PLACED IN .\Out_File\cross.obj
+COMPILER INVOKED BY: D:\Keil5\C251\BIN\C251.EXE ..\USER\src\cross.c XSMALL INTR2 WARNINGLEVEL(3) BROWSE INCDIR(..\..\Lib
+                    -raries\libraries;..\..\Libraries\seekfree_libraries;..\..\Libraries\seekfree_peripheral;..\CODE;..\USER\inc;..\USER\src)
+                    - DEBUG PRINT(.\Out_File\cross.lst) TABS(2) OBJECT(.\Out_File\cross.obj) 
+
+stmt  level    source
+
+    1          #include "headfile.h"
+    2          
+    3          int cross_forward=0;                  //十字直行
+    4          extern float l,lm,rm,r;                     //左、左中、右中、右四路电感
+    5          extern int ADC_MIN;                     //电感采集最小值
+    6          extern int ADC_MAX;                   //电感采集最大值
+    7          extern int encoder_integral;                //编码器积分
+    8          extern int Stop_flag;
+    9          extern int cross_num;
+   10          extern float sensor_err;
+   11          
+   12          void cross_judge()
+   13          {
+   14   1        if(-30<l-r&&l-r<30&&(ADC_MAX-lm<20||ADC_MAX-rm<20))
+   15   1        {
+   16   2          cross_num+=1;
+   17   2          cross_forward=1;
+   18   2          encoder_integral=0;
+   19   2        }
+   20   1      }
+   21          
+   22          void cross_move()
+   23          {
+   24   1        if(cross_num==1)
+   25   1        {
+   26   2          if(encoder_integral<80)                         //防止十字抖动
+   27   2          {
+   28   3            sensor_err-=20;
+   29   3            P50=0;
+   30   3            P52=0;
+   31   3          }
+   32   2          else
+   33   2          {
+   34   3            cross_forward=0;
+   35   3            pwm_duty(PWMA_CH3N_P65,0);
+   36   3            P50=1;
+   37   3            P52=1;
+   38   3          }
+   39   2        }
+   40   1        else
+   41   1        {
+   42   2          if(encoder_integral>50)
+   43   2          {
+   44   3            cross_num=0;
+   45   3            cross_forward=0;
+   46   3          }
+   47   2        }
+   48   1      }
+
+
+Module Information          Static   Overlayable
+------------------------------------------------
+  code size            =       192     ------
+  ecode size           =    ------     ------
+  data size            =    ------     ------
+  idata size           =    ------     ------
+  pdata size           =    ------     ------
+  xdata size           =    ------     ------
+C251 COMPILER V5.60.0,  cross                                                              02/04/23  23:43:09  PAGE 2   
+
+  xdata-const size     =    ------     ------
+  edata size           =         2     ------
+  bit size             =    ------     ------
+  ebit size            =    ------     ------
+  bitaddressable size  =    ------     ------
+  ebitaddressable size =    ------     ------
+  far data size        =    ------     ------
+  huge data size       =    ------     ------
+  const size           =    ------     ------
+  hconst size          =         6     ------
+End of Module Information.
+
+
+C251 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

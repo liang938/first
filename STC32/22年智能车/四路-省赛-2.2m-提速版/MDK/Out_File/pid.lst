@@ -1,0 +1,125 @@
+C251 COMPILER V5.60.0,  pid                                                                19/06/23  09:52:56  PAGE 1   
+
+
+C251 COMPILER V5.60.0, COMPILATION OF MODULE pid
+OBJECT MODULE PLACED IN .\Out_File\pid.obj
+COMPILER INVOKED BY: D:\Keil5\C251\BIN\C251.EXE ..\USER\src\pid.c XSMALL INTR2 WARNINGLEVEL(3) BROWSE INCDIR(..\..\Libra
+                    -ries\libraries;..\..\Libraries\seekfree_libraries;..\..\Libraries\seekfree_peripheral;..\CODE;..\USER\inc;..\USER\src) D
+                    -EBUG PRINT(.\Out_File\pid.lst) TABS(2) OBJECT(.\Out_File\pid.obj) 
+
+stmt  level    source
+
+    1          #include "headfile.h"
+    2          
+    3          float err_add = 0;
+    4          extern int leftspeed;                   //×óÂÖ²îËÙ¶È
+    5          extern int rightspeed;                  //ÓÒÂÖ²îËÙ¶È
+    6          extern int encoder_left;                //×óÂÖ±àÂëÆ÷¼ÆÊý
+    7          extern int encoder_right;               //ÓÒÂÖ±àÂëÆ÷¼ÆÊý
+    8          
+    9          void PID_Init(PID_InitTypeDef *PID_InitStruct, float kp, float ki, float kd, float out_limit, float integ
+             -ral_limit)    //PID³õÊ¼»¯
+   10          {
+   11   1        PID_InitStruct->KP = kp;
+   12   1        PID_InitStruct->KI = ki;
+   13   1        PID_InitStruct->KD = kd;
+   14   1        PID_InitStruct->err = 0;
+   15   1        PID_InitStruct->err_last = 0;
+   16   1        PID_InitStruct->err_prev = 0;
+   17   1        PID_InitStruct->Total_Out = 0;
+   18   1        PID_InitStruct->Out_Limit = out_limit;
+   19   1        PID_InitStruct->Integral_Limit = integral_limit;
+   20   1      }
+   21          
+   22          float Limit(float value, float limit)   //ÏÞ·ù
+   23          {
+   24   1        value = (value<-limit)?-limit:value;
+   25   1        value = (value>limit)?limit:value;    //ÅÐ¶ÏÊÇ·ñ³¬³öÏÞ·ù
+   26   1        return value; 
+   27   1      }
+   28          
+   29          void PID_Calc_Positional(PID_InitTypeDef *PID_InitStruct, float deviation_expected, float deviation_now)  
+             -  //Î»ÖÃÊ½PID¼ÆËã
+   30          {
+   31   1        PID_InitStruct->ExpectedValue = deviation_expected;   //ÆÚÍûÆ«²îÖµ
+   32   1        PID_InitStruct->ActualValue = deviation_now;          //Êµ¼ÊÆ«²îÖµ
+   33   1      
+   34   1        PID_InitStruct->err = (PID_InitStruct->ExpectedValue)-(PID_InitStruct->ActualValue);    //errÖµÎªÆÚÍûÆ«²îÓ
+             -ëµ±Ç°Æ«²îµÄ²îÖµ
+   35   1        
+   36   1        err_add += PID_InitStruct->err;   //Îó²îÖµÀÛ¼Ó
+   37   1      
+   38   1        PID_InitStruct->P_Out = (PID_InitStruct->err)*(PID_InitStruct->KP);   //±ÈÀý¿ØÖÆ²¿·Ö P_Out=KP*err
+   39   1        PID_InitStruct->I_Out = err_add*(PID_InitStruct->KI);                 //»ý·Ö¿ØÖÆ²¿·Ö  I_Out+=KI*err
+   40   1        PID_InitStruct->D_Out = ((PID_InitStruct->err)-(PID_InitStruct->err_last))*(PID_InitStruct->KD);      //Î¢·
+             -Ö¿ØÖÆ²¿·Ö D_Out=KD*(err-err_last)
+   41   1        
+   42   1        PID_InitStruct->I_Out = Limit(PID_InitStruct->I_Out, PID_InitStruct->Integral_Limit);                 //»ý·ÖÏÞ·ù
+   43   1      
+   44   1        PID_InitStruct->Total_Out = (PID_InitStruct->P_Out)+(PID_InitStruct->I_Out)+(PID_InitStruct->D_Out);  //¼
+             -ÆËã×ÜÊä³öÁ¿
+   45   1        PID_InitStruct->Total_Out = Limit(PID_InitStruct->Total_Out, PID_InitStruct->Out_Limit);              //Êä³öÏÞ·
+             -ù
+   46   1      
+   47   1        PID_InitStruct->err_last = PID_InitStruct->err;   //¸üÐÂÉÏÒ»´Îerr
+   48   1      }
+   49          
+   50          void PID_Calc_Incremental(PID_InitTypeDef *PID_InitStruct, int speed_expected, int speed_now)   //ÔöÁ¿Ê½PI
+             -D¼ÆËã
+C251 COMPILER V5.60.0,  pid                                                                19/06/23  09:52:56  PAGE 2   
+
+   51          {
+   52   1        PID_InitStruct->ExpectedValue = speed_expected;   //ÆÚÍûËÙ¶È
+   53   1        PID_InitStruct->ActualValue = speed_now;          //µ±Ç°ËÙ¶È
+   54   1      
+   55   1        PID_InitStruct->err = (PID_InitStruct->ExpectedValue)-(PID_InitStruct->ActualValue);                //errÖµÎªÆÚÍ
+             -ûËÙ¶ÈÓëµ±Ç°ËÙ¶ÈµÄ²îÖµ
+   56   1      
+   57   1        PID_InitStruct->P_Out += ((PID_InitStruct->err)-(PID_InitStruct->err_last))*(PID_InitStruct->KP);   //±ÈÀ
+             -ý¿ØÖÆ²¿·Ö  P_Out=KP*(err-err_last)
+   58   1      
+   59   1        PID_InitStruct->I_Out += (PID_InitStruct->err)*(PID_InitStruct->KI);                                //»ý·Ö¿ØÖÆ²¿·Ö  I_Out
+             -=KI*error
+   60   1        PID_InitStruct->I_Out = Limit(PID_InitStruct->I_Out, PID_InitStruct->Integral_Limit);               //»ý·ÖÏÞ·ù
+   61   1        
+   62   1        PID_InitStruct->D_Out += ((PID_InitStruct->err)-2*(PID_InitStruct->err_last)+(PID_InitStruct->err_prev))
+             -*(PID_InitStruct->KD);   //Î¢·Ö¿ØÖÆ²¿·Ö  D_Out=KD*(err-2*err_last+err_prev)
+   63   1      
+   64   1        PID_InitStruct->Total_Out = (PID_InitStruct->P_Out)+(PID_InitStruct->I_Out)+(PID_InitStruct->D_Out);//¼Æ
+             -Ëã×ÜÊä³öÁ¿
+   65   1        PID_InitStruct->Total_Out = Limit(PID_InitStruct->Total_Out, PID_InitStruct->Out_Limit);            //Êä³öÏÞ·ù
+   66   1        PID_InitStruct->Total_Out = (PID_InitStruct->Total_Out<0)?0:PID_InitStruct->Total_Out;
+   67   1      
+   68   1        PID_InitStruct->err_prev = PID_InitStruct->err_last;    //¸üÐÂÇ°Ò»´Îerr
+   69   1        PID_InitStruct->err_last = PID_InitStruct->err;         //¸üÐÂÉÏÒ»´Îerr
+   70   1      }
+   71          
+   72          
+   73          
+   74          
+   75          
+   76          
+
+
+Module Information          Static   Overlayable
+------------------------------------------------
+  code size            =       792     ------
+  ecode size           =    ------     ------
+  data size            =    ------     ------
+  idata size           =    ------     ------
+  pdata size           =    ------     ------
+  xdata size           =    ------     ------
+  xdata-const size     =    ------     ------
+  edata size           =         4         20
+  bit size             =    ------     ------
+  ebit size            =    ------     ------
+  bitaddressable size  =    ------     ------
+  ebitaddressable size =    ------     ------
+  far data size        =    ------     ------
+  huge data size       =    ------     ------
+  const size           =    ------     ------
+  hconst size          =         8     ------
+End of Module Information.
+
+
+C251 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

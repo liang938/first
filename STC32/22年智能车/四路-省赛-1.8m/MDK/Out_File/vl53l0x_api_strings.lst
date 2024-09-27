@@ -1,0 +1,121 @@
+C251 COMPILER V5.60.0,  vl53l0x_api_strings                                                13/04/24  20:07:05  PAGE 1   
+
+
+C251 COMPILER V5.60.0, COMPILATION OF MODULE vl53l0x_api_strings
+OBJECT MODULE PLACED IN .\Out_File\vl53l0x_api_strings.obj
+COMPILER INVOKED BY: D:\keil5\keil5_MDK\keil5_MDK_32\C251\BIN\C251.EXE ..\VL53L0X\core\src\vl53l0x_api_strings.c XSMALL 
+                    -INTR2 WARNINGLEVEL(3) BROWSE INCDIR(..\..\Libraries\libraries;..\..\Libraries\seekfree_libraries;..\..\Libraries\seekfre
+                    -e_peripheral;..\CODE;..\USER\inc;..\USER\src) DEBUG PRINT(.\Out_File\vl53l0x_api_strings.lst) OBJECT(.\Out_File\vl53l0x_
+                    -api_strings.obj) 
+
+stmt  level    source
+
+    1          /*******************************************************************************
+    2           Copyright © 2016, STMicroelectronics International N.V.
+    3           All rights reserved.
+    4          
+    5           Redistribution and use in source and binary forms, with or without
+    6           modification, are permitted provided that the following conditions are met:
+    7           * Redistributions of source code must retain the above copyright
+    8           notice, this list of conditions and the following disclaimer.
+    9           * Redistributions in binary form must reproduce the above copyright
+   10           notice, this list of conditions and the following disclaimer in the
+   11           documentation and/or other materials provided with the distribution.
+   12           * Neither the name of STMicroelectronics nor the
+   13           names of its contributors may be used to endorse or promote products
+   14           derived from this software without specific prior written permission.
+   15          
+   16           THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+   17           ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+   18           WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND
+   19           NON-INFRINGEMENT OF INTELLECTUAL PROPERTY RIGHTS ARE DISCLAIMED.
+   20           IN NO EVENT SHALL STMICROELECTRONICS INTERNATIONAL N.V. BE LIABLE FOR ANY
+   21           DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+   22           (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+   23           LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+   24           ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+   25           (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+   26           SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+   27           ******************************************************************************/
+   28          
+   29          #include "vl53l0x_api.h"
+*** ERROR C318 IN LINE 29 OF ..\VL53L0X\core\src\vl53l0x_api_strings.c: can't open file 'vl53l0x_api.h'
+   30          #include "vl53l0x_api_core.h"
+*** ERROR C318 IN LINE 30 OF ..\VL53L0X\core\src\vl53l0x_api_strings.c: can't open file 'vl53l0x_api_core.h'
+   31          #include "vl53l0x_api_strings.h"
+*** ERROR C318 IN LINE 31 OF ..\VL53L0X\core\src\vl53l0x_api_strings.c: can't open file 'vl53l0x_api_strings.h'
+   32          
+   33          #ifndef __KERNEL__
+   34          #include <stdlib.h>
+   35          #endif
+   36          
+   37          #define LOG_FUNCTION_START(fmt, ...) \
+   38                  _LOG_FUNCTION_START(TRACE_MODULE_API, fmt, ##__VA_ARGS__)
+   39          #define LOG_FUNCTION_END(status, ...) \
+   40                  _LOG_FUNCTION_END(TRACE_MODULE_API, status, ##__VA_ARGS__)
+   41          #define LOG_FUNCTION_END_FMT(status, fmt, ...) \
+   42                  _LOG_FUNCTION_END_FMT(TRACE_MODULE_API, status, fmt, ##__VA_ARGS__)
+   43          
+   44          
+   45          VL53L0X_Error VL53L0X_check_part_used(VL53L0X_DEV Dev,
+*** ERROR C25 IN LINE 45 OF ..\VL53L0X\core\src\vl53l0x_api_strings.c: syntax error near 'Dev'
+   46                          uint8_t *Revision,
+   47                          VL53L0X_DeviceInfo_t *pVL53L0X_DeviceInfo)
+   48          {
+*** ERROR C42 IN LINE 48 OF ..\VL53L0X\core\src\vl53l0x_api_strings.c: 'VL53L0X_check_part_used': not in formal paramete
+             -r list
+   49                  VL53L0X_Error Status = VL53L0X_ERROR_NONE;
+   50                  uint8_t ModuleIdInt;
+C251 COMPILER V5.60.0,  vl53l0x_api_strings                                                13/04/24  20:07:05  PAGE 2   
+
+   51                  char *ProductId_tmp;
+*** WARNING C34 IN LINE 51 OF ..\VL53L0X\core\src\vl53l0x_api_strings.c: 'ProductId_tmp': missing declaration specifiers
+*** ERROR C42 IN LINE 51 OF ..\VL53L0X\core\src\vl53l0x_api_strings.c: 'ProductId_tmp': not in formal parameter list
+   52          
+   53                  LOG_FUNCTION_START("");
+*** ERROR C25 IN LINE 53 OF ..\VL53L0X\core\src\vl53l0x_api_strings.c: syntax error near '"string"'
+*** ERROR C42 IN LINE 53 OF ..\VL53L0X\core\src\vl53l0x_api_strings.c: '_LOG_FUNCTION_START': not in formal parameter li
+             -st
+*** ERROR C307 IN LINE 53 OF ..\VL53L0X\core\src\vl53l0x_api_strings.c: macro 'LOG_FUNCTION_START': parameter count mism
+             -atch
+   54          
+   55                  Status = VL53L0X_get_info_from_device(Dev, 2);
+*** ERROR C142 IN LINE 55 OF ..\VL53L0X\core\src\vl53l0x_api_strings.c: illegal initialization
+*** ERROR C67 IN LINE 55 OF ..\VL53L0X\core\src\vl53l0x_api_strings.c: 'Dev': undefined identifier
+*** WARNING C140 IN LINE 55 OF ..\VL53L0X\core\src\vl53l0x_api_strings.c: 'VL53L0X_get_info_from_device' undefined; assu
+             -ming 'extern int VL53L0X_get_info_from_device()'
+   56          
+   57                  if (Status == VL53L0X_ERROR_NONE) {
+*** ERROR C25 IN LINE 57 OF ..\VL53L0X\core\src\vl53l0x_api_strings.c: syntax error near 'if'
+*** ERROR C25 IN LINE 57 OF ..\VL53L0X\core\src\vl53l0x_api_strings.c: syntax error near '=='
+*** ERROR C25 IN LINE 57 OF ..\VL53L0X\core\src\vl53l0x_api_strings.c: syntax error near ')'
+   58                          ModuleIdInt = VL53L0X_GETDEVICESPECIFICPARAMETER(Dev, ModuleId);
+*** ERROR C67 IN LINE 58 OF ..\VL53L0X\core\src\vl53l0x_api_strings.c: 'Dev': undefined identifier
+*** ERROR C67 IN LINE 58 OF ..\VL53L0X\core\src\vl53l0x_api_strings.c: 'ModuleId': undefined identifier
+*** WARNING C140 IN LINE 58 OF ..\VL53L0X\core\src\vl53l0x_api_strings.c: 'VL53L0X_GETDEVICESPECIFICPARAMETER' undefined
+             -; assuming 'extern int VL53L0X_GETDEVICESPECIFICPARAMETER()'
+*** ERROR C143 IN LINE 58 OF ..\VL53L0X\core\src\vl53l0x_api_strings.c: 'scalar': initializer is not a constant
+   59          
+   60                  if (ModuleIdInt == 0) {
+*** ERROR C25 IN LINE 60 OF ..\VL53L0X\core\src\vl53l0x_api_strings.c: syntax error near 'if'
+*** ERROR C25 IN LINE 60 OF ..\VL53L0X\core\src\vl53l0x_api_strings.c: syntax error near '=='
+   61                          *Revision = 0;
+   62                          VL53L0X_COPYSTRING(pVL53L0X_DeviceInfo->ProductId, "");
+*** ERROR C25 IN LINE 62 OF ..\VL53L0X\core\src\vl53l0x_api_strings.c: syntax error near '->'
+   63                  } else {
+*** ERROR C25 IN LINE 63 OF ..\VL53L0X\core\src\vl53l0x_api_strings.c: syntax error near '}'
+   64                          *Revision = VL53L0X_GETDEVICESPECIFICPARAMETER(Dev, Revision);
+*** ERROR C67 IN LINE 64 OF ..\VL53L0X\core\src\vl53l0x_api_strings.c: 'Dev': undefined identifier
+*** WARNING C40 IN LINE 64 OF ..\VL53L0X\core\src\vl53l0x_api_strings.c: 'int' converted to 'far' pointer
+   65                          ProductId_tmp = VL53L0X_GETDEVICESPECIFICPARAMETER(Dev,
+*** ERROR C67 IN LINE 65 OF ..\VL53L0X\core\src\vl53l0x_api_strings.c: 'Dev': undefined identifier
+   66                                  ProductId);
+*** ERROR C67 IN LINE 66 OF ..\VL53L0X\core\src\vl53l0x_api_strings.c: 'ProductId': undefined identifier
+*** ERROR C143 IN LINE 66 OF ..\VL53L0X\core\src\vl53l0x_api_strings.c: 'scalar': initializer is not a constant
+   67                          VL53L0X_COPYSTRING(pVL53L0X_DeviceInfo->ProductId, ProductId_tmp);
+*** ERROR C25 IN LINE 67 OF ..\VL53L0X\core\src\vl53l0x_api_strings.c: syntax error near '->'
+   68                  }
+*** ERROR C25 IN LINE 68 OF ..\VL53L0X\core\src\vl53l0x_api_strings.c: syntax error near '}'
+*** ERROR C7 IN LINE 68 OF ..\VL53L0X\core\src\vl53l0x_api_strings.c: compilation aborted
+
+C251 COMPILATION COMPLETE.  4 WARNING(S),  28 ERROR(S)

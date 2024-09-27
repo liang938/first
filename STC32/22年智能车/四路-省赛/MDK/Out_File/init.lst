@@ -1,0 +1,83 @@
+C251 COMPILER V5.60.0,  init                                                               16/04/24  16:11:43  PAGE 1   
+
+
+C251 COMPILER V5.60.0, COMPILATION OF MODULE init
+OBJECT MODULE PLACED IN .\Out_File\init.obj
+COMPILER INVOKED BY: D:\keil5\keil5_MDK\keil5_MDK_32\C251\BIN\C251.EXE ..\USER\src\init.c XSMALL INTR2 WARNINGLEVEL(3) B
+                    -ROWSE INCDIR(..\..\Libraries\libraries;..\..\Libraries\seekfree_libraries;..\..\Libraries\seekfree_peripheral;..\CODE;..
+                    -\USER\inc;..\USER\src) DEBUG PRINT(.\Out_File\init.lst) OBJECT(.\Out_File\init.obj) 
+
+stmt  level    source
+
+    1          #include "headfile.h"
+    2          
+    3          extern PID_InitTypeDef PID_Left;                        //左轮PID结构体变量     
+    4          extern PID_InitTypeDef PID_Right;                       //右轮PID结构体变量     
+    5          extern PID_InitTypeDef PID_Servos;              //舵机PID结构体变量     
+    6          
+    7          void Init_all()
+    8          {
+    9   1              WTST = 0;                                                       //设置程序代码等待参数，赋值为0可将CPU执行程序的速度设置为最快  
+   10   1              DisableGlobalIRQ();             //关闭总中断
+   11   1              sys_clk = 35000000;             //设置系统频率为35MHz
+   12   1        board_init();                                 //初始化寄存器
+   13   1      
+   14   1      //OLED初始化
+   15   1              oled_init();                                    //初始化oled屏幕
+   16   1      
+   17   1      //陀螺仪初始化
+   18   1              mpu6050_init();
+   19   1      
+   20   1      //adc初始化
+   21   1              adc_init(ADC_P00, ADC_SYSclk_DIV_2);
+   22   1              adc_init(ADC_P05, ADC_SYSclk_DIV_2);
+   23   1              adc_init(ADC_P06, ADC_SYSclk_DIV_2);
+   24   1              adc_init(ADC_P16, ADC_SYSclk_DIV_2);
+   25   1      
+   26   1      //编码器初始化
+   27   1              ctimer_count_init(CTIM0_P34);                                   //定时器外部计数模式--右轮
+   28   1              ctimer_count_init(CTIM3_P04);                                   //定时器外部计数模式--左轮
+   29   1              pit_timer_ms(TIM_4, 5);                                                         //配置定时器4，5ms进一次中断，用于读取、调整速度
+   30   1      
+   31   1      //pwm初始化
+   32   1              pwm_init(PWMA_CH1P_P60, 15000, 0);              //左电机
+   33   1              pwm_init(PWMA_CH2P_P62, 15000, 0);              //左电机-主控
+   34   1              pwm_init(PWMA_CH3P_P64, 15000, 0);              //右电机
+   35   1              pwm_init(PWMA_CH4P_P66, 15000, 0);              //右电机-主控
+   36   1              pwm_init(PWMB_CH1_P74, 50, 0);                          //舵机
+   37   1      
+   38   1      //pid初始化  PID_Init(结构体, KP, KI, KD, 输出限幅, 积分限幅)
+   39   1              PID_Init(&PID_Left, 200, 4, 0, 8000, 5000);                     //左轮PID初始化
+   40   1              PID_Init(&PID_Right, 200, 4, 0, 8000, 5000);            //右轮PID初始化
+   41   1              PID_Init(&PID_Servos, 0, 0, 0, 60, 0);                                  //舵机PID初始化
+   42   1      
+   43   1              delay_ms(500);
+   44   1      
+   45   1              EnableGlobalIRQ();              //开启总中断
+   46   1      }
+
+
+Module Information          Static   Overlayable
+------------------------------------------------
+  code size            =       310     ------
+  ecode size           =    ------     ------
+  data size            =    ------     ------
+  idata size           =    ------     ------
+  pdata size           =    ------     ------
+  xdata size           =    ------     ------
+  xdata-const size     =    ------     ------
+  edata size           =    ------     ------
+C251 COMPILER V5.60.0,  init                                                               16/04/24  16:11:43  PAGE 2   
+
+  bit size             =    ------     ------
+  ebit size            =    ------     ------
+  bitaddressable size  =    ------     ------
+  ebitaddressable size =    ------     ------
+  far data size        =    ------     ------
+  huge data size       =    ------     ------
+  const size           =    ------     ------
+  hconst size          =    ------     ------
+End of Module Information.
+
+
+C251 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

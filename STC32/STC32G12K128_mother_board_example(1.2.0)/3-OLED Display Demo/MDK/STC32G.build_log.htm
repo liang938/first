@@ -1,0 +1,880 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: ¦ÌVision V5.25.3.0
+Copyright (C) 2018 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: 1 gyy123, 1, LIC=----
+ 
+Tool Versions:
+Toolchain:       DK251 Develpers Kit  Version: 5.60.0.0
+Toolchain Path:  D:\keil5\keil5_MDK\keil5_MDK_32\C251\BIN
+C Compiler:      C251.exe V5.60.0.0
+Assembler:       A251.exe V4.69.13.0
+Linker/Locator:  L251.exe V4.66.93.0
+Library Manager: LIB251.exe V4.30.1.0
+Hex Converter:   OH251.exe V1.47.0.0
+CPU DLL:         S251.DLL V3.129.0.0
+Dialog DLL:      DCORE51.DLL V2.81.6.0 
+<h2>Project:</h2>
+C:\Users\gyy123\Desktop\smartcar\STC32\STC32G12K128_mother_board_example(1.2.0)\3-OLED Display Demo\MDK\STC32G.uvproj
+Project File Date:  11/15/2023
+
+<h2>Output:</h2>
+Rebuild target 'STC32G12K128'
+compiling board.c...
+..\..\Libraries\libraries\board.c(22): error C318: can't open file 'zf_uart.h'
+..\..\Libraries\libraries\board.c(23): error C318: can't open file 'zf_tim.h'
+..\..\Libraries\libraries\board.c(24): error C318: can't open file 'zf_delay.h'
+..\..\Libraries\libraries\board.c(197): warning C140: 'delay_init' undefined; assuming 'extern int delay_init()'
+..\..\Libraries\libraries\board.c(231): error C67: 'UART_1': undefined identifier
+..\..\Libraries\libraries\board.c(231): error C67: 'UART1_RX_P30': undefined identifier
+..\..\Libraries\libraries\board.c(231): error C67: 'UART1_TX_P31': undefined identifier
+..\..\Libraries\libraries\board.c(231): error C67: 'TIM_2': undefined identifier
+..\..\Libraries\libraries\board.c(231): warning C140: 'uart_init' undefined; assuming 'extern int uart_init()'
+..\..\Libraries\libraries\board.c(239): error C67: 'UART_1': undefined identifier
+..\..\Libraries\libraries\board.c(239): warning C140: 'uart_putchar' undefined; assuming 'extern int uart_putchar()'
+compiling common.c...
+compiling SEEKFREE_PRINTF.c...
+compiling zf_adc.c...
+..\..\Libraries\seekfree_libraries\zf_adc.h(23): error C318: can't open file 'common.h'
+..\..\Libraries\seekfree_libraries\zf_adc.h(82): error C42: 'adc_once': not in formal parameter list
+D:\keil5\keil5_MDK\keil5_MDK_32\C251\Inc\intrins.h(17): error C29: formal/parameter has illegal storage class
+D:\keil5\keil5_MDK\keil5_MDK_32\C251\Inc\intrins.h(17): error C33: '_nop_': invalid storage class
+D:\keil5\keil5_MDK\keil5_MDK_32\C251\Inc\intrins.h(18): error C29: formal/parameter has illegal storage class
+D:\keil5\keil5_MDK\keil5_MDK_32\C251\Inc\intrins.h(18): error C33: '_testbit_': invalid storage class
+D:\keil5\keil5_MDK\keil5_MDK_32\C251\Inc\intrins.h(19): error C29: formal/parameter has illegal storage class
+D:\keil5\keil5_MDK\keil5_MDK_32\C251\Inc\intrins.h(19): error C33: '_cror_': invalid storage class
+D:\keil5\keil5_MDK\keil5_MDK_32\C251\Inc\intrins.h(20): error C29: formal/parameter has illegal storage class
+D:\keil5\keil5_MDK\keil5_MDK_32\C251\Inc\intrins.h(20): error C33: '_iror_': invalid storage class
+D:\keil5\keil5_MDK\keil5_MDK_32\C251\Inc\intrins.h(21): error C29: formal/parameter has illegal storage class
+D:\keil5\keil5_MDK\keil5_MDK_32\C251\Inc\intrins.h(21): error C33: '_lror_': invalid storage class
+D:\keil5\keil5_MDK\keil5_MDK_32\C251\Inc\intrins.h(22): error C29: formal/parameter has illegal storage class
+D:\keil5\keil5_MDK\keil5_MDK_32\C251\Inc\intrins.h(22): error C33: '_crol_': invalid storage class
+D:\keil5\keil5_MDK\keil5_MDK_32\C251\Inc\intrins.h(23): error C29: formal/parameter has illegal storage class
+D:\keil5\keil5_MDK\keil5_MDK_32\C251\Inc\intrins.h(23): error C33: '_irol_': invalid storage class
+D:\keil5\keil5_MDK\keil5_MDK_32\C251\Inc\intrins.h(24): error C29: formal/parameter has illegal storage class
+D:\keil5\keil5_MDK\keil5_MDK_32\C251\Inc\intrins.h(24): error C33: '_lrol_': invalid storage class
+D:\keil5\keil5_MDK\keil5_MDK_32\C251\Inc\intrins.h(25): error C29: formal/parameter has illegal storage class
+D:\keil5\keil5_MDK\keil5_MDK_32\C251\Inc\intrins.h(25): error C33: '_chkfloat_': invalid storage class
+D:\keil5\keil5_MDK\keil5_MDK_32\C251\Inc\intrins.h(26): error C29: formal/parameter has illegal storage class
+D:\keil5\keil5_MDK\keil5_MDK_32\C251\Inc\intrins.h(26): error C33: '_chkdouble_': invalid storage class
+..\..\Libraries\seekfree_libraries\zf_adc.c(33): error C42: 'adc_init': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_adc.c(33): error C25: syntax error near '{'
+..\..\Libraries\seekfree_libraries\zf_adc.c(88): error C7: compilation aborted
+compiling zf_delay.c...
+..\..\Libraries\seekfree_libraries\zf_delay.h(22): error C318: can't open file 'common.h'
+..\..\Libraries\seekfree_libraries\zf_delay.h(26): error C25: syntax error near 'x'
+..\..\Libraries\seekfree_libraries\zf_delay.h(27): error C25: syntax error near 'us'
+..\..\Libraries\seekfree_libraries\zf_delay.c(22): error C318: can't open file 'board.h'
+..\..\Libraries\seekfree_libraries\zf_delay.c(25): error C142: illegal initialization
+..\..\Libraries\seekfree_libraries\zf_delay.c(26): warning C34: 'vuint16': missing declaration specifiers
+..\..\Libraries\seekfree_libraries\zf_delay.c(26): error C42: 'vuint16': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_delay.c(26): error C25: syntax error near 'zf_delay_us'
+..\..\Libraries\seekfree_libraries\zf_delay.c(26): error C142: illegal initialization
+..\..\Libraries\seekfree_libraries\zf_delay.c(35): error C42: 'delay_init': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_delay.c(35): error C25: syntax error near '{'
+..\..\Libraries\seekfree_libraries\zf_delay.c(72): error C7: compilation aborted
+compiling zf_eeprom.c...
+..\..\Libraries\seekfree_libraries\zf_eeprom.h(24): error C318: can't open file 'common.h'
+..\..\Libraries\seekfree_libraries\zf_eeprom.h(31): error C42: 'iap_get_cmd_state': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_eeprom.h(32): error C25: syntax error near 'addr'
+..\..\Libraries\seekfree_libraries\zf_eeprom.h(32): error C42: 'iap_read_bytes': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_eeprom.h(33): error C25: syntax error near 'addr'
+..\..\Libraries\seekfree_libraries\zf_eeprom.h(33): error C42: 'iap_write_bytes': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_eeprom.h(34): error C25: syntax error near 'addr'
+..\..\Libraries\seekfree_libraries\zf_eeprom.h(34): error C42: 'iap_erase_page': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_eeprom.h(35): error C25: syntax error near 'addr'
+..\..\Libraries\seekfree_libraries\zf_eeprom.h(35): error C42: 'extern_iap_write_bytes': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_eeprom.c(20): error C318: can't open file 'board.h'
+D:\keil5\keil5_MDK\keil5_MDK_32\C251\Inc\intrins.h(17): error C29: formal/parameter has illegal storage class
+D:\keil5\keil5_MDK\keil5_MDK_32\C251\Inc\intrins.h(17): error C33: '_nop_': invalid storage class
+D:\keil5\keil5_MDK\keil5_MDK_32\C251\Inc\intrins.h(18): error C29: formal/parameter has illegal storage class
+D:\keil5\keil5_MDK\keil5_MDK_32\C251\Inc\intrins.h(18): error C33: '_testbit_': invalid storage class
+D:\keil5\keil5_MDK\keil5_MDK_32\C251\Inc\intrins.h(19): error C29: formal/parameter has illegal storage class
+D:\keil5\keil5_MDK\keil5_MDK_32\C251\Inc\intrins.h(19): error C33: '_cror_': invalid storage class
+D:\keil5\keil5_MDK\keil5_MDK_32\C251\Inc\intrins.h(20): error C29: formal/parameter has illegal storage class
+D:\keil5\keil5_MDK\keil5_MDK_32\C251\Inc\intrins.h(20): error C33: '_iror_': invalid storage class
+D:\keil5\keil5_MDK\keil5_MDK_32\C251\Inc\intrins.h(21): error C29: formal/parameter has illegal storage class
+D:\keil5\keil5_MDK\keil5_MDK_32\C251\Inc\intrins.h(21): error C33: '_lror_': invalid storage class
+D:\keil5\keil5_MDK\keil5_MDK_32\C251\Inc\intrins.h(22): error C29: formal/parameter has illegal storage class
+D:\keil5\keil5_MDK\keil5_MDK_32\C251\Inc\intrins.h(22): error C33: '_crol_': invalid storage class
+D:\keil5\keil5_MDK\keil5_MDK_32\C251\Inc\intrins.h(23): error C29: formal/parameter has illegal storage class
+D:\keil5\keil5_MDK\keil5_MDK_32\C251\Inc\intrins.h(23): error C33: '_irol_': invalid storage class
+D:\keil5\keil5_MDK\keil5_MDK_32\C251\Inc\intrins.h(24): error C29: formal/parameter has illegal storage class
+D:\keil5\keil5_MDK\keil5_MDK_32\C251\Inc\intrins.h(24): error C33: '_lrol_': invalid storage class
+D:\keil5\keil5_MDK\keil5_MDK_32\C251\Inc\intrins.h(25): error C29: formal/parameter has illegal storage class
+D:\keil5\keil5_MDK\keil5_MDK_32\C251\Inc\intrins.h(25): error C33: '_chkfloat_': invalid storage class
+D:\keil5\keil5_MDK\keil5_MDK_32\C251\Inc\intrins.h(26): error C29: formal/parameter has illegal storage class
+D:\keil5\keil5_MDK\keil5_MDK_32\C251\Inc\intrins.h(26): error C33: '_chkdouble_': invalid storage class
+..\..\Libraries\seekfree_libraries\zf_eeprom.c(31): error C42: 'eeprom_trig': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_eeprom.c(31): error C25: syntax error near '{'
+..\..\Libraries\seekfree_libraries\zf_eeprom.c(107): error C42: 'buf': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_eeprom.c(107): error C42: 'uint16': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_eeprom.c(107): error C25: syntax error near 'len'
+..\..\Libraries\seekfree_libraries\zf_eeprom.c(107): error C42: 'len': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_eeprom.c(117): error C42: 'buf': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_eeprom.c(133): error C42: 'buf': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_eeprom.c(133): error C42: 'uint16': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_eeprom.c(133): error C25: syntax error near 'len'
+..\..\Libraries\seekfree_libraries\zf_eeprom.c(133): error C42: 'len': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_eeprom.c(142): error C42: 'buf': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_eeprom.c(180): error C42: 'buf': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_eeprom.c(180): error C42: 'uint16': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_eeprom.c(180): error C25: syntax error near 'len'
+..\..\Libraries\seekfree_libraries\zf_eeprom.c(180): error C42: 'len': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_eeprom.c(192): error C7: compilation aborted
+compiling zf_exti.c...
+..\..\Libraries\seekfree_libraries\zf_exti.h(23): error C318: can't open file 'common.h'
+..\..\Libraries\seekfree_libraries\zf_exti.c(34): error C67: 'IT0': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_exti.c(35): error C67: 'EX0': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_exti.c(40): error C67: 'IT1': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_exti.c(41): error C67: 'EX1': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_exti.c(46): error C67: 'INTCLKO': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_exti.c(51): error C67: 'INTCLKO': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_exti.c(56): error C67: 'INTCLKO': undefined identifier
+compiling zf_gpio.c...
+..\..\Libraries\seekfree_libraries\zf_gpio.h(24): error C318: can't open file 'common.h'
+..\..\Libraries\seekfree_libraries\zf_gpio.c(60): error C67: 'P0M1': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(61): error C67: 'P0M0': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(65): error C67: 'P1M1': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(66): error C67: 'P1M0': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(70): error C67: 'P2M1': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(71): error C67: 'P2M0': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(76): error C67: 'P3M1': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(77): error C67: 'P3M0': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(81): error C67: 'P4M1': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(82): error C67: 'P4M0': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(86): error C67: 'P5M1': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(87): error C67: 'P5M0': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(91): error C67: 'P6M1': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(92): error C67: 'P6M0': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(96): error C67: 'P7M1': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(97): error C67: 'P7M0': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(104): error C67: 'P0M1': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(105): error C67: 'P0M0': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(109): error C67: 'P1M1': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(110): error C67: 'P1M0': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(114): error C67: 'P2M1': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(115): error C67: 'P2M0': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(120): error C67: 'P3M1': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(121): error C67: 'P3M0': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(125): error C67: 'P4M1': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(126): error C67: 'P4M0': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(130): error C67: 'P5M1': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(131): error C67: 'P5M0': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(135): error C67: 'P6M1': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(136): error C67: 'P6M0': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(140): error C67: 'P7M1': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(141): error C67: 'P7M0': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(149): error C67: 'P0M1': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(150): error C67: 'P0M0': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(154): error C67: 'P1M1': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(155): error C67: 'P1M0': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(159): error C67: 'P2M1': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(160): error C67: 'P2M0': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(165): error C67: 'P3M1': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(166): error C67: 'P3M0': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(170): error C67: 'P4M1': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(171): error C67: 'P4M0': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(175): error C67: 'P5M1': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(176): error C67: 'P5M0': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(180): error C67: 'P6M1': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(181): error C67: 'P6M0': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(185): error C67: 'P7M1': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(186): error C67: 'P7M0': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(193): error C67: 'P0M1': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(194): error C67: 'P0M0': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(198): error C67: 'P1M1': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(199): error C67: 'P1M0': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(203): error C67: 'P2M1': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(204): error C67: 'P2M0': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(209): error C67: 'P3M1': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(210): error C67: 'P3M0': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(214): error C67: 'P4M1': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(215): error C67: 'P4M0': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(219): error C67: 'P5M1': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(220): error C67: 'P5M0': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(224): error C67: 'P6M1': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(225): error C67: 'P6M0': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(229): error C67: 'P7M1': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_gpio.c(230): error C67: 'P7M0': undefined identifier
+compiling zf_iic.c...
+..\..\Libraries\seekfree_libraries\zf_iic.h(24): error C318: can't open file 'common.h'
+..\..\Libraries\seekfree_libraries\zf_iic.h(54): error C25: syntax error near 'wait_time'
+..\..\Libraries\seekfree_libraries\zf_iic.h(55): error C25: syntax error near 'dev_add'
+..\..\Libraries\seekfree_libraries\zf_iic.h(55): error C42: 'iic_write_reg': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_iic.h(56): warning C34: 'uint8': missing declaration specifiers
+..\..\Libraries\seekfree_libraries\zf_iic.h(56): error C42: 'uint8': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_iic.h(56): error C25: syntax error near 'iic_read_reg'
+..\..\Libraries\seekfree_libraries\zf_iic.h(56): error C25: syntax error near 'dev_add'
+..\..\Libraries\seekfree_libraries\zf_iic.h(56): error C42: 'iic_read_reg': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_iic.h(57): warning C34: 'uint8': missing declaration specifiers
+..\..\Libraries\seekfree_libraries\zf_iic.h(57): error C42: 'uint8': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_iic.h(57): error C25: syntax error near 'iic_read_reg_bytes'
+..\..\Libraries\seekfree_libraries\zf_iic.h(57): error C25: syntax error near 'dev_add'
+..\..\Libraries\seekfree_libraries\zf_iic.h(57): error C42: 'iic_read_reg_bytes': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_iic.h(58): error C42: 'iic_change_pin': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_iic.c(30): error C25: syntax error near 'x'
+..\..\Libraries\seekfree_libraries\zf_iic.c(31): error C42: 'iic_delay_us': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_iic.c(247): error C42: 'dat': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_iic.c(273): error C142: illegal initialization
+..\..\Libraries\seekfree_libraries\zf_iic.c(273): warning C140: 'recv_data' undefined; assuming 'extern int recv_data()'
+..\..\Libraries\seekfree_libraries\zf_iic.c(276): error C25: syntax error near 'if'
+..\..\Libraries\seekfree_libraries\zf_iic.c(276): error C25: syntax error near '!='
+..\..\Libraries\seekfree_libraries\zf_iic.c(279): error C25: syntax error near '!='
+..\..\Libraries\seekfree_libraries\zf_iic.c(296): error C25: syntax error near 'dev_add'
+..\..\Libraries\seekfree_libraries\zf_iic.c(296): error C7: compilation aborted
+compiling zf_nvic.c...
+..\..\Libraries\seekfree_libraries\zf_nvic.h(23): error C318: can't open file 'common.h'
+..\..\Libraries\seekfree_libraries\zf_nvic.h(60): error C25: syntax error near 'priority'
+..\..\Libraries\seekfree_libraries\zf_nvic.c(31): error C25: syntax error near 'priority'
+..\..\Libraries\seekfree_libraries\zf_nvic.c(32): warning C35: 'NVIC_SetPriority': uses old-style declarator
+..\..\Libraries\seekfree_libraries\zf_nvic.c(35): error C67: 'IP': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_nvic.c(35): error C67: 'priority': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_nvic.c(36): error C67: 'IPH': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_nvic.c(36): error C67: 'priority': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_nvic.c(40): error C67: 'IP2': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_nvic.c(40): error C67: 'priority': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_nvic.c(41): error C67: 'IP2H': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_nvic.c(41): error C67: 'priority': undefined identifier
+..\..\Libraries\seekfree_libraries\zf_nvic.c(31): warning C47: 'uint8': unreferenced parameter
+compiling zf_pwm.c...
+..\..\Libraries\seekfree_libraries\zf_pwm.h(22): error C318: can't open file 'common.h'
+..\..\Libraries\seekfree_libraries\zf_pwm.h(82): error C25: syntax error near 'freq'
+..\..\Libraries\seekfree_libraries\zf_pwm.h(83): error C25: syntax error near 'duty'
+..\..\Libraries\seekfree_libraries\zf_pwm.h(84): error C25: syntax error near 'freq'
+..\..\Libraries\seekfree_libraries\zf_pwm.c(21): error C318: can't open file 'board.h'
+..\..\Libraries\seekfree_libraries\zf_gpio.h(24): error C318: can't open file 'common.h'
+..\..\Libraries\seekfree_libraries\zf_uart.h(24): error C318: can't open file 'common.h'
+..\..\Libraries\seekfree_libraries\zf_tim.h(22): error C318: can't open file 'common.h'
+..\..\Libraries\seekfree_libraries\zf_tim.h(55): error C42: 'ctimer_count_read': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_tim.h(57): error C25: syntax error near 'time_ms'
+..\..\Libraries\seekfree_libraries\zf_tim.h(57): error C42: 'pit_timer_ms': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_uart.h(54): error C29: formal/parameter has illegal storage class
+..\..\Libraries\seekfree_libraries\zf_uart.h(60): error C33: 'UARTN_enum': invalid storage class
+..\..\Libraries\seekfree_libraries\zf_uart.h(64): error C29: formal/parameter has illegal storage class
+..\..\Libraries\seekfree_libraries\zf_uart.h(81): error C33: 'UARTPIN_enum': invalid storage class
+..\..\Libraries\seekfree_libraries\zf_uart.h(87): error C29: formal/parameter has illegal storage class
+..\..\Libraries\seekfree_libraries\zf_uart.h(87): error C33: 'uint8': invalid storage class
+..\..\Libraries\seekfree_libraries\zf_uart.h(87): error C25: syntax error near 'uart1_tx_buff'
+..\..\Libraries\seekfree_libraries\zf_uart.h(87): error C33: 'uart1_tx_buff': invalid storage class
+..\..\Libraries\seekfree_libraries\zf_uart.h(88): error C29: formal/parameter has illegal storage class
+..\..\Libraries\seekfree_libraries\zf_uart.h(88): error C33: 'uint8': invalid storage class
+..\..\Libraries\seekfree_libraries\zf_uart.h(88): error C25: syntax error near 'uart1_rx_buff'
+..\..\Libraries\seekfree_libraries\zf_uart.h(88): error C33: 'uart1_rx_buff': invalid storage class
+..\..\Libraries\seekfree_libraries\zf_uart.h(89): error C29: formal/parameter has illegal storage class
+..\..\Libraries\seekfree_libraries\zf_uart.h(89): error C33: 'uint8': invalid storage class
+..\..\Libraries\seekfree_libraries\zf_uart.h(89): error C25: syntax error near 'busy'
+..\..\Libraries\seekfree_libraries\zf_uart.h(89): error C33: 'busy': invalid storage class
+..\..\Libraries\seekfree_libraries\zf_uart.h(92): error C25: syntax error near 'uart_n'
+..\..\Libraries\seekfree_libraries\zf_uart.h(92): error C42: 'uart_init': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_uart.h(93): error C25: syntax error near 'uart_n'
+..\..\Libraries\seekfree_libraries\zf_uart.h(93): error C42: 'uart_putchar': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_uart.h(94): error C25: syntax error near 'uart_n'
+..\..\Libraries\seekfree_libraries\zf_uart.h(94): error C42: 'uart_putstr': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_uart.h(95): error C25: syntax error near 'uart_n'
+..\..\Libraries\seekfree_libraries\zf_uart.h(95): error C7: compilation aborted
+compiling zf_spi.c...
+..\..\Libraries\seekfree_libraries\zf_gpio.h(24): error C318: can't open file 'common.h'
+..\..\Libraries\seekfree_libraries\zf_spi.h(22): error C318: can't open file 'common.h'
+..\..\Libraries\seekfree_libraries\zf_spi.h(75): error C25: syntax error near 'mode'
+..\..\Libraries\seekfree_libraries\zf_spi.h(84): error C25: syntax error near 'mode'
+..\..\Libraries\seekfree_libraries\zf_spi.h(86): error C25: syntax error near 'dat'
+..\..\Libraries\seekfree_libraries\zf_spi.h(86): error C42: 'spi_mosi': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_spi.c(43): error C25: syntax error near 'mode'
+..\..\Libraries\seekfree_libraries\zf_spi.c(46): error C42: 'spi_init': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_spi.c(218): error C7: compilation aborted
+compiling zf_tim.c...
+..\..\Libraries\seekfree_libraries\zf_tim.h(22): error C318: can't open file 'common.h'
+..\..\Libraries\seekfree_libraries\zf_tim.h(55): error C42: 'ctimer_count_read': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_tim.h(57): error C25: syntax error near 'time_ms'
+..\..\Libraries\seekfree_libraries\zf_tim.h(57): error C42: 'pit_timer_ms': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_tim.c(22): error C318: can't open file 'board.h'
+..\..\Libraries\seekfree_libraries\zf_tim.c(40): error C42: 'ctimer_count_init': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_tim.c(40): error C25: syntax error near '{'
+..\..\Libraries\seekfree_libraries\zf_tim.c(241): error C7: compilation aborted
+compiling zf_uart.c...
+..\..\Libraries\seekfree_libraries\zf_uart.h(24): error C318: can't open file 'common.h'
+..\..\Libraries\seekfree_libraries\zf_tim.h(22): error C318: can't open file 'common.h'
+..\..\Libraries\seekfree_libraries\zf_tim.h(55): error C42: 'ctimer_count_read': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_tim.h(57): error C25: syntax error near 'time_ms'
+..\..\Libraries\seekfree_libraries\zf_tim.h(57): error C42: 'pit_timer_ms': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_uart.h(54): error C29: formal/parameter has illegal storage class
+..\..\Libraries\seekfree_libraries\zf_uart.h(60): error C33: 'UARTN_enum': invalid storage class
+..\..\Libraries\seekfree_libraries\zf_uart.h(64): error C29: formal/parameter has illegal storage class
+..\..\Libraries\seekfree_libraries\zf_uart.h(81): error C33: 'UARTPIN_enum': invalid storage class
+..\..\Libraries\seekfree_libraries\zf_uart.h(87): error C29: formal/parameter has illegal storage class
+..\..\Libraries\seekfree_libraries\zf_uart.h(87): error C33: 'uint8': invalid storage class
+..\..\Libraries\seekfree_libraries\zf_uart.h(87): error C25: syntax error near 'uart1_tx_buff'
+..\..\Libraries\seekfree_libraries\zf_uart.h(87): error C33: 'uart1_tx_buff': invalid storage class
+..\..\Libraries\seekfree_libraries\zf_uart.h(88): error C29: formal/parameter has illegal storage class
+..\..\Libraries\seekfree_libraries\zf_uart.h(88): error C33: 'uint8': invalid storage class
+..\..\Libraries\seekfree_libraries\zf_uart.h(88): error C25: syntax error near 'uart1_rx_buff'
+..\..\Libraries\seekfree_libraries\zf_uart.h(88): error C33: 'uart1_rx_buff': invalid storage class
+..\..\Libraries\seekfree_libraries\zf_uart.h(89): error C29: formal/parameter has illegal storage class
+..\..\Libraries\seekfree_libraries\zf_uart.h(89): error C33: 'uint8': invalid storage class
+..\..\Libraries\seekfree_libraries\zf_uart.h(89): error C25: syntax error near 'busy'
+..\..\Libraries\seekfree_libraries\zf_uart.h(89): error C33: 'busy': invalid storage class
+..\..\Libraries\seekfree_libraries\zf_uart.h(92): error C25: syntax error near 'uart_n'
+..\..\Libraries\seekfree_libraries\zf_uart.h(92): error C42: 'uart_init': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_uart.h(93): error C25: syntax error near 'uart_n'
+..\..\Libraries\seekfree_libraries\zf_uart.h(93): error C42: 'uart_putchar': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_uart.h(94): error C25: syntax error near 'uart_n'
+..\..\Libraries\seekfree_libraries\zf_uart.h(94): error C42: 'uart_putstr': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_uart.h(95): error C25: syntax error near 'uart_n'
+..\..\Libraries\seekfree_libraries\zf_uart.h(95): error C42: 'uart_putbuff': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_uart.c(21): error C318: can't open file 'board.h'
+..\..\Libraries\seekfree_libraries\zf_uart.c(25): warning C34: 'uint8': missing declaration specifiers
+..\..\Libraries\seekfree_libraries\zf_uart.c(25): error C42: 'uint8': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_uart.c(25): error C25: syntax error near 'busy'
+..\..\Libraries\seekfree_libraries\zf_uart.c(25): warning C34: 'busy': missing declaration specifiers
+..\..\Libraries\seekfree_libraries\zf_uart.c(25): error C42: 'busy': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_uart.c(27): warning C34: 'uint8': missing declaration specifiers
+..\..\Libraries\seekfree_libraries\zf_uart.c(27): error C42: 'uint8': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_uart.c(27): error C25: syntax error near 'uart1_tx_buff'
+..\..\Libraries\seekfree_libraries\zf_uart.c(27): warning C34: 'uart1_tx_buff': missing declaration specifiers
+..\..\Libraries\seekfree_libraries\zf_uart.c(27): error C42: 'uart1_tx_buff': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_uart.c(28): warning C34: 'uint8': missing declaration specifiers
+..\..\Libraries\seekfree_libraries\zf_uart.c(28): error C42: 'uint8': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_uart.c(28): error C25: syntax error near 'uart1_rx_buff'
+..\..\Libraries\seekfree_libraries\zf_uart.c(28): error C7: compilation aborted
+compiling zf_fifo.c...
+..\..\Libraries\seekfree_libraries\zf_fifo.c(24): error C318: can't open file 'board.h'
+..\..\Libraries\seekfree_libraries\zf_gpio.h(24): error C318: can't open file 'common.h'
+..\..\Libraries\seekfree_libraries\zf_uart.h(24): error C318: can't open file 'common.h'
+..\..\Libraries\seekfree_libraries\zf_tim.h(22): error C318: can't open file 'common.h'
+..\..\Libraries\seekfree_libraries\zf_tim.h(55): error C42: 'ctimer_count_read': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_tim.h(57): error C25: syntax error near 'time_ms'
+..\..\Libraries\seekfree_libraries\zf_tim.h(57): error C42: 'pit_timer_ms': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_uart.h(54): error C29: formal/parameter has illegal storage class
+..\..\Libraries\seekfree_libraries\zf_uart.h(60): error C33: 'UARTN_enum': invalid storage class
+..\..\Libraries\seekfree_libraries\zf_uart.h(64): error C29: formal/parameter has illegal storage class
+..\..\Libraries\seekfree_libraries\zf_uart.h(81): error C33: 'UARTPIN_enum': invalid storage class
+..\..\Libraries\seekfree_libraries\zf_uart.h(87): error C29: formal/parameter has illegal storage class
+..\..\Libraries\seekfree_libraries\zf_uart.h(87): error C33: 'uint8': invalid storage class
+..\..\Libraries\seekfree_libraries\zf_uart.h(87): error C25: syntax error near 'uart1_tx_buff'
+..\..\Libraries\seekfree_libraries\zf_uart.h(87): error C33: 'uart1_tx_buff': invalid storage class
+..\..\Libraries\seekfree_libraries\zf_uart.h(88): error C29: formal/parameter has illegal storage class
+..\..\Libraries\seekfree_libraries\zf_uart.h(88): error C33: 'uint8': invalid storage class
+..\..\Libraries\seekfree_libraries\zf_uart.h(88): error C25: syntax error near 'uart1_rx_buff'
+..\..\Libraries\seekfree_libraries\zf_uart.h(88): error C33: 'uart1_rx_buff': invalid storage class
+..\..\Libraries\seekfree_libraries\zf_uart.h(89): error C29: formal/parameter has illegal storage class
+..\..\Libraries\seekfree_libraries\zf_uart.h(89): error C33: 'uint8': invalid storage class
+..\..\Libraries\seekfree_libraries\zf_uart.h(89): error C25: syntax error near 'busy'
+..\..\Libraries\seekfree_libraries\zf_uart.h(89): error C33: 'busy': invalid storage class
+..\..\Libraries\seekfree_libraries\zf_uart.h(92): error C25: syntax error near 'uart_n'
+..\..\Libraries\seekfree_libraries\zf_uart.h(92): error C42: 'uart_init': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_uart.h(93): error C25: syntax error near 'uart_n'
+..\..\Libraries\seekfree_libraries\zf_uart.h(93): error C42: 'uart_putchar': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_uart.h(94): error C25: syntax error near 'uart_n'
+..\..\Libraries\seekfree_libraries\zf_uart.h(94): error C42: 'uart_putstr': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_uart.h(95): error C25: syntax error near 'uart_n'
+..\..\Libraries\seekfree_libraries\zf_uart.h(95): error C42: 'uart_putbuff': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_nvic.h(23): error C318: can't open file 'common.h'
+..\..\Libraries\seekfree_libraries\zf_nvic.h(27): error C29: formal/parameter has illegal storage class
+..\..\Libraries\seekfree_libraries\zf_nvic.h(57): error C33: 'NVIC_IRQn_enum': invalid storage class
+..\..\Libraries\seekfree_libraries\zf_nvic.h(60): error C25: syntax error near 'irqn'
+..\..\Libraries\seekfree_libraries\zf_nvic.h(60): error C42: 'NVIC_SetPriority': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_delay.h(22): error C318: can't open file 'common.h'
+..\..\Libraries\seekfree_libraries\zf_delay.h(25): error C42: 'delay_init': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_delay.h(26): error C25: syntax error near 'x'
+..\..\Libraries\seekfree_libraries\zf_delay.h(26): error C42: 'delay_ms': not in formal parameter list
+..\..\Libraries\seekfree_libraries\zf_delay.h(27): error C25: syntax error near 'us'
+..\..\Libraries\seekfree_libraries\zf_delay.h(27): error C7: compilation aborted
+compiling SEEKFREE_18TFT.c...
+..\..\Libraries\seekfree_peripheral\SEEKFREE_18TFT.h(41): error C318: can't open file 'common.h'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_18TFT.h(42): error C318: can't open file 'board.h'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_18TFT.h(128): error C25: syntax error near 'x'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_18TFT.h(129): error C25: syntax error near 'x'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_18TFT.h(130): error C25: syntax error near 'x'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_18TFT.h(131): error C25: syntax error near 'x'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_18TFT.h(132): error C25: syntax error near 'x'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_18TFT.h(133): error C25: syntax error near 'x'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_18TFT.h(134): error C25: syntax error near 'x'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_18TFT.h(135): error C25: syntax error near 'x'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_18TFT.h(136): error C25: syntax error near 'x'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_18TFT.h(142): error C25: syntax error near 'x'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_18TFT.h(143): error C25: syntax error near 'x'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_18TFT.h(143): error C7: compilation aborted
+compiling SEEKFREE_ABSOLUTE_ENCODER.c...
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ABSOLUTE_ENCODER.h(32): error C318: can't open file 'common.h'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ABSOLUTE_ENCODER.h(69): error C42: 'encoder_angle_simspi': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ABSOLUTE_ENCODER.h(71): error C42: 'encoder_init_spi': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ABSOLUTE_ENCODER.h(72): warning C34: 'uint16': missing declaration specifiers
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ABSOLUTE_ENCODER.h(72): error C42: 'uint16': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ABSOLUTE_ENCODER.h(72): error C25: syntax error near 'encoder_angle_spi'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ABSOLUTE_ENCODER.h(72): error C42: 'encoder_angle_spi': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ABSOLUTE_ENCODER.c(29): error C318: can't open file 'zf_spi.h'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ABSOLUTE_ENCODER.c(30): error C318: can't open file 'zf_delay.h'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ABSOLUTE_ENCODER.c(43): error C25: syntax error near 'x'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ABSOLUTE_ENCODER.c(44): error C42: 'encoder_delay_us': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ABSOLUTE_ENCODER.c(94): error C42: 'val': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ABSOLUTE_ENCODER.c(99): error C142: illegal initialization
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ABSOLUTE_ENCODER.c(99): warning C140: 'simspi_wr_byte' undefined; assuming 'extern int simspi_wr_byte()'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ABSOLUTE_ENCODER.c(100): error C142: illegal initialization
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ABSOLUTE_ENCODER.c(101): error C25: syntax error near '}'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ABSOLUTE_ENCODER.c(112): error C25: syntax error near 'cmd'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ABSOLUTE_ENCODER.c(113): error C42: 'encoder_simspi_w_reg_byte': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ABSOLUTE_ENCODER.c(139): warning C34: 'val': missing declaration specifiers
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ABSOLUTE_ENCODER.c(139): error C42: 'val': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ABSOLUTE_ENCODER.c(148): error C142: illegal initialization
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ABSOLUTE_ENCODER.c(149): error C25: syntax error near '0x00'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ABSOLUTE_ENCODER.c(149): error C42: 'simspi_wr_byte': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ABSOLUTE_ENCODER.c(150): error C142: illegal initialization
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ABSOLUTE_ENCODER.c(151): error C25: syntax error near '}'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ABSOLUTE_ENCODER.c(160): error C25: syntax error near 'zero_position'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ABSOLUTE_ENCODER.c(161): warning C35: 'set_zero_position_simspi': uses old-style declarator
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ABSOLUTE_ENCODER.c(162): error C67: 'zero_position': undefined identifier
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ABSOLUTE_ENCODER.c(162): error C67: 'zero_position': undefined identifier
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ABSOLUTE_ENCODER.c(163): error C67: 'zero_position': undefined identifier
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ABSOLUTE_ENCODER.c(163): error C67: 'zero_position': undefined identifier
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ABSOLUTE_ENCODER.c(164): error C67: 'uint8': undefined identifier
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ABSOLUTE_ENCODER.c(164): error C25: syntax error near 'zero_position'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ABSOLUTE_ENCODER.c(164): error C25: syntax error near ')'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ABSOLUTE_ENCODER.c(165): error C25: syntax error near '0x01'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ABSOLUTE_ENCODER.c(165): error C76: formal parameter ignored
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ABSOLUTE_ENCODER.c(165): error C25: syntax error near '>>'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ABSOLUTE_ENCODER.c(165): error C7: compilation aborted
+compiling SEEKFREE_FONT.c...
+..\..\Libraries\seekfree_peripheral\SEEKFREE_FONT.h(24): error C318: can't open file 'common.h'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_FONT.h(29): warning C34: 'tft_ascii': missing declaration specifiers
+..\..\Libraries\seekfree_peripheral\SEEKFREE_FONT.h(29): error C42: 'tft_ascii': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_FONT.h(29): warning C194: obsolete declaration: use '<type> code  tft_ascii'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_FONT.h(30): error C29: formal/parameter has illegal storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_FONT.h(30): error C33: 'uint8': invalid storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_FONT.h(30): error C25: syntax error near 'code'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_FONT.h(30): error C33: 'oled_8x16': invalid storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_FONT.h(31): error C29: formal/parameter has illegal storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_FONT.h(31): error C33: 'uint8': invalid storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_FONT.h(31): error C25: syntax error near 'code'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_FONT.h(31): error C33: 'oled_6x8': invalid storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_FONT.c(24): error C42: 'uint8': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_FONT.c(24): error C25: syntax error near 'code'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_FONT.c(24): error C142: illegal initialization
+..\..\Libraries\seekfree_peripheral\SEEKFREE_FONT.c(219): error C42: 'uint8': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_FONT.c(219): error C25: syntax error near 'code'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_FONT.c(219): error C142: illegal initialization
+..\..\Libraries\seekfree_peripheral\SEEKFREE_FONT.c(318): error C42: 'uint8': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_FONT.c(318): error C25: syntax error near 'code'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_FONT.c(318): error C142: illegal initialization
+..\..\Libraries\seekfree_peripheral\SEEKFREE_FONT.c(416): error C25: syntax error near '<EOF>'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_FONT.c(416): error C7: compilation aborted
+compiling SEEKFREE_ICM20602.c...
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ICM20602.h(26): error C318: can't open file 'common.h'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ICM20602.h(27): error C318: can't open file 'board.h'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ICM20602.h(113): warning C34: 'icm_gyro_x': missing declaration specifiers
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ICM20602.h(113): error C42: 'icm_gyro_x': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ICM20602.h(113): warning C34: 'icm_gyro_y': missing declaration specifiers
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ICM20602.h(113): error C42: 'icm_gyro_y': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ICM20602.h(113): warning C34: 'icm_gyro_z': missing declaration specifiers
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ICM20602.h(113): error C42: 'icm_gyro_z': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ICM20602.h(114): error C29: formal/parameter has illegal storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ICM20602.h(114): error C33: 'int16': invalid storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ICM20602.h(114): error C25: syntax error near 'icm_acc_x'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ICM20602.h(114): error C33: 'icm_acc_x': invalid storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ICM20602.h(114): error C33: 'icm_acc_y': invalid storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ICM20602.h(114): error C33: 'icm_acc_z': invalid storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ICM20602.h(118): error C42: 'icm20602_init_simspi': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ICM20602.h(119): error C42: 'get_icm20602_gyro_simspi': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ICM20602.h(120): error C42: 'get_icm20602_accdata_simspi': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ICM20602.h(123): error C42: 'icm20602_init_simiic': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ICM20602.h(124): error C42: 'get_icm20602_accdata_simiic': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ICM20602.h(125): error C42: 'get_icm20602_gyro_simiic': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(32): error C318: can't open file 'common.h'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(37): error C29: formal/parameter has illegal storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(41): error C33: 'IIC_type': invalid storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(45): error C42: 'simiic_start': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(46): error C42: 'simiic_stop': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(47): error C25: syntax error near 'ack_main'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(47): error C42: 'simiic_ack_main': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(48): error C25: syntax error near 'c'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(48): error C42: 'send_ch': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(49): warning C34: 'uint8': missing declaration specifiers
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(49): error C42: 'uint8': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(49): error C25: syntax error near 'read_ch'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(49): error C25: syntax error near 'ack'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(49): error C42: 'read_ch': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(50): error C25: syntax error near 'dev_add'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(50): error C42: 'simiic_write_reg': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(51): warning C34: 'uint8': missing declaration specifiers
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(51): error C42: 'uint8': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(51): error C25: syntax error near 'simiic_read_reg'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(51): error C25: syntax error near 'dev_add'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(51): error C42: 'simiic_read_reg': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(52): error C25: syntax error near 'dev_add'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(52): error C42: 'simiic_read_regs': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(53): error C42: 'simiic_init': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ICM20602.c(28): error C318: can't open file 'zf_delay.h'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ICM20602.c(29): error C318: can't open file 'zf_spi.h'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ICM20602.c(31): warning C34: 'int16': missing declaration specifiers
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ICM20602.c(31): error C42: 'int16': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ICM20602.c(31): error C25: syntax error near 'icm_gyro_x'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ICM20602.c(31): warning C34: 'icm_gyro_x': missing declaration specifiers
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ICM20602.c(31): error C42: 'icm_gyro_x': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ICM20602.c(31): warning C34: 'icm_gyro_y': missing declaration specifiers
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ICM20602.c(31): error C42: 'icm_gyro_y': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ICM20602.c(31): warning C34: 'icm_gyro_z': missing declaration specifiers
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ICM20602.c(31): error C42: 'icm_gyro_z': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ICM20602.c(32): warning C34: 'int16': missing declaration specifiers
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ICM20602.c(32): error C42: 'int16': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ICM20602.c(32): error C25: syntax error near 'icm_acc_x'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_ICM20602.c(32): error C7: compilation aborted
+compiling SEEKFREE_IIC.c...
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(32): error C318: can't open file 'common.h'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(47): error C25: syntax error near 'ack_main'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(48): error C25: syntax error near 'c'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(49): error C25: syntax error near 'ack'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(49): error C42: 'read_ch': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(50): error C25: syntax error near 'dev_add'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(50): error C42: 'simiic_write_reg': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(51): warning C34: 'uint8': missing declaration specifiers
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(51): error C42: 'uint8': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(51): error C25: syntax error near 'simiic_read_reg'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(51): error C25: syntax error near 'dev_add'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(51): error C42: 'simiic_read_reg': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(52): error C25: syntax error near 'dev_add'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(52): error C42: 'simiic_read_regs': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(53): error C42: 'simiic_init': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.c(41): warning C34: 'uint8': missing declaration specifiers
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.c(41): error C42: 'uint8': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.c(41): error C25: syntax error near 'IIC_ad_main'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.c(41): warning C34: 'IIC_ad_main': missing declaration specifiers
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.c(41): error C42: 'IIC_ad_main': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.c(42): warning C34: 'uint8': missing declaration specifiers
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.c(42): error C42: 'uint8': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.c(42): error C25: syntax error near 'IIC_ad_sub'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.c(42): warning C34: 'IIC_ad_sub': missing declaration specifiers
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.c(42): error C42: 'IIC_ad_sub': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.c(43): warning C34: 'uint8': missing declaration specifiers
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.c(43): error C42: 'uint8': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.c(43): error C25: syntax error near '*'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.c(43): warning C34: 'IIC_buf': missing declaration specifiers
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.c(43): error C42: 'IIC_buf': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.c(44): warning C34: 'uint8': missing declaration specifiers
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.c(44): error C42: 'uint8': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.c(44): error C25: syntax error near 'IIC_num'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.c(44): error C7: compilation aborted
+compiling SEEKFREE_IPS114_SPI.c...
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IPS114_SPI.h(41): error C318: can't open file 'common.h'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IPS114_SPI.h(42): error C318: can't open file 'board.h'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IPS114_SPI.h(132): error C25: syntax error near 'color'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IPS114_SPI.h(133): error C25: syntax error near 'x'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IPS114_SPI.h(134): error C25: syntax error near 'x'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IPS114_SPI.h(135): error C25: syntax error near 'x'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IPS114_SPI.h(136): error C25: syntax error near 'x'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IPS114_SPI.h(137): error C25: syntax error near 'x'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IPS114_SPI.h(138): error C25: syntax error near 'x'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IPS114_SPI.h(139): error C25: syntax error near 'x'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IPS114_SPI.h(140): error C25: syntax error near 'x'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IPS114_SPI.h(141): error C25: syntax error near 'x'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IPS114_SPI.h(146): error C25: syntax error near 'color'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IPS114_SPI.h(146): error C7: compilation aborted
+compiling SEEKFREE_MPU6050.c...
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(32): error C318: can't open file 'common.h'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(47): error C25: syntax error near 'ack_main'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(48): error C25: syntax error near 'c'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(49): error C25: syntax error near 'ack'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(49): error C42: 'read_ch': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(50): error C25: syntax error near 'dev_add'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(50): error C42: 'simiic_write_reg': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(51): warning C34: 'uint8': missing declaration specifiers
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(51): error C42: 'uint8': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(51): error C25: syntax error near 'simiic_read_reg'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(51): error C25: syntax error near 'dev_add'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(51): error C42: 'simiic_read_reg': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(52): error C25: syntax error near 'dev_add'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(52): error C42: 'simiic_read_regs': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(53): error C42: 'simiic_init': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_MPU6050.h(32): error C318: can't open file 'common.h'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_MPU6050.h(60): error C29: formal/parameter has illegal storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_MPU6050.h(60): error C33: 'int16': invalid storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_MPU6050.h(60): error C25: syntax error near 'mpu_gyro_x'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_MPU6050.h(60): error C33: 'mpu_gyro_x': invalid storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_MPU6050.h(60): error C33: 'mpu_gyro_y': invalid storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_MPU6050.h(60): error C33: 'mpu_gyro_z': invalid storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_MPU6050.h(61): error C29: formal/parameter has illegal storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_MPU6050.h(61): error C33: 'int16': invalid storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_MPU6050.h(61): error C25: syntax error near 'mpu_acc_x'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_MPU6050.h(61): error C33: 'mpu_acc_x': invalid storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_MPU6050.h(61): error C33: 'mpu_acc_y': invalid storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_MPU6050.h(61): error C33: 'mpu_acc_z': invalid storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_MPU6050.h(63): error C42: 'mpu6050_init': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_MPU6050.h(64): error C42: 'mpu6050_get_accdata': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_MPU6050.h(65): error C42: 'mpu6050_get_gyro': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_MPU6050.c(30): error C318: can't open file 'zf_delay.h'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_MPU6050.c(33): warning C34: 'int16': missing declaration specifiers
+..\..\Libraries\seekfree_peripheral\SEEKFREE_MPU6050.c(33): error C42: 'int16': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_MPU6050.c(33): error C25: syntax error near 'mpu_gyro_x'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_MPU6050.c(33): warning C34: 'mpu_gyro_x': missing declaration specifiers
+..\..\Libraries\seekfree_peripheral\SEEKFREE_MPU6050.c(33): error C42: 'mpu_gyro_x': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_MPU6050.c(33): warning C34: 'mpu_gyro_y': missing declaration specifiers
+..\..\Libraries\seekfree_peripheral\SEEKFREE_MPU6050.c(33): error C42: 'mpu_gyro_y': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_MPU6050.c(33): warning C34: 'mpu_gyro_z': missing declaration specifiers
+..\..\Libraries\seekfree_peripheral\SEEKFREE_MPU6050.c(33): error C42: 'mpu_gyro_z': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_MPU6050.c(34): warning C34: 'int16': missing declaration specifiers
+..\..\Libraries\seekfree_peripheral\SEEKFREE_MPU6050.c(34): error C42: 'int16': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_MPU6050.c(34): error C25: syntax error near 'mpu_acc_x'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_MPU6050.c(34): error C7: compilation aborted
+compiling SEEKFREE_OLED.c...
+..\..\Libraries\seekfree_peripheral\SEEKFREE_OLED.c(30): error C318: can't open file 'zf_spi.h'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_OLED.c(31): error C318: can't open file 'zf_delay.h'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_FONT.h(24): error C318: can't open file 'common.h'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_FONT.h(29): warning C34: 'tft_ascii': missing declaration specifiers
+..\..\Libraries\seekfree_peripheral\SEEKFREE_FONT.h(29): error C42: 'tft_ascii': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_FONT.h(29): warning C194: obsolete declaration: use '<type> code  tft_ascii'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_FONT.h(30): error C29: formal/parameter has illegal storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_FONT.h(30): error C33: 'uint8': invalid storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_FONT.h(30): error C25: syntax error near 'code'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_FONT.h(30): error C33: 'oled_8x16': invalid storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_FONT.h(31): error C29: formal/parameter has illegal storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_FONT.h(31): error C33: 'uint8': invalid storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_FONT.h(31): error C25: syntax error near 'code'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_FONT.h(31): error C33: 'oled_6x8': invalid storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_OLED.c(33): error C318: can't open file 'SEEKFREE_PRINTF.h'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_OLED.h(35): error C318: can't open file 'common.h'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_OLED.h(36): error C318: can't open file 'board.h'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_OLED.h(100): error C42: 'oled_init': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_OLED.h(101): error C25: syntax error near 'dat'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_OLED.h(101): error C42: 'oled_fill': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_OLED.h(102): error C25: syntax error near 'x'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_OLED.h(102): error C42: 'oled_set_pos': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_OLED.h(103): error C25: syntax error near 'x'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_OLED.h(103): error C42: 'oled_putpixel': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_OLED.h(104): error C25: syntax error near 'x'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_OLED.h(104): error C42: 'oled_clrpixel': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_OLED.h(105): error C25: syntax error near 'x'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_OLED.h(105): error C42: 'oled_p6x8str': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_OLED.h(106): error C25: syntax error near 'x'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_OLED.h(106): error C42: 'oled_p8x16str': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_OLED.h(107): error C25: syntax error near 'x'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_OLED.h(107): error C42: 'oled_uint16': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_OLED.h(108): error C25: syntax error near 'x'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_OLED.h(108): error C42: 'oled_int16': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_OLED.h(109): error C25: syntax error near 'x'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_OLED.h(109): error C7: compilation aborted
+compiling SEEKFREE_TSL1401.c...
+..\..\Libraries\seekfree_peripheral\SEEKFREE_TSL1401.h(31): error C318: can't open file 'common.h'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_TSL1401.h(32): error C318: can't open file 'zf_uart.h'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_TSL1401.h(33): error C318: can't open file 'board.h'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_TSL1401.h(53): warning C34: 'ccd_data': missing declaration specifiers
+..\..\Libraries\seekfree_peripheral\SEEKFREE_TSL1401.h(53): error C42: 'ccd_data': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_TSL1401.h(54): error C29: formal/parameter has illegal storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_TSL1401.h(54): error C33: 'uint8': invalid storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_TSL1401.h(54): error C25: syntax error near 'tsl1401_finish_flag'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_TSL1401.h(54): error C33: 'tsl1401_finish_flag': invalid storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_TSL1401.h(56): error C42: 'ccd_init': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_TSL1401.h(57): error C42: 'ccd_collect': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_TSL1401.h(58): error C25: syntax error near 'uart_n'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_TSL1401.h(58): error C42: 'ccd_send_data': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_TSL1401.c(31): error C318: can't open file 'zf_adc.h'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_TSL1401.c(32): error C318: can't open file 'zf_uart.h'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_TSL1401.c(33): error C318: can't open file 'board.h'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_TSL1401.c(37): warning C34: 'uint8': missing declaration specifiers
+..\..\Libraries\seekfree_peripheral\SEEKFREE_TSL1401.c(37): error C42: 'uint8': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_TSL1401.c(37): error C25: syntax error near 'tsl1401_finish_flag'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_TSL1401.c(37): warning C34: 'tsl1401_finish_flag': missing declaration specifiers
+..\..\Libraries\seekfree_peripheral\SEEKFREE_TSL1401.c(37): error C42: 'tsl1401_finish_flag': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_TSL1401.c(38): warning C34: 'uint16': missing declaration specifiers
+..\..\Libraries\seekfree_peripheral\SEEKFREE_TSL1401.c(38): error C42: 'uint16': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_TSL1401.c(38): error C25: syntax error near 'ccd_data'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_TSL1401.c(38): warning C34: 'ccd_data': missing declaration specifiers
+..\..\Libraries\seekfree_peripheral\SEEKFREE_TSL1401.c(38): error C42: 'ccd_data': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_TSL1401.c(49): error C42: 'ccd_init': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_TSL1401.c(49): error C25: syntax error near '{'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_TSL1401.c(63): error C42: 'dat': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_TSL1401.c(105): error C7: compilation aborted
+compiling SEEKFREE_VIRSCO.c...
+..\..\Libraries\seekfree_peripheral\SEEKFREE_VIRSCO.c(23): error C318: can't open file 'zf_uart.h'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS.h(32): error C318: can't open file 'common.h'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS.h(54): error C25: syntax error near '*'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS.h(54): error C42: 'wireless_uart_send_buff': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS.h(55): warning C34: 'uint32': missing declaration specifiers
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS.h(55): error C42: 'uint32': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS.h(55): error C25: syntax error near 'wireless_uart_read_buff'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS.h(55): error C25: syntax error near '*'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS.h(55): error C42: 'wireless_uart_read_buff': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_VIRSCO.h(24): error C318: can't open file 'common.h'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_VIRSCO.h(27): error C29: formal/parameter has illegal storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_VIRSCO.h(27): error C33: 'uint8': invalid storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_VIRSCO.h(27): error C25: syntax error near 'virtual_scope_data'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_VIRSCO.h(27): error C33: 'virtual_scope_data': invalid storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_VIRSCO.h(29): error C25: syntax error near 'data1'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_VIRSCO.h(29): error C42: 'data_conversion': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_VIRSCO.c(28): warning C34: 'uint8': missing declaration specifiers
+..\..\Libraries\seekfree_peripheral\SEEKFREE_VIRSCO.c(28): error C42: 'uint8': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_VIRSCO.c(28): error C25: syntax error near 'virtual_scope_data'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_VIRSCO.c(28): warning C34: 'virtual_scope_data': missing declaration specifiers
+..\..\Libraries\seekfree_peripheral\SEEKFREE_VIRSCO.c(28): error C42: 'virtual_scope_data': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_VIRSCO.c(38): warning C34: 'uint16': missing declaration specifiers
+..\..\Libraries\seekfree_peripheral\SEEKFREE_VIRSCO.c(38): error C42: 'uint16': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_VIRSCO.c(38): error C25: syntax error near 'CRC_CHECK'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_VIRSCO.c(38): error C25: syntax error near '*'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_VIRSCO.c(39): error C42: 'CRC_CHECK': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_VIRSCO.c(67): warning C34: 'dat': missing declaration specifiers
+..\..\Libraries\seekfree_peripheral\SEEKFREE_VIRSCO.c(67): error C42: 'dat': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_VIRSCO.c(89): error C7: compilation aborted
+compiling SEEKFREE_WIRELESS.c...
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS.h(32): error C318: can't open file 'common.h'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS.h(54): error C25: syntax error near '*'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS.h(54): error C42: 'wireless_uart_send_buff': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS.h(55): warning C34: 'uint32': missing declaration specifiers
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS.h(55): error C42: 'uint32': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS.h(55): error C25: syntax error near 'wireless_uart_read_buff'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS.h(55): error C25: syntax error near '*'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS.h(55): error C42: 'wireless_uart_read_buff': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS.c(31): error C318: can't open file 'zf_uart.h'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS.c(32): error C318: can't open file 'zf_fifo.h'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS.c(35): error C29: formal/parameter has illegal storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS.c(35): error C33: 'fifo_struct': invalid storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS.c(35): error C25: syntax error near 'wireless_uart_fifo'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS.c(35): error C33: 'wireless_uart_fifo': invalid storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS.c(36): error C29: formal/parameter has illegal storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS.c(36): error C33: 'uint8': invalid storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS.c(36): error C25: syntax error near 'wireless_uart_buffer'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS.c(36): error C33: 'wireless_uart_buffer': invalid storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS.c(38): error C29: formal/parameter has illegal storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS.c(38): error C33: 'uint8': invalid storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS.c(38): error C25: syntax error near 'wireless_uart_data'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS.c(38): error C33: 'wireless_uart_data': invalid storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS.c(49): error C42: 'wireless_uart_callback': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS.c(49): error C25: syntax error near '{'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS.c(66): error C42: 'buff': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS.c(66): error C42: 'uint16': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS.c(66): error C25: syntax error near 'len'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS.c(66): error C42: 'len': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS.c(100): error C42: 'buff': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS.c(100): error C42: 'uint32': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS.c(100): error C25: syntax error near 'len'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS.c(100): error C42: 'len': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS.c(126): error C7: compilation aborted
+compiling SEEKFREE_AT24C02.c...
+..\..\Libraries\seekfree_peripheral\SEEKFREE_AT24C02.c(20): error C318: can't open file 'zf_delay.h'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(32): error C318: can't open file 'common.h'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(47): error C25: syntax error near 'ack_main'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(48): error C25: syntax error near 'c'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(49): error C25: syntax error near 'ack'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(49): error C42: 'read_ch': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(50): error C25: syntax error near 'dev_add'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(50): error C42: 'simiic_write_reg': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(51): warning C34: 'uint8': missing declaration specifiers
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(51): error C42: 'uint8': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(51): error C25: syntax error near 'simiic_read_reg'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(51): error C25: syntax error near 'dev_add'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(51): error C42: 'simiic_read_reg': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(52): error C25: syntax error near 'dev_add'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(52): error C42: 'simiic_read_regs': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_IIC.h(53): error C42: 'simiic_init': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_AT24C02.h(24): error C318: can't open file 'common.h'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_AT24C02.h(34): error C25: syntax error near 'byte_reg'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_AT24C02.h(34): error C42: 'at24c02_write_byte': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_AT24C02.h(35): warning C34: 'uint8': missing declaration specifiers
+..\..\Libraries\seekfree_peripheral\SEEKFREE_AT24C02.h(35): error C42: 'uint8': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_AT24C02.h(35): error C25: syntax error near 'at24c02_read_byte'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_AT24C02.h(35): error C25: syntax error near 'byte_reg'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_AT24C02.h(35): error C42: 'at24c02_read_byte': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_AT24C02.h(36): error C25: syntax error near 'byte_reg'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_AT24C02.h(36): error C7: compilation aborted
+compiling SEEKFREE_BLUETOOTH_CH9141.c...
+..\..\Libraries\seekfree_peripheral\SEEKFREE_BLUETOOTH_CH9141.c(31): error C318: can't open file 'board.h'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_BLUETOOTH_CH9141.c(32): error C318: can't open file 'zf_gpio.h'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_BLUETOOTH_CH9141.c(33): error C318: can't open file 'zf_uart.h'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_BLUETOOTH_CH9141.c(34): error C318: can't open file 'zf_nvic.h'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_BLUETOOTH_CH9141.c(35): error C318: can't open file 'zf_delay.h'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_BLUETOOTH_CH9141.c(36): error C318: can't open file 'zf_fifo.h'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_BLUETOOTH_CH9141.h(33): error C318: can't open file 'common.h'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_BLUETOOTH_CH9141.h(55): error C42: 'bluetooth_ch9141_init': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_BLUETOOTH_CH9141.h(57): warning C34: 'uint32': missing declaration specifiers
+..\..\Libraries\seekfree_peripheral\SEEKFREE_BLUETOOTH_CH9141.h(57): error C42: 'uint32': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_BLUETOOTH_CH9141.h(57): error C25: syntax error near 'bluetooth_ch9141_send_buff'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_BLUETOOTH_CH9141.h(57): error C25: syntax error near '*'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_BLUETOOTH_CH9141.h(57): error C42: 'bluetooth_ch9141_send_buff': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_BLUETOOTH_CH9141.h(58): warning C34: 'uint32': missing declaration specifiers
+..\..\Libraries\seekfree_peripheral\SEEKFREE_BLUETOOTH_CH9141.h(58): error C42: 'uint32': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_BLUETOOTH_CH9141.h(58): error C25: syntax error near 'bluetooth_ch9141_read_buff'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_BLUETOOTH_CH9141.h(58): error C25: syntax error near '*'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_BLUETOOTH_CH9141.h(58): error C42: 'bluetooth_ch9141_read_buff': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_BLUETOOTH_CH9141.c(55): error C29: formal/parameter has illegal storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_BLUETOOTH_CH9141.c(55): error C33: 'fifo_struct': invalid storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_BLUETOOTH_CH9141.c(55): error C25: syntax error near 'bluetooth_ch9141_fifo'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_BLUETOOTH_CH9141.c(55): error C33: 'bluetooth_ch9141_fifo': invalid storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_BLUETOOTH_CH9141.c(56): error C29: formal/parameter has illegal storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_BLUETOOTH_CH9141.c(56): error C33: 'uint8': invalid storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_BLUETOOTH_CH9141.c(56): error C25: syntax error near 'bluetooth_ch9141_buffer'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_BLUETOOTH_CH9141.c(56): error C33: 'bluetooth_ch9141_buffer': invalid storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_BLUETOOTH_CH9141.c(58): error C29: formal/parameter has illegal storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_BLUETOOTH_CH9141.c(58): error C33: 'uint8': invalid storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_BLUETOOTH_CH9141.c(58): error C25: syntax error near 'bluetooth_ch9141_data'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_BLUETOOTH_CH9141.c(58): error C33: 'bluetooth_ch9141_data': invalid storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_BLUETOOTH_CH9141.c(68): error C42: 'bluetooth_ch9141_uart_callback': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_BLUETOOTH_CH9141.c(68): error C25: syntax error near '{'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_BLUETOOTH_CH9141.c(98): error C42: 'buff': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_BLUETOOTH_CH9141.c(98): error C42: 'uint32': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_BLUETOOTH_CH9141.c(98): error C25: syntax error near 'len'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_BLUETOOTH_CH9141.c(98): error C42: 'len': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_BLUETOOTH_CH9141.c(131): error C42: 'buff': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_BLUETOOTH_CH9141.c(131): error C42: 'uint32': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_BLUETOOTH_CH9141.c(131): error C25: syntax error near 'len'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_BLUETOOTH_CH9141.c(131): error C42: 'len': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_BLUETOOTH_CH9141.c(144): error C7: compilation aborted
+compiling SEEKFREE_WIRELESS_CH573.c...
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS_CH573.h(23): error C318: can't open file 'common.h'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS_CH573.h(45): error C25: syntax error near '*'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS_CH573.h(45): error C42: 'wireless_ch573_send_buff': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS_CH573.h(46): warning C34: 'uint32': missing declaration specifiers
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS_CH573.h(46): error C42: 'uint32': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS_CH573.h(46): error C25: syntax error near 'wireless_ch573_read_buff'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS_CH573.h(46): error C25: syntax error near '*'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS_CH573.h(46): error C42: 'wireless_ch573_read_buff': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS_CH573.c(21): error C318: can't open file 'zf_uart.h'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS_CH573.c(22): error C318: can't open file 'zf_fifo.h'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS_CH573.c(25): error C29: formal/parameter has illegal storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS_CH573.c(25): error C33: 'fifo_struct': invalid storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS_CH573.c(25): error C25: syntax error near 'wireless_ch573_fifo'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS_CH573.c(25): error C33: 'wireless_ch573_fifo': invalid storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS_CH573.c(26): error C29: formal/parameter has illegal storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS_CH573.c(26): error C33: 'uint8': invalid storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS_CH573.c(26): error C25: syntax error near 'wireless_ch573_buffer'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS_CH573.c(26): error C33: 'wireless_ch573_buffer': invalid storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS_CH573.c(28): error C29: formal/parameter has illegal storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS_CH573.c(28): error C33: 'uint8': invalid storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS_CH573.c(28): error C25: syntax error near 'wireless_ch573_data'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS_CH573.c(28): error C33: 'wireless_ch573_data': invalid storage class
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS_CH573.c(40): error C42: 'wireless_ch573_callback': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS_CH573.c(40): error C25: syntax error near '{'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS_CH573.c(58): error C42: 'buff': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS_CH573.c(58): error C42: 'uint16': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS_CH573.c(58): error C25: syntax error near 'len'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS_CH573.c(58): error C42: 'len': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS_CH573.c(91): error C42: 'buff': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS_CH573.c(91): error C42: 'uint32': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS_CH573.c(91): error C25: syntax error near 'len'
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS_CH573.c(91): error C42: 'len': not in formal parameter list
+..\..\Libraries\seekfree_peripheral\SEEKFREE_WIRELESS_CH573.c(118): error C7: compilation aborted
+compiling isr.c...
+..\USER\src\isr.c(19): error C318: can't open file 'headfile.h'
+..\USER\src\isr.c(24): error C67: 'uint8': undefined identifier
+..\USER\src\isr.c(24): error C25: syntax error near 'res'
+..\USER\src\isr.c(24): warning C34: 'res': missing declaration specifiers
+..\USER\src\isr.c(25): warning C34: 'dwon_count': missing declaration specifiers
+..\USER\src\isr.c(25): error C42: 'dwon_count': not in formal parameter list
+..\USER\src\isr.c(26): error C25: syntax error near 'if'
+..\USER\src\isr.c(27): error C103: 'UART1_GET_TX_FLAG': illegal function definition (missing ';' ?)
+compiling main.c...
+..\USER\src\main.c(20): error C318: can't open file 'headfile.h'
+..\USER\src\main.c(33): error C67: 'WTST': undefined identifier
+..\USER\src\main.c(35): warning C140: 'DisableGlobalIRQ' undefined; assuming 'extern int DisableGlobalIRQ()'
+..\USER\src\main.c(40): error C67: 'sys_clk': undefined identifier
+..\USER\src\main.c(42): warning C140: 'board_init' undefined; assuming 'extern int board_init()'
+..\USER\src\main.c(43): warning C140: 'oled_init' undefined; assuming 'extern int oled_init()'
+..\USER\src\main.c(44): warning C140: 'EnableGlobalIRQ' undefined; assuming 'extern int EnableGlobalIRQ()'
+..\USER\src\main.c(49): warning C140: 'oled_int16' undefined; assuming 'extern int oled_int16()'
+..\USER\src\main.c(49): warning C95: 'oled_int16': too many actual parameters
+..\USER\src\main.c(54): warning C140: 'delay_ms' undefined; assuming 'extern int delay_ms()'
+..\USER\src\main.c(54): warning C95: 'delay_ms': too many actual parameters
+Target not created.
+Build Time Elapsed:  00:00:05
+</pre>
+</body>
+</html>

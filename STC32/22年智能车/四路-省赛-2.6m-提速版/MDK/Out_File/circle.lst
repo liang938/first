@@ -1,0 +1,115 @@
+C251 COMPILER V5.60.0,  circle                                                             25/11/23  03:49:39  PAGE 1   
+
+
+C251 COMPILER V5.60.0, COMPILATION OF MODULE circle
+OBJECT MODULE PLACED IN .\Out_File\circle.obj
+COMPILER INVOKED BY: D:\keil5\keil5_MDK\keil5_MDK_32\C251\BIN\C251.EXE ..\USER\src\circle.c XSMALL INTR2 WARNINGLEVEL(3)
+                    - BROWSE INCDIR(..\..\Libraries\libraries;..\..\Libraries\seekfree_libraries;..\..\Libraries\seekfree_peripheral;..\CODE;
+                    -..\USER\inc;..\USER\src) DEBUG PRINT(.\Out_File\circle.lst) OBJECT(.\Out_File\circle.obj) 
+
+stmt  level    source
+
+    1          #include "headfile.h"
+    2          
+    3          bit servos_flag_in=0;                                                                   //Èë»·µº±êÖ¾Î»
+    4          bit servos_flag_move=0;                                                         //»·µºÄÚ±êÖ¾Î»
+    5          bit servos_flag_out=0;                                                          //³ö»·µº±êÖ¾Î»
+    6          int forward_time = 0;
+    7          extern int time_count;                                                          //Ê±¼ä»ý·Ö
+    8          extern int ADC_MIN;                                                                             //µç¸Ð²É¼¯×îÐ¡Öµ
+    9          extern int ADC_MAX;                                                                             //µç¸Ð²É¼¯×î´óÖµ
+   10          extern int element_num;                                                         //¾­¹ýÔªËØµÄÊýÁ¿
+   11          extern int READ_MAX;                                                                    //¹éÒ»»¯ºóµç¸Ð×î´óÖµ
+   12          extern int servos_flag;                                                         //»·µº±êÖ¾Î»
+   13          extern bit Stop_flag;                                                                   //³å³öÈüµÀ±êÖ¾
+   14          extern float Speed;                                                                             //Ô¤ÉèËÙ¶È
+   15          extern float speed_err;                                                         //×ªÏòµç»úÔöÒæ
+   16          extern float l,lm,rm,r;                                                         //×ó¡¢×óÖÐ¡¢ÓÒÖÐ¡¢ÓÒËÄÂ·µç¸Ð
+   17          extern float sensor_err;                                                        //µç¸ÐÆ«²îÖµ
+   18          extern float servos_err;                                                        //¶æ»úÆ«²îÖµ
+   19          extern PID_InitTypeDef PID_Servos;              //¶æ»úPID
+   20          
+   21          //Ê±¼ä»ý·ÖÔÚsensor.cÎÄ¼þÖÐ£¬Ã¿µ÷ÕûÒ»´ÎËÙ¶È»ýÒ»´Î·Ö£¬Ò²¾ÍÊÇ5ms»ýÒ»´Î·Ö
+   22          
+   23          void circle_judge()                                                                                                                                                                                                                                                     //»·µºÅÐ¶Ï
+   24          {
+   25   1              if(READ_MAX==l&&READ_MAX==r&&servos_flag==0)                                                                                                                                            //Èç¹û×óÓÒºáµç¸Ð´ïµ½×î´óÖµ²¢ÇÒ²»ÔÚ»·µºÖÐ
+   26   1              {
+   27   2                      P50=0;                                                                                                                                                                                                                                                                                  //¿ªÆô·äÃùÆ÷
+   28   2                      servos_flag=(lm>rm)?1:-1;                                                                                                                                                                                                               //¸ù¾ÝÊúµç¸ÐµÄÖµÅÐ¶Ï×óÓÒ»·µº
+   29   2              }
+   30   1              forward_time = (servos_flag==1)?20:30;
+   31   1              if(time_count==forward_time&&servos_flag_in==0)                                                                                                                                                                 //»¹Ã»ÓÐÈë»·,time_countÎª¼ì²âµ½»·µºº
+             -óÖ±ÐÐÊ±¼ä
+   32   1              {
+   33   2                      P50=1;                                                                                                                                                                                                                                                                                  //¹Ø±Õ·äÃùÆ÷
+   34   2                      time_count=0;                                                                                                                                                                                                                                                           //Ê±¼ä»ý·ÖÇåÁã
+   35   2                      servos_flag_in=1;                                                                                                                                                                                                                                               //¿ªÊ¼Èë»·
+   36   2              }
+   37   1              if(time_count==70&&servos_flag_in==1&&servos_flag_move==0)                                                                              //ÕýÔÚÈë»·£¬time_countÎª´òËÀ½ÇÈë»·µÄ
+             -Ê±¼ä
+   38   1                      servos_flag_move=1;                                                                                                                                                                                                                                     //Èë»·½áÊø£¬¿ªÊ¼»·ÄÚÑ°¼£
+   39   1              if((READ_MAX-lm<45||READ_MAX-rm<45)&&servos_flag_move==1&&servos_flag_out==0)   //Èç¹ûÈÎÒâÊúµç¸ÐÖµÐ¡ÓÚ40²¢
+             -ÇÒÔÚ»·ÄÚ²¢ÇÒ»¹Î´³ö»·
+   40   1              {
+   41   2                      time_count=0;                                                                                                                                                                                                                                                           //Ê±¼ä»ý·ÖÇåÁã
+   42   2                      servos_flag_out=1;                                                                                                                                                                                                                                      //¿ªÊ¼³ö»·
+   43   2              }
+   44   1      }
+   45          
+   46          void circle_move()                                                                                                                                                                                                      //»·µºÑ°¼£
+   47          {
+   48   1              if(servos_flag_out==1)                                                                                                                                                                          //³ö»·
+   49   1              {
+   50   2                      if(time_count>200)                                                                                                                                                                                      //Ê±¼ä´óÓÚ1s£¬ËùÓÐ±êÖ¾ÇåÁã£¬·ÀÖ¹ÔÚ³ö»·µº´¦ÖØÐÂÎóÅÐÎª»·µº
+   51   2                      {                                                                                                                                                                                                                                                               
+   52   3                              servos_flag=0;                                                                                                                                                                                          //»·µº±êÖ¾ÇåÁã
+   53   3                              time_count=0;                                                                                                                                                                                                   //Ê±¼ä»ý·ÖÇåÁã
+   54   3                              servos_flag_in=0;                                                                                                                                                                                       //Èë»·µº±êÖ¾ÇåÁã
+C251 COMPILER V5.60.0,  circle                                                             25/11/23  03:49:39  PAGE 2   
+
+   55   3                              servos_flag_move=0;                                                                                                                                                                             //»·ÄÚÑ°¼£±êÖ¾ÇåÁã
+   56   3                              servos_flag_out=0;                                                                                                                                                                              //³ö»·µº±êÖ¾ÇåÁã
+   57   3                              element_num+=1;                                                                                                                                                                                         //¾­¹ýÔªËØÊýÁ¿¼ÓÒ»
+   58   3                      }
+   59   2                      else if(time_count>20)                                                                                                                                                                  //time_countÎª´òËÀ½Ç³ö»·µºÊ±¼ä
+   60   2                              sensor_err = 100*(1.6*(l-r)+1.2*(lm-rm))/((l+r)+0.5*(lm+rm));   //³ö»·µºÑ°¼£
+   61   2                      else                                                                                                                                                                                                                                            
+   62   2                              sensor_err = (servos_flag==1)?80:-80;                                                                                                   //´òËÀ½Ç³ö»·µº
+   63   2              }
+   64   1              else if(servos_flag_move==1)                                                                                                                                                    //»·ÄÚÑ°¼£
+   65   1              {
+   66   2                              sensor_err = 100*(1.6*(l-r)+1.2*(lm-rm))/((l+r)+0.5*(lm+rm));   //Õý³£Ñ°¼£
+   67   2              }
+   68   1              else                                                                                                                                                                                                                                                    //Èë»·µº
+   69   1              {
+   70   2                      if(servos_flag_in==0)                                                                                                                                                                           //Èç¹ûÃ»ÓÐ¿ªÊ¼Èë»·
+   71   2                              sensor_err = (servos_flag==1)?-10:30;                                                                                           //ÏòÏà·´·½Ïò´òÆ«½Ç,·ÀÖ¹³µÉíÏò»·µº·½ÏòÆ«ÒÆ
+   72   2                      else                                                                                                                                                                                                                                            //Èç¹û¿ªÊ¼Èë»·
+   73   2                              sensor_err = (servos_flag==1)?80:-80;                                                                                                   //´òËÀ½ÇÈë»·
+   74   2              }
+   75   1      }
+
+
+Module Information          Static   Overlayable
+------------------------------------------------
+  code size            =       466     ------
+  ecode size           =    ------     ------
+  data size            =    ------     ------
+  idata size           =    ------     ------
+  pdata size           =    ------     ------
+  xdata size           =    ------     ------
+  xdata-const size     =    ------     ------
+  edata size           =         2     ------
+  bit size             =         3     ------
+  ebit size            =    ------     ------
+  bitaddressable size  =    ------     ------
+  ebitaddressable size =    ------     ------
+  far data size        =    ------     ------
+  huge data size       =    ------     ------
+  const size           =    ------     ------
+  hconst size          =         6     ------
+End of Module Information.
+
+
+C251 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

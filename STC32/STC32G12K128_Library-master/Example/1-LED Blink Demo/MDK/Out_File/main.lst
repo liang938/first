@@ -1,0 +1,57 @@
+C251 COMPILER V5.60.0,  main                                                               16/03/23  16:52:27  PAGE 1   
+
+
+C251 COMPILER V5.60.0, COMPILATION OF MODULE main
+OBJECT MODULE PLACED IN .\Out_File\main.obj
+COMPILER INVOKED BY: D:\Keil5\C251\BIN\C251.EXE ..\USER\src\main.c XSMALL INTR2 WARNINGLEVEL(3) BROWSE INCDIR(..\..\Libr
+                    -aries\libraries;..\..\Libraries\seekfree_libraries;..\..\Libraries\seekfree_peripheral;..\CODE;..\USER\inc;..\USER\src) 
+                    -DEBUG PRINT(.\Out_File\main.lst) TABS(2) OBJECT(.\Out_File\main.obj) 
+
+stmt  level    source
+
+    1          #include "headfile.h"
+    2          
+    3          void main()
+    4          {
+    5   1        WTST = 0;               //设置程序代码等待参数，赋值为0可将CPU执行程序的速度设置为最快  
+    6   1        DisableGlobalIRQ();   //关闭总中断
+    7   1        sys_clk = 35000000;     //设置系统频率为35MHz
+    8   1        board_init();     //初始化寄存器
+    9   1          pwm_init(PWMA_CH1P_P60, 15000, 0);    //左电机
+   10   1        pwm_init(PWMA_CH2P_P62, 15000, 0);    //左电机-主控
+   11   1        pwm_init(PWMA_CH3P_P64, 15000, 0);    //右电机
+   12   1        pwm_init(PWMA_CH4P_P66, 15000, 0);    //右电机-主控
+   13   1        EnableGlobalIRQ();    //开启总中断
+   14   1        while(1)
+   15   1        {
+   16   2            pwm_duty(PWMA_CH1P_P60, 2000);    //设置左轮pwm
+   17   2          pwm_duty(PWMA_CH2P_P62, 0);
+   18   2          pwm_duty(PWMA_CH3P_P64, 0);
+   19   2          pwm_duty(PWMA_CH4P_P66, 2000);    //设置右轮pwm
+   20   2        }
+   21   1      }
+   22          
+
+
+Module Information          Static   Overlayable
+------------------------------------------------
+  code size            =       134     ------
+  ecode size           =    ------     ------
+  data size            =    ------     ------
+  idata size           =    ------     ------
+  pdata size           =    ------     ------
+  xdata size           =    ------     ------
+  xdata-const size     =    ------     ------
+  edata size           =    ------     ------
+  bit size             =    ------     ------
+  ebit size            =    ------     ------
+  bitaddressable size  =    ------     ------
+  ebitaddressable size =    ------     ------
+  far data size        =    ------     ------
+  huge data size       =    ------     ------
+  const size           =    ------     ------
+  hconst size          =    ------     ------
+End of Module Information.
+
+
+C251 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

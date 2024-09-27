@@ -1,0 +1,176 @@
+C251 COMPILER V5.60.0,  garage                                                             16/04/24  16:11:44  PAGE 1   
+
+
+C251 COMPILER V5.60.0, COMPILATION OF MODULE garage
+OBJECT MODULE PLACED IN .\Out_File\garage.obj
+COMPILER INVOKED BY: D:\keil5\keil5_MDK\keil5_MDK_32\C251\BIN\C251.EXE ..\USER\src\garage.c XSMALL INTR2 WARNINGLEVEL(3)
+                    - BROWSE INCDIR(..\..\Libraries\libraries;..\..\Libraries\seekfree_libraries;..\..\Libraries\seekfree_peripheral;..\CODE;
+                    -..\USER\inc;..\USER\src) DEBUG PRINT(.\Out_File\garage.lst) OBJECT(.\Out_File\garage.obj) 
+
+stmt  level    source
+
+    1          #include "headfile.h"
+    2          
+    3          extern bit Stop_flag;
+    4          extern bit Garage_in_flag;                                              //判断是否入车库
+    5          extern bit Garage_out_flag;                                             //判断是否出车库
+    6          
+    7          void Garage_out()
+    8          {
+    9   1      //直走
+   10   1              pwm_duty(PWMB_CH1_P74,840);
+   11   1              pwm_duty(PWMA_CH2P_P62, 5000);                                          //左轮pwm置0    
+   12   1              pwm_duty(PWMA_CH3P_P64, 5000);                                          //右轮pwm置0
+   13   1              delay_ms(250);
+   14   1      //出库左转:+60                                                                                                                                                                                                  右转:-60
+   15   1              pwm_duty(PWMB_CH1_P74,840-60);                                          //                  pwm_duty(PWMB_CH1_P74,840-60);                                                              
+   16   1              pwm_duty(PWMA_CH2P_P62, 8000);                                          //左轮pwm置0          pwm_duty(PWMA_CH2P_P62, 8000);
+   17   1              pwm_duty(PWMA_CH3P_P64, 5000);                                          //右轮pwm置0        pwm_duty(PWMA_CH3P_P64, 5000);
+   18   1              delay_ms(380);
+   19   1              Garage_out_flag=1;
+   20   1      }
+   21          
+   22          
+   23          
+   24          //*******************************************************************************************************
+             -********************************//
+   25          
+   26          
+   27          void Garage_in0()
+   28          {
+   29   1      //电机反转配置
+   30   1              pwm_duty(PWMB_CH1_P74,840);
+   31   1              pwm_duty(PWMA_CH2P_P62, 0);                                             //左轮pwm置0    
+   32   1              pwm_duty(PWMA_CH3P_P64, 0);                                             //右轮pwm置0
+   33   1      //直行倒车
+   34   1              pwm_duty(PWMB_CH1_P74,840);
+   35   1              pwm_duty(PWMA_CH1P_P60, 8000);                          //左电机
+   36   1              pwm_duty(PWMA_CH4P_P66, 8000);                          //右电机
+   37   1              delay_ms(800);
+   38   1      //打角倒车入库，左边：+60                             右边：-60
+   39   1              pwm_duty(PWMB_CH1_P74,840-60);                          //            pwm_duty(PWMB_CH1_P74,840-60);
+   40   1              pwm_duty(PWMA_CH1P_P60, 8000);                          //左电机                        pwm_duty(PWMA_CH1P_P60, 8000);
+   41   1              pwm_duty(PWMA_CH4P_P66, 5000);                          //右电机                        pwm_duty(PWMA_CH4P_P66, 5000);
+   42   1              delay_ms(300);
+   43   1      //入库后向后倒退，车身完全进入车库
+   44   1              pwm_duty(PWMB_CH1_P74,840);
+   45   1              pwm_duty(PWMA_CH1P_P60, 5000);                          //左电机
+   46   1              pwm_duty(PWMA_CH4P_P66, 5000);                          //右电机
+   47   1              delay_ms(100);
+   48   1      //电机反转，防止因惯性后移
+   49   1              pwm_duty(PWMB_CH1_P74,840);
+   50   1              pwm_duty(PWMA_CH1P_P60, 0);                                             //左电机
+   51   1              pwm_duty(PWMA_CH2P_P62, 8000);                          //左轮  
+   52   1              pwm_duty(PWMA_CH3P_P64, 8000);                          //右轮
+   53   1              pwm_duty(PWMA_CH4P_P66, 0);                                             //右电机
+   54   1              delay_ms(250);
+   55   1      //完全停下后停止运动
+   56   1              pwm_duty(PWMB_CH1_P74,840);
+C251 COMPILER V5.60.0,  garage                                                             16/04/24  16:11:44  PAGE 2   
+
+   57   1              pwm_duty(PWMA_CH1P_P60, 0);                                             //左电机
+   58   1              pwm_duty(PWMA_CH2P_P62, 0);                                             //左轮
+   59   1              pwm_duty(PWMA_CH3P_P64, 0);                                             //右轮
+   60   1              pwm_duty(PWMA_CH4P_P66, 0);                                             //右电机
+   61   1              while(1);
+   62   1      }
+   63          
+   64          void Garage_in1()
+   65          {
+   66   1      //电机反转配置
+   67   1              pwm_duty(PWMB_CH1_P74,840);
+   68   1              pwm_duty(PWMA_CH2P_P62, 0);                                             //左轮pwm置0    
+   69   1              pwm_duty(PWMA_CH3P_P64, 0);                                             //右轮pwm置0
+   70   1      //直行倒车
+   71   1              pwm_duty(PWMB_CH1_P74,840);
+   72   1              pwm_duty(PWMA_CH1P_P60, 8000);                          //左电机
+   73   1              pwm_duty(PWMA_CH4P_P66, 8000);                          //右电机
+   74   1              delay_ms(800);
+   75   1      //打角倒车入库，左边：+60                             右边：-60
+   76   1              pwm_duty(PWMB_CH1_P74,840-60);                          //            pwm_duty(PWMB_CH1_P74,840-60);
+   77   1              pwm_duty(PWMA_CH1P_P60, 8000);                          //左电机                        pwm_duty(PWMA_CH1P_P60, 8000);
+   78   1              pwm_duty(PWMA_CH4P_P66, 5000);                          //右电机                        pwm_duty(PWMA_CH4P_P66, 5000);
+   79   1              delay_ms(800);
+   80   1      //入库后向后倒退，车身完全进入车库
+   81   1              pwm_duty(PWMB_CH1_P74,840);
+   82   1              pwm_duty(PWMA_CH1P_P60, 5000);                          //左电机
+   83   1              pwm_duty(PWMA_CH4P_P66, 5000);                          //右电机
+   84   1              delay_ms(100);
+   85   1      //电机反转，防止因惯性后移
+   86   1              pwm_duty(PWMB_CH1_P74,840);
+   87   1              pwm_duty(PWMA_CH1P_P60, 0);                                             //左电机
+   88   1              pwm_duty(PWMA_CH2P_P62, 8000);                          //左轮  
+   89   1              pwm_duty(PWMA_CH3P_P64, 8000);                          //右轮
+   90   1              pwm_duty(PWMA_CH4P_P66, 0);                                             //右电机
+   91   1              delay_ms(250);
+   92   1      //完全停下后停止运动
+   93   1              pwm_duty(PWMB_CH1_P74,840);
+   94   1              pwm_duty(PWMA_CH1P_P60, 0);                                             //左电机
+   95   1              pwm_duty(PWMA_CH2P_P62, 0);                                             //左轮
+   96   1              pwm_duty(PWMA_CH3P_P64, 0);                                             //右轮
+   97   1              pwm_duty(PWMA_CH4P_P66, 0);                                             //右电机
+   98   1              while(1);
+   99   1      }
+  100          
+  101          void Garage_in2()
+  102          {
+  103   1      //电机反转配置
+  104   1              pwm_duty(PWMB_CH1_P74,840);
+  105   1              pwm_duty(PWMA_CH2P_P62, 0);                                             //左轮pwm置0    
+  106   1              pwm_duty(PWMA_CH3P_P64, 0);                                             //右轮pwm置0
+  107   1      //直行倒车
+  108   1              pwm_duty(PWMB_CH1_P74,840);
+  109   1              pwm_duty(PWMA_CH1P_P60, 8000);                          //左电机
+  110   1              pwm_duty(PWMA_CH4P_P66, 8000);                          //右电机
+  111   1              delay_ms(800);
+  112   1      //打角倒车入库，左边：+60                             右边：-60
+  113   1              pwm_duty(PWMB_CH1_P74,840-60);                          //            pwm_duty(PWMB_CH1_P74,840-60);
+  114   1              pwm_duty(PWMA_CH1P_P60, 8000);                          //左电机                        pwm_duty(PWMA_CH1P_P60, 8000);
+  115   1              pwm_duty(PWMA_CH4P_P66, 5000);                          //右电机                        pwm_duty(PWMA_CH4P_P66, 5000);
+  116   1              delay_ms(800);
+  117   1      //入库后向后倒退，车身完全进入车库
+  118   1              pwm_duty(PWMB_CH1_P74,840);
+  119   1              pwm_duty(PWMA_CH1P_P60, 5000);                          //左电机
+  120   1              pwm_duty(PWMA_CH4P_P66, 5000);                          //右电机
+  121   1              delay_ms(100);
+  122   1      //电机反转，防止因惯性后移
+C251 COMPILER V5.60.0,  garage                                                             16/04/24  16:11:44  PAGE 3   
+
+  123   1              pwm_duty(PWMB_CH1_P74,840);
+  124   1              pwm_duty(PWMA_CH1P_P60, 0);                                             //左电机
+  125   1              pwm_duty(PWMA_CH2P_P62, 8000);                          //左轮  
+  126   1              pwm_duty(PWMA_CH3P_P64, 8000);                          //右轮
+  127   1              pwm_duty(PWMA_CH4P_P66, 0);                                             //右电机
+  128   1              delay_ms(250);
+  129   1      //完全停下后停止运动
+  130   1              pwm_duty(PWMB_CH1_P74,840);
+  131   1              pwm_duty(PWMA_CH1P_P60, 0);                                             //左电机
+  132   1              pwm_duty(PWMA_CH2P_P62, 0);                                             //左轮
+  133   1              pwm_duty(PWMA_CH3P_P64, 0);                                             //右轮
+  134   1              pwm_duty(PWMA_CH4P_P66, 0);                                             //右电机
+  135   1              while(1);
+  136   1      }
+
+
+Module Information          Static   Overlayable
+------------------------------------------------
+  code size            =       851     ------
+  ecode size           =    ------     ------
+  data size            =    ------     ------
+  idata size           =    ------     ------
+  pdata size           =    ------     ------
+  xdata size           =    ------     ------
+  xdata-const size     =    ------     ------
+  edata size           =    ------     ------
+  bit size             =    ------     ------
+  ebit size            =    ------     ------
+  bitaddressable size  =    ------     ------
+  ebitaddressable size =    ------     ------
+  far data size        =    ------     ------
+  huge data size       =    ------     ------
+  const size           =    ------     ------
+  hconst size          =    ------     ------
+End of Module Information.
+
+
+C251 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

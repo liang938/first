@@ -1,0 +1,75 @@
+C251 COMPILER V5.60.0,  zf_pwm                                                             15/11/23  21:36:19  PAGE 1   
+
+
+C251 COMPILER V5.60.0, COMPILATION OF MODULE zf_pwm
+OBJECT MODULE PLACED IN .\zf_pwm.obj
+COMPILER INVOKED BY: D:\keil5\keil5_MDK\keil5_MDK_32\C251\BIN\C251.EXE ..\..\Libraries\seekfree_libraries\zf_pwm.c INTR2
+                    - DEBUG PRINT(.\zf_pwm.lst) OBJECT(.\zf_pwm.obj) 
+
+stmt  level    source
+
+    1          /********************************************************************************************************
+             -*************
+    2           * COPYRIGHT NOTICE
+    3           * Copyright (c) 2020,逐飞科技
+    4           * All rights reserved.
+    5           * 技术讨论QQ群：一群：179029047(已满)  二群：244861897(已满)  三群：824575535
+    6           *
+    7           * 以下所有内容版权均属逐飞科技所有，未经允许不得用于商业用途，
+    8           * 欢迎各位使用并传播本程序，修改内容时必须保留逐飞科技的版权声明。
+    9           *
+   10           * @file                pwm
+   11           * @company                     成都逐飞科技有限公司
+   12           * @author              逐飞科技(QQ790875685)
+   13           * @version             查看doc内version文件 版本说明
+   14           * @Software            MDK5.27
+   15           * @Target core         STC32G12K128
+   16           * @Taobao              https://seekfree.taobao.com/
+   17           * @date                2020-4-14
+   18           ********************************************************************************************************
+             -************/
+   19          
+   20          #include "zf_pwm.h"
+*** ERROR C318 IN LINE 22 OF ..\..\Libraries\seekfree_libraries\zf_pwm.h: can't open file 'common.h'
+*** ERROR C25 IN LINE 82 OF ..\..\Libraries\seekfree_libraries\zf_pwm.h: syntax error near 'freq'
+*** ERROR C25 IN LINE 83 OF ..\..\Libraries\seekfree_libraries\zf_pwm.h: syntax error near 'duty'
+*** ERROR C25 IN LINE 84 OF ..\..\Libraries\seekfree_libraries\zf_pwm.h: syntax error near 'freq'
+   21          #include "board.h"
+*** ERROR C318 IN LINE 21 OF ..\..\Libraries\seekfree_libraries\zf_pwm.c: can't open file 'board.h'
+   22          #include "zf_gpio.h"
+*** ERROR C318 IN LINE 24 OF ..\..\Libraries\seekfree_libraries\zf_gpio.h: can't open file 'common.h'
+   23          #include "zf_uart.h"
+*** ERROR C318 IN LINE 24 OF ..\..\Libraries\seekfree_libraries\zf_uart.h: can't open file 'common.h'
+*** ERROR C318 IN LINE 22 OF ..\..\Libraries\seekfree_libraries\zf_tim.h: can't open file 'common.h'
+*** ERROR C42 IN LINE 55 OF ..\..\Libraries\seekfree_libraries\zf_tim.h: 'ctimer_count_read': not in formal parameter li
+             -st
+*** ERROR C25 IN LINE 57 OF ..\..\Libraries\seekfree_libraries\zf_tim.h: syntax error near 'time_ms'
+*** ERROR C42 IN LINE 57 OF ..\..\Libraries\seekfree_libraries\zf_tim.h: 'pit_timer_ms': not in formal parameter list
+*** ERROR C29 IN LINE 54 OF ..\..\Libraries\seekfree_libraries\zf_uart.h: formal/parameter has illegal storage class
+*** ERROR C33 IN LINE 60 OF ..\..\Libraries\seekfree_libraries\zf_uart.h: 'UARTN_enum': invalid storage class
+*** ERROR C29 IN LINE 64 OF ..\..\Libraries\seekfree_libraries\zf_uart.h: formal/parameter has illegal storage class
+*** ERROR C33 IN LINE 81 OF ..\..\Libraries\seekfree_libraries\zf_uart.h: 'UARTPIN_enum': invalid storage class
+*** ERROR C29 IN LINE 87 OF ..\..\Libraries\seekfree_libraries\zf_uart.h: formal/parameter has illegal storage class
+*** ERROR C33 IN LINE 87 OF ..\..\Libraries\seekfree_libraries\zf_uart.h: 'uint8': invalid storage class
+*** ERROR C25 IN LINE 87 OF ..\..\Libraries\seekfree_libraries\zf_uart.h: syntax error near 'uart1_tx_buff'
+*** ERROR C33 IN LINE 87 OF ..\..\Libraries\seekfree_libraries\zf_uart.h: 'uart1_tx_buff': invalid storage class
+*** ERROR C29 IN LINE 88 OF ..\..\Libraries\seekfree_libraries\zf_uart.h: formal/parameter has illegal storage class
+*** ERROR C33 IN LINE 88 OF ..\..\Libraries\seekfree_libraries\zf_uart.h: 'uint8': invalid storage class
+*** ERROR C25 IN LINE 88 OF ..\..\Libraries\seekfree_libraries\zf_uart.h: syntax error near 'uart1_rx_buff'
+*** ERROR C33 IN LINE 88 OF ..\..\Libraries\seekfree_libraries\zf_uart.h: 'uart1_rx_buff': invalid storage class
+*** ERROR C29 IN LINE 89 OF ..\..\Libraries\seekfree_libraries\zf_uart.h: formal/parameter has illegal storage class
+*** ERROR C33 IN LINE 89 OF ..\..\Libraries\seekfree_libraries\zf_uart.h: 'uint8': invalid storage class
+*** ERROR C25 IN LINE 89 OF ..\..\Libraries\seekfree_libraries\zf_uart.h: syntax error near 'busy'
+*** ERROR C33 IN LINE 89 OF ..\..\Libraries\seekfree_libraries\zf_uart.h: 'busy': invalid storage class
+*** ERROR C25 IN LINE 92 OF ..\..\Libraries\seekfree_libraries\zf_uart.h: syntax error near 'uart_n'
+*** ERROR C42 IN LINE 92 OF ..\..\Libraries\seekfree_libraries\zf_uart.h: 'uart_init': not in formal parameter list
+*** ERROR C25 IN LINE 93 OF ..\..\Libraries\seekfree_libraries\zf_uart.h: syntax error near 'uart_n'
+*** ERROR C42 IN LINE 93 OF ..\..\Libraries\seekfree_libraries\zf_uart.h: 'uart_putchar': not in formal parameter list
+*** ERROR C25 IN LINE 94 OF ..\..\Libraries\seekfree_libraries\zf_uart.h: syntax error near 'uart_n'
+C251 COMPILER V5.60.0,  zf_pwm                                                             15/11/23  21:36:19  PAGE 2   
+
+*** ERROR C42 IN LINE 94 OF ..\..\Libraries\seekfree_libraries\zf_uart.h: 'uart_putstr': not in formal parameter list
+*** ERROR C25 IN LINE 95 OF ..\..\Libraries\seekfree_libraries\zf_uart.h: syntax error near 'uart_n'
+*** ERROR C7 IN LINE 95 OF ..\..\Libraries\seekfree_libraries\zf_uart.h: compilation aborted
+
+C251 COMPILATION COMPLETE.  0 WARNING(S),  35 ERROR(S)

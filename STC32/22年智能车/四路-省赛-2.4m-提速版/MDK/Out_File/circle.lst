@@ -1,0 +1,112 @@
+C251 COMPILER V5.60.0,  circle                                                             16/07/23  14:25:16  PAGE 1   
+
+
+C251 COMPILER V5.60.0, COMPILATION OF MODULE circle
+OBJECT MODULE PLACED IN .\Out_File\circle.obj
+COMPILER INVOKED BY: D:\Keil5\C251\BIN\C251.EXE ..\USER\src\circle.c XSMALL INTR2 WARNINGLEVEL(3) BROWSE INCDIR(..\..\Li
+                    -braries\libraries;..\..\Libraries\seekfree_libraries;..\..\Libraries\seekfree_peripheral;..\CODE;..\USER\inc;..\USER\src
+                    -) DEBUG PRINT(.\Out_File\circle.lst) TABS(2) OBJECT(.\Out_File\circle.obj) 
+
+stmt  level    source
+
+    1          #include "headfile.h"
+    2          
+    3          bit servos_flag_in=0;                 //入环岛标志位
+    4          bit servos_flag_move=0;               //环岛内标志位
+    5          bit servos_flag_out=0;                //出环岛标志位
+    6          extern int time_count;                //时间积分
+    7          extern int ADC_MIN;                   //电感采集最小值
+    8          extern int ADC_MAX;                   //电感采集最大值
+    9          extern int element_num;               //经过元素的数量
+   10          extern int READ_MAX;                  //归一化后电感最大值
+   11          extern int servos_flag;               //环岛标志位
+   12          extern bit Stop_flag;                 //冲出赛道标志
+   13          extern float Speed;                   //预设速度
+   14          extern float speed_err;               //转向电机增益
+   15          extern float l,lm,rm,r;               //左、左中、右中、右四路电感
+   16          extern float sensor_err;              //电感偏差值
+   17          extern float servos_err;              //舵机偏差值
+   18          extern PID_InitTypeDef PID_Servos;    //舵机PID
+   19          
+   20          //时间积分在sensor.c文件中，每调整一次速度积一次分，也就是5ms积一次分
+   21          
+   22          void circle_judge()                                                             //环岛判断
+   23          {
+   24   1        if(READ_MAX==l&&READ_MAX==r&&servos_flag==0)                                    //如果左右横电感达到最大值并且不在环岛中
+   25   1        {
+   26   2          P50=0;                                                                      //开启蜂鸣器
+   27   2          servos_flag=(lm>rm)?1:-1;                                                   //根据竖电感的值判断左右环岛
+   28   2        }
+   29   1        if(time_count==25&&servos_flag_in==0)                                         //还没有入环,time_count为检测到环岛后直行时间
+   30   1        {
+   31   2          P50=1;                                                                      //关闭蜂鸣器
+   32   2          time_count=0;                                                               //时间积分清零
+   33   2          servos_flag_in=1;                                                           //开始入环
+   34   2        }
+   35   1        if(time_count==70&&servos_flag_in==1&&servos_flag_move==0)                    //正在入环，time_count为打死角入环的
+             -时间
+   36   1          servos_flag_move=1;                                                         //入环结束，开始环内寻迹
+   37   1        if((READ_MAX-lm<45||READ_MAX-rm<45)&&servos_flag_move==1&&servos_flag_out==0) //如果任意竖电感值小于40并
+             -且在环内并且还未出环
+   38   1        {
+   39   2          time_count=0;                                                               //时间积分清零
+   40   2          servos_flag_out=1;                                                          //开始出环
+   41   2        }
+   42   1      }
+   43          
+   44          void circle_move()                                                  //环岛寻迹
+   45          {
+   46   1        if(servos_flag_out==1)                                            //出环
+   47   1        {
+   48   2          if(time_count>200)                                              //时间大于1s，所有标志清零，防止在出环岛处重新误判为环岛
+   49   2          {                                                               
+   50   3            servos_flag=0;                                                //环岛标志清零
+   51   3            time_count=0;                                                 //时间积分清零
+   52   3            servos_flag_in=0;                                             //入环岛标志清零
+   53   3            servos_flag_move=0;                                           //环内寻迹标志清零
+   54   3            servos_flag_out=0;                                            //出环岛标志清零
+   55   3            element_num+=1;                                               //经过元素数量加一
+C251 COMPILER V5.60.0,  circle                                                             16/07/23  14:25:16  PAGE 2   
+
+   56   3          }
+   57   2          else if(time_count>20)                                          //time_count为打死角出环岛时间
+   58   2            sensor_err = 100*(1.6*(l-r)+1.2*(lm-rm))/((l+r)+0.5*(lm+rm)); //出环岛寻迹
+   59   2          else                                                            
+   60   2            sensor_err = (servos_flag==1)?80:-80;                         //打死角出环岛
+   61   2        }
+   62   1        else if(servos_flag_move==1)                                      //环内寻迹
+   63   1        {
+   64   2            sensor_err = 100*(1.6*(l-r)+1.2*(lm-rm))/((l+r)+0.5*(lm+rm)); //正常寻迹
+   65   2        }
+   66   1        else                                                              //入环岛
+   67   1        {
+   68   2          if(servos_flag_in==0)                                           //如果没有开始入环
+   69   2            sensor_err = (servos_flag==1)?-10:30;                         //向相反方向打偏角,防止车身向环岛方向偏移
+   70   2          else                                                            //如果开始入环
+   71   2            sensor_err = (servos_flag==1)?80:-80;                         //打死角入环
+   72   2        }
+   73   1      }
+
+
+Module Information          Static   Overlayable
+------------------------------------------------
+  code size            =       446     ------
+  ecode size           =    ------     ------
+  data size            =    ------     ------
+  idata size           =    ------     ------
+  pdata size           =    ------     ------
+  xdata size           =    ------     ------
+  xdata-const size     =    ------     ------
+  edata size           =    ------     ------
+  bit size             =         3     ------
+  ebit size            =    ------     ------
+  bitaddressable size  =    ------     ------
+  ebitaddressable size =    ------     ------
+  far data size        =    ------     ------
+  huge data size       =    ------     ------
+  const size           =    ------     ------
+  hconst size          =    ------     ------
+End of Module Information.
+
+
+C251 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

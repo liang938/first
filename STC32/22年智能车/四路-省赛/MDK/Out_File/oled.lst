@@ -1,0 +1,79 @@
+C251 COMPILER V5.60.0,  oled                                                               16/04/24  16:11:44  PAGE 1   
+
+
+C251 COMPILER V5.60.0, COMPILATION OF MODULE oled
+OBJECT MODULE PLACED IN .\Out_File\oled.obj
+COMPILER INVOKED BY: D:\keil5\keil5_MDK\keil5_MDK_32\C251\BIN\C251.EXE ..\USER\src\oled.c XSMALL INTR2 WARNINGLEVEL(3) B
+                    -ROWSE INCDIR(..\..\Libraries\libraries;..\..\Libraries\seekfree_libraries;..\..\Libraries\seekfree_peripheral;..\CODE;..
+                    -\USER\inc;..\USER\src) DEBUG PRINT(.\Out_File\oled.lst) OBJECT(.\Out_File\oled.obj) 
+
+stmt  level    source
+
+    1          #include "headfile.h"
+    2          
+    3          bit lock = 0;
+    4          int line = 0;
+    5          int mode = 0;
+    6          
+    7          void oled_show()
+    8          {
+    9   1              while(1)
+   10   1              {
+   11   2                      oled_p6x8str(0,0,"1.8");                                                        //main文件中的变量
+   12   2                      oled_p6x8str(0,1,"2.0");                                                //sensor文件中的变量
+   13   2                      oled_p6x8str(0,2,"2.2");                                                //sensor文件中的变量
+   14   2                      oled_p6x8str(60,line,"<-");                                             //显示箭头选择文件
+*** WARNING C188 IN LINE 14 OF ..\USER\src\oled.c: 'parameter 2': value truncated
+   15   2                      if(P70==1&&P71==1)
+   16   2                              lock=0;
+   17   2                      if(P71==0&&lock==0)                                                                                     //向下选择
+   18   2                      {
+   19   3                              delay_ms(10);
+   20   3                              if(P71==0)
+   21   3                              {
+   22   4                                      lock=1;
+   23   4                                      line+=1;
+   24   4                                      if(line==3)
+   25   4                                              line=0;
+   26   4                                      oled_fill(0x00);
+   27   4                              }
+   28   3                      }
+   29   2                      else if(P70==0&&lock==0)
+   30   2                      {
+   31   3                              delay_ms(10);
+   32   3                              if(P70==0)
+   33   3                              {
+   34   4                                      lock=1;
+   35   4                                      mode = line;
+   36   4                              }
+   37   3                              break;
+   38   3                      }
+   39   2                      delay_ms(50);
+   40   2              }
+   41   1      }
+
+
+Module Information          Static   Overlayable
+------------------------------------------------
+  code size            =       181     ------
+  ecode size           =    ------     ------
+  data size            =    ------     ------
+  idata size           =    ------     ------
+  pdata size           =    ------     ------
+  xdata size           =    ------     ------
+  xdata-const size     =    ------     ------
+  edata size           =         4     ------
+  bit size             =         1     ------
+  ebit size            =    ------     ------
+  bitaddressable size  =    ------     ------
+  ebitaddressable size =    ------     ------
+C251 COMPILER V5.60.0,  oled                                                               16/04/24  16:11:44  PAGE 2   
+
+  far data size        =    ------     ------
+  huge data size       =    ------     ------
+  const size           =    ------     ------
+  hconst size          =        27     ------
+End of Module Information.
+
+
+C251 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)

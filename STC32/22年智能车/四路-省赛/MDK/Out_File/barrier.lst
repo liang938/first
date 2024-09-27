@@ -1,0 +1,122 @@
+C251 COMPILER V5.60.0,  barrier                                                            16/04/24  16:11:44  PAGE 1   
+
+
+C251 COMPILER V5.60.0, COMPILATION OF MODULE barrier
+OBJECT MODULE PLACED IN .\Out_File\barrier.obj
+COMPILER INVOKED BY: D:\keil5\keil5_MDK\keil5_MDK_32\C251\BIN\C251.EXE ..\USER\src\barrier.c XSMALL INTR2 WARNINGLEVEL(3
+                    -) BROWSE INCDIR(..\..\Libraries\libraries;..\..\Libraries\seekfree_libraries;..\..\Libraries\seekfree_peripheral;..\CODE
+                    -;..\USER\inc;..\USER\src) DEBUG PRINT(.\Out_File\barrier.lst) OBJECT(.\Out_File\barrier.obj) 
+
+stmt  level    source
+
+    1          #include "headfile.h"
+    2          
+    3          float angle = 0;                                                                                        //角度积分
+    4          
+    5          bit barrier_in=0;                                                                                       //回赛道标志
+    6          bit barrier_out=0;                                                                              //出赛道标志
+    7          bit barrier_back=0;                                                                             //入赛道回正标志
+    8          bit barrier_forward=0;                                                          //入赛道前直行标志
+    9          int barrier_time=0;
+   10          int adc_rm = 0;
+   11          extern int mode;
+   12          extern float Speed;
+   13          
+   14          extern bit flag;                                                                                        //判断是否经过10ms
+   15          extern bit Stop_flag;
+   16          extern bit Barrier_flag;                                                        //避障标志位
+   17          extern bit first_barrier;
+   18          
+   19          void Avoid_barrier()                                                                    //避障
+   20          {
+   21   1              while(1)
+   22   1              {
+   23   2                      if(flag == 0)                                                                                           
+   24   2                      {
+   25   3                              adc_rm = adc_once(ADC_P06, ADC_8BIT);           //三路电感
+   26   3                              mpu6050_get_gyro();
+   27   3                              mpu_gyro_z = (mpu_gyro_z*2000)/32768;
+   28   3                              angle += mpu_gyro_z*0.005;
+   29   3      //                      printf("%.3f\n",angle);
+   30   3                              if(barrier_out==0)
+   31   3                              {
+   32   4                                      pwm_duty(PWMB_CH1_P74,840+60);                                                                                  
+   33   4                                      pwm_duty(PWMA_CH2P_P62, 3500);                                          
+   34   4                                      pwm_duty(PWMA_CH3P_P64, 4500);
+   35   4                                      if(25<angle&&angle<35)
+   36   4                                              barrier_out=1;
+   37   4                              }
+   38   3                              else if(barrier_in==0)
+   39   3                              {
+   40   4                                      pwm_duty(PWMB_CH1_P74,840-60);                                                                                  
+   41   4                                      pwm_duty(PWMA_CH2P_P62, 4500);                                          
+   42   4                                      pwm_duty(PWMA_CH3P_P64, 3500);
+   43   4                                      if(-25<angle&&angle<-15)
+   44   4                                              barrier_in=1;                           
+   45   4                              }
+   46   3                              else if(barrier_forward==0)
+   47   3                              {
+   48   4                                      pwm_duty(PWMB_CH1_P74,840);                                                                                     
+   49   4                                      pwm_duty(PWMA_CH2P_P62, 3500);                                          
+   50   4                                      pwm_duty(PWMA_CH3P_P64, 3500);
+   51   4                                      barrier_time+=1;
+   52   4                                      if(barrier_time>70)
+   53   4                                      {
+   54   5                                              barrier_time=0;
+   55   5                                              barrier_forward=1;                                      
+   56   5                                      }
+   57   4                              }
+C251 COMPILER V5.60.0,  barrier                                                            16/04/24  16:11:44  PAGE 2   
+
+   58   3                              else if(barrier_back==0)
+   59   3                              {
+   60   4                                      pwm_duty(PWMB_CH1_P74,840+60);                                                                                  
+   61   4                                      pwm_duty(PWMA_CH2P_P62, 2000);                                          
+   62   4                                      pwm_duty(PWMA_CH3P_P64, 4000);
+   63   4                                      barrier_time+=1;
+   64   4                                      if(barrier_time>55)
+   65   4                                              barrier_back=1;         
+   66   4                              }
+   67   3                              else
+   68   3                              {
+   69   4                                      first_barrier=1;
+   70   4                                      Barrier_flag=0;
+   71   4                                      //Stop_flag=1;
+   72   4                                      if(mode==0)                                                             //1.8
+   73   4                                              Speed = 110;
+   74   4                                      else if(mode==1)                                        //2.4                                   
+   75   4                                              Speed = 130;
+   76   4                                      else if(mode==2)                                        //2.4                                   
+   77   4                                              Speed = 160;
+   78   4                                      break;
+   79   4                              }
+   80   3                              flag = 1;                                                                                               
+   81   3                      }
+   82   2              }
+   83   1      }
+   84          
+   85          
+
+
+Module Information          Static   Overlayable
+------------------------------------------------
+  code size            =       433     ------
+  ecode size           =    ------     ------
+  data size            =    ------     ------
+  idata size           =    ------     ------
+  pdata size           =    ------     ------
+  xdata size           =    ------     ------
+  xdata-const size     =    ------     ------
+  edata size           =         8     ------
+  bit size             =         4     ------
+  ebit size            =    ------     ------
+  bitaddressable size  =    ------     ------
+  ebitaddressable size =    ------     ------
+  far data size        =    ------     ------
+  huge data size       =    ------     ------
+  const size           =    ------     ------
+  hconst size          =        20     ------
+End of Module Information.
+
+
+C251 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

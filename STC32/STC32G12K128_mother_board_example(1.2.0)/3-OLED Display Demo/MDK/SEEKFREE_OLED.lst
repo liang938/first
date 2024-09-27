@@ -1,0 +1,100 @@
+C251 COMPILER V5.60.0,  SEEKFREE_OLED                                                      15/11/23  21:36:21  PAGE 1   
+
+
+C251 COMPILER V5.60.0, COMPILATION OF MODULE SEEKFREE_OLED
+OBJECT MODULE PLACED IN .\SEEKFREE_OLED.obj
+COMPILER INVOKED BY: D:\keil5\keil5_MDK\keil5_MDK_32\C251\BIN\C251.EXE ..\..\Libraries\seekfree_peripheral\SEEKFREE_OLED
+                    -.c INTR2 DEBUG PRINT(.\SEEKFREE_OLED.lst) OBJECT(.\SEEKFREE_OLED.obj) 
+
+stmt  level    source
+
+    1          /********************************************************************************************************
+             -*************
+    2           * COPYRIGHT NOTICE
+    3           * Copyright (c) 2018,逐飞科技
+    4           * All rights reserved.
+    5           * 技术讨论QQ群：一群：179029047(已满)  二群：244861897
+    6           *
+    7           * 以下所有内容版权均属逐飞科技所有，未经允许不得用于商业用途，
+    8           * 欢迎各位使用并传播本程序，修改内容时必须保留逐飞科技的版权声明。
+    9           *
+   10           * @file                OLED
+   11           * @company                     成都逐飞科技有限公司
+   12           * @author              逐飞科技(QQ3184284598)
+   13           * @version             查看doc内version文件 版本说明
+   14           * @Software            MDK FOR C251 V5.60
+   15           * @Target core         STC32G12K128
+   16           * @Taobao              https://seekfree.taobao.com/
+   17           * @date                2019-04-30
+   18           * @note                
+   19                                                  接线定义：
+   20                                                  ------------------------------------ 
+   21                                                      OLED液晶    单片机                        
+   22                                                  D0          查看SEEKFREE_OLED文件内的OLED_SCL_PIN   宏定义
+   23                                                  D1          查看SEEKFREE_OLED文件内的OLED_SDA_PIN   宏定义            
+   24                                                  RES         查看SEEKFREE_OLED文件内的OLED_RST_PIN   宏定义    
+   25                                                  DC          查看SEEKFREE_OLED文件内的OLED_DC_PIN    宏定义
+   26                                                          CS          查看SEEKFREE_OLED文件内的OLED_CS_PIN    宏定义
+   27                                                  ------------------------------------ 
+   28           ********************************************************************************************************
+             -************/
+   29          
+   30          #include "zf_spi.h"
+*** ERROR C318 IN LINE 30 OF ..\..\Libraries\seekfree_peripheral\SEEKFREE_OLED.c: can't open file 'zf_spi.h'
+   31          #include "zf_delay.h"
+*** ERROR C318 IN LINE 31 OF ..\..\Libraries\seekfree_peripheral\SEEKFREE_OLED.c: can't open file 'zf_delay.h'
+   32          #include "SEEKFREE_FONT.h"
+*** ERROR C318 IN LINE 24 OF ..\..\Libraries\seekfree_peripheral\SEEKFREE_FONT.h: can't open file 'common.h'
+*** WARNING C34 IN LINE 29 OF ..\..\Libraries\seekfree_peripheral\SEEKFREE_FONT.h: 'tft_ascii': missing declaration spec
+             -ifiers
+*** ERROR C42 IN LINE 29 OF ..\..\Libraries\seekfree_peripheral\SEEKFREE_FONT.h: 'tft_ascii': not in formal parameter li
+             -st
+*** WARNING C194 IN LINE 29 OF ..\..\Libraries\seekfree_peripheral\SEEKFREE_FONT.h: obsolete declaration: use '<type> co
+             -de  tft_ascii'
+*** ERROR C29 IN LINE 30 OF ..\..\Libraries\seekfree_peripheral\SEEKFREE_FONT.h: formal/parameter has illegal storage cl
+             -ass
+*** ERROR C33 IN LINE 30 OF ..\..\Libraries\seekfree_peripheral\SEEKFREE_FONT.h: 'uint8': invalid storage class
+*** ERROR C25 IN LINE 30 OF ..\..\Libraries\seekfree_peripheral\SEEKFREE_FONT.h: syntax error near 'code'
+*** ERROR C33 IN LINE 30 OF ..\..\Libraries\seekfree_peripheral\SEEKFREE_FONT.h: 'oled_8x16': invalid storage class
+*** ERROR C29 IN LINE 31 OF ..\..\Libraries\seekfree_peripheral\SEEKFREE_FONT.h: formal/parameter has illegal storage cl
+             -ass
+*** ERROR C33 IN LINE 31 OF ..\..\Libraries\seekfree_peripheral\SEEKFREE_FONT.h: 'uint8': invalid storage class
+*** ERROR C25 IN LINE 31 OF ..\..\Libraries\seekfree_peripheral\SEEKFREE_FONT.h: syntax error near 'code'
+*** ERROR C33 IN LINE 31 OF ..\..\Libraries\seekfree_peripheral\SEEKFREE_FONT.h: 'oled_6x8': invalid storage class
+   33          #include "SEEKFREE_PRINTF.h"
+*** ERROR C318 IN LINE 33 OF ..\..\Libraries\seekfree_peripheral\SEEKFREE_OLED.c: can't open file 'SEEKFREE_PRINTF.h'
+   34          #include "SEEKFREE_OLED.h"
+*** ERROR C318 IN LINE 35 OF ..\..\Libraries\seekfree_peripheral\SEEKFREE_OLED.h: can't open file 'common.h'
+*** ERROR C318 IN LINE 36 OF ..\..\Libraries\seekfree_peripheral\SEEKFREE_OLED.h: can't open file 'board.h'
+C251 COMPILER V5.60.0,  SEEKFREE_OLED                                                      15/11/23  21:36:21  PAGE 2   
+
+*** ERROR C42 IN LINE 100 OF ..\..\Libraries\seekfree_peripheral\SEEKFREE_OLED.h: 'oled_init': not in formal parameter l
+             -ist
+*** ERROR C25 IN LINE 101 OF ..\..\Libraries\seekfree_peripheral\SEEKFREE_OLED.h: syntax error near 'dat'
+*** ERROR C42 IN LINE 101 OF ..\..\Libraries\seekfree_peripheral\SEEKFREE_OLED.h: 'oled_fill': not in formal parameter l
+             -ist
+*** ERROR C25 IN LINE 102 OF ..\..\Libraries\seekfree_peripheral\SEEKFREE_OLED.h: syntax error near 'x'
+*** ERROR C42 IN LINE 102 OF ..\..\Libraries\seekfree_peripheral\SEEKFREE_OLED.h: 'oled_set_pos': not in formal paramete
+             -r list
+*** ERROR C25 IN LINE 103 OF ..\..\Libraries\seekfree_peripheral\SEEKFREE_OLED.h: syntax error near 'x'
+*** ERROR C42 IN LINE 103 OF ..\..\Libraries\seekfree_peripheral\SEEKFREE_OLED.h: 'oled_putpixel': not in formal paramet
+             -er list
+*** ERROR C25 IN LINE 104 OF ..\..\Libraries\seekfree_peripheral\SEEKFREE_OLED.h: syntax error near 'x'
+*** ERROR C42 IN LINE 104 OF ..\..\Libraries\seekfree_peripheral\SEEKFREE_OLED.h: 'oled_clrpixel': not in formal paramet
+             -er list
+*** ERROR C25 IN LINE 105 OF ..\..\Libraries\seekfree_peripheral\SEEKFREE_OLED.h: syntax error near 'x'
+*** ERROR C42 IN LINE 105 OF ..\..\Libraries\seekfree_peripheral\SEEKFREE_OLED.h: 'oled_p6x8str': not in formal paramete
+             -r list
+*** ERROR C25 IN LINE 106 OF ..\..\Libraries\seekfree_peripheral\SEEKFREE_OLED.h: syntax error near 'x'
+*** ERROR C42 IN LINE 106 OF ..\..\Libraries\seekfree_peripheral\SEEKFREE_OLED.h: 'oled_p8x16str': not in formal paramet
+             -er list
+*** ERROR C25 IN LINE 107 OF ..\..\Libraries\seekfree_peripheral\SEEKFREE_OLED.h: syntax error near 'x'
+*** ERROR C42 IN LINE 107 OF ..\..\Libraries\seekfree_peripheral\SEEKFREE_OLED.h: 'oled_uint16': not in formal parameter
+             - list
+*** ERROR C25 IN LINE 108 OF ..\..\Libraries\seekfree_peripheral\SEEKFREE_OLED.h: syntax error near 'x'
+*** ERROR C42 IN LINE 108 OF ..\..\Libraries\seekfree_peripheral\SEEKFREE_OLED.h: 'oled_int16': not in formal parameter 
+             -list
+*** ERROR C25 IN LINE 109 OF ..\..\Libraries\seekfree_peripheral\SEEKFREE_OLED.h: syntax error near 'x'
+*** ERROR C7 IN LINE 109 OF ..\..\Libraries\seekfree_peripheral\SEEKFREE_OLED.h: compilation aborted
+
+C251 COMPILATION COMPLETE.  2 WARNING(S),  34 ERROR(S)

@@ -1,0 +1,284 @@
+C251 COMPILER V5.60.0,  vl53l0x_api                                                        13/04/24  20:07:04  PAGE 1   
+
+
+C251 COMPILER V5.60.0, COMPILATION OF MODULE vl53l0x_api
+OBJECT MODULE PLACED IN .\Out_File\vl53l0x_api.obj
+COMPILER INVOKED BY: D:\keil5\keil5_MDK\keil5_MDK_32\C251\BIN\C251.EXE ..\VL53L0X\core\src\vl53l0x_api.c XSMALL INTR2 WA
+                    -RNINGLEVEL(3) BROWSE INCDIR(..\..\Libraries\libraries;..\..\Libraries\seekfree_libraries;..\..\Libraries\seekfree_periph
+                    -eral;..\CODE;..\USER\inc;..\USER\src) DEBUG PRINT(.\Out_File\vl53l0x_api.lst) OBJECT(.\Out_File\vl53l0x_api.obj) 
+
+stmt  level    source
+
+    1          /*******************************************************************************
+    2           Copyright © 2016, STMicroelectronics International N.V.
+    3           All rights reserved.
+    4          
+    5           Redistribution and use in source and binary forms, with or without
+    6           modification, are permitted provided that the following conditions are met:
+    7           * Redistributions of source code must retain the above copyright
+    8           notice, this list of conditions and the following disclaimer.
+    9           * Redistributions in binary form must reproduce the above copyright
+   10           notice, this list of conditions and the following disclaimer in the
+   11           documentation and/or other materials provided with the distribution.
+   12           * Neither the name of STMicroelectronics nor the
+   13           names of its contributors may be used to endorse or promote products
+   14           derived from this software without specific prior written permission.
+   15          
+   16           THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+   17           ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+   18           WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND
+   19           NON-INFRINGEMENT OF INTELLECTUAL PROPERTY RIGHTS ARE DISCLAIMED.
+   20           IN NO EVENT SHALL STMICROELECTRONICS INTERNATIONAL N.V. BE LIABLE FOR ANY
+   21           DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+   22           (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+   23           LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+   24           ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+   25           (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+   26           SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+   27           ******************************************************************************/
+   28          
+   29          #include "vl53l0x_api.h"
+*** ERROR C318 IN LINE 29 OF ..\VL53L0X\core\src\vl53l0x_api.c: can't open file 'vl53l0x_api.h'
+   30          #include "vl53l0x_tuning.h"
+*** ERROR C318 IN LINE 30 OF ..\VL53L0X\core\src\vl53l0x_api.c: can't open file 'vl53l0x_tuning.h'
+   31          #include "vl53l0x_interrupt_threshold_settings.h"
+*** ERROR C318 IN LINE 31 OF ..\VL53L0X\core\src\vl53l0x_api.c: can't open file 'vl53l0x_interrupt_threshold_settings.h'
+   32          #include "vl53l0x_api_core.h"
+*** ERROR C318 IN LINE 32 OF ..\VL53L0X\core\src\vl53l0x_api.c: can't open file 'vl53l0x_api_core.h'
+   33          #include "vl53l0x_api_calibration.h"
+*** ERROR C318 IN LINE 33 OF ..\VL53L0X\core\src\vl53l0x_api.c: can't open file 'vl53l0x_api_calibration.h'
+   34          #include "vl53l0x_api_strings.h"
+*** ERROR C318 IN LINE 34 OF ..\VL53L0X\core\src\vl53l0x_api.c: can't open file 'vl53l0x_api_strings.h'
+   35          
+   36          #ifndef __KERNEL__
+   37          #include <stdlib.h>
+   38          #endif
+   39          #define LOG_FUNCTION_START(fmt, ...) \
+   40                  _LOG_FUNCTION_START(TRACE_MODULE_API, fmt, ##__VA_ARGS__)
+   41          #define LOG_FUNCTION_END(status, ...) \
+   42                  _LOG_FUNCTION_END(TRACE_MODULE_API, status, ##__VA_ARGS__)
+   43          #define LOG_FUNCTION_END_FMT(status, fmt, ...) \
+   44                  _LOG_FUNCTION_END_FMT(TRACE_MODULE_API, status, fmt, ##__VA_ARGS__)
+   45          
+   46          #ifdef VL53L0X_LOG_ENABLE
+               #define trace_print(level, ...) trace_print_module_function(TRACE_MODULE_API, \
+                       level, TRACE_FUNCTION_NONE, ##__VA_ARGS__)
+               #endif
+   50          
+   51          /* Group PAL General Functions */
+C251 COMPILER V5.60.0,  vl53l0x_api                                                        13/04/24  20:07:04  PAGE 2   
+
+   52          
+   53          VL53L0X_Error VL53L0X_GetVersion(VL53L0X_Version_t *pVersion)
+*** ERROR C25 IN LINE 53 OF ..\VL53L0X\core\src\vl53l0x_api.c: syntax error near '*'
+   54          {
+*** ERROR C42 IN LINE 54 OF ..\VL53L0X\core\src\vl53l0x_api.c: 'VL53L0X_GetVersion': not in formal parameter list
+   55                  VL53L0X_Error Status = VL53L0X_ERROR_NONE;
+   56                  LOG_FUNCTION_START("");
+*** ERROR C307 IN LINE 56 OF ..\VL53L0X\core\src\vl53l0x_api.c: macro 'LOG_FUNCTION_START': parameter count mismatch
+   57          
+   58                  pVersion->major = VL53L0X_IMPLEMENTATION_VER_MAJOR;
+   59                  pVersion->minor = VL53L0X_IMPLEMENTATION_VER_MINOR;
+   60                  pVersion->build = VL53L0X_IMPLEMENTATION_VER_SUB;
+   61          
+   62                  pVersion->revision = VL53L0X_IMPLEMENTATION_VER_REVISION;
+   63          
+   64                  LOG_FUNCTION_END(Status);
+*** ERROR C307 IN LINE 64 OF ..\VL53L0X\core\src\vl53l0x_api.c: macro 'LOG_FUNCTION_END': parameter count mismatch
+   65                  return Status;
+   66          }
+   67          
+   68          VL53L0X_Error VL53L0X_GetPalSpecVersion(VL53L0X_Version_t *pPalSpecVersion)
+*** WARNING C34 IN LINE 68 OF ..\VL53L0X\core\src\vl53l0x_api.c: 'pPalSpecVersion': missing declaration specifiers
+*** ERROR C42 IN LINE 68 OF ..\VL53L0X\core\src\vl53l0x_api.c: 'pPalSpecVersion': not in formal parameter list
+   69          {
+   70                  VL53L0X_Error Status = VL53L0X_ERROR_NONE;
+   71          
+   72                  LOG_FUNCTION_START("");
+*** ERROR C307 IN LINE 72 OF ..\VL53L0X\core\src\vl53l0x_api.c: macro 'LOG_FUNCTION_START': parameter count mismatch
+   73          
+   74                  pPalSpecVersion->major = VL53L0X_SPECIFICATION_VER_MAJOR;
+   75                  pPalSpecVersion->minor = VL53L0X_SPECIFICATION_VER_MINOR;
+   76                  pPalSpecVersion->build = VL53L0X_SPECIFICATION_VER_SUB;
+   77          
+   78                  pPalSpecVersion->revision = VL53L0X_SPECIFICATION_VER_REVISION;
+   79          
+   80                  LOG_FUNCTION_END(Status);
+*** ERROR C307 IN LINE 80 OF ..\VL53L0X\core\src\vl53l0x_api.c: macro 'LOG_FUNCTION_END': parameter count mismatch
+   81                  return Status;
+   82          }
+   83          
+   84          VL53L0X_Error VL53L0X_GetProductRevision(VL53L0X_DEV Dev,
+   85                  uint8_t *pProductRevisionMajor, uint8_t *pProductRevisionMinor)
+*** WARNING C34 IN LINE 85 OF ..\VL53L0X\core\src\vl53l0x_api.c: 'pProductRevisionMajor': missing declaration specifiers
+*** ERROR C42 IN LINE 85 OF ..\VL53L0X\core\src\vl53l0x_api.c: 'pProductRevisionMajor': not in formal parameter list
+*** WARNING C34 IN LINE 85 OF ..\VL53L0X\core\src\vl53l0x_api.c: 'uint8_t': missing declaration specifiers
+*** ERROR C42 IN LINE 85 OF ..\VL53L0X\core\src\vl53l0x_api.c: 'uint8_t': not in formal parameter list
+*** ERROR C25 IN LINE 85 OF ..\VL53L0X\core\src\vl53l0x_api.c: syntax error near '*'
+*** WARNING C34 IN LINE 85 OF ..\VL53L0X\core\src\vl53l0x_api.c: 'pProductRevisionMinor': missing declaration specifiers
+*** ERROR C42 IN LINE 85 OF ..\VL53L0X\core\src\vl53l0x_api.c: 'pProductRevisionMinor': not in formal parameter list
+   86          {
+   87                  VL53L0X_Error Status = VL53L0X_ERROR_NONE;
+   88                  uint8_t revision_id;
+   89          
+   90                  LOG_FUNCTION_START("");
+*** ERROR C307 IN LINE 90 OF ..\VL53L0X\core\src\vl53l0x_api.c: macro 'LOG_FUNCTION_START': parameter count mismatch
+   91          
+   92                  Status = VL53L0X_RdByte(Dev, VL53L0X_REG_IDENTIFICATION_REVISION_ID,
+   93                          &revision_id);
+   94                  *pProductRevisionMajor = 1;
+*** ERROR C142 IN LINE 94 OF ..\VL53L0X\core\src\vl53l0x_api.c: illegal initialization
+   95                  *pProductRevisionMinor = (revision_id & 0xF0) >> 4;
+*** ERROR C142 IN LINE 95 OF ..\VL53L0X\core\src\vl53l0x_api.c: illegal initialization
+*** ERROR C67 IN LINE 95 OF ..\VL53L0X\core\src\vl53l0x_api.c: 'revision_id': undefined identifier
+   96          
+   97                  LOG_FUNCTION_END(Status);
+*** ERROR C25 IN LINE 97 OF ..\VL53L0X\core\src\vl53l0x_api.c: syntax error near ')'
+C251 COMPILER V5.60.0,  vl53l0x_api                                                        13/04/24  20:07:04  PAGE 3   
+
+*** ERROR C42 IN LINE 97 OF ..\VL53L0X\core\src\vl53l0x_api.c: '_LOG_FUNCTION_END': not in formal parameter list
+*** ERROR C307 IN LINE 97 OF ..\VL53L0X\core\src\vl53l0x_api.c: macro 'LOG_FUNCTION_END': parameter count mismatch
+   98                  return Status;
+*** ERROR C25 IN LINE 98 OF ..\VL53L0X\core\src\vl53l0x_api.c: syntax error near 'return'
+*** WARNING C34 IN LINE 98 OF ..\VL53L0X\core\src\vl53l0x_api.c: 'Status': missing declaration specifiers
+   99          
+  100          }
+*** ERROR C25 IN LINE 100 OF ..\VL53L0X\core\src\vl53l0x_api.c: syntax error near '}'
+  101          
+  102          VL53L0X_Error VL53L0X_GetDeviceInfo(VL53L0X_DEV Dev,
+*** ERROR C25 IN LINE 102 OF ..\VL53L0X\core\src\vl53l0x_api.c: syntax error near 'Dev'
+  103                  VL53L0X_DeviceInfo_t *pVL53L0X_DeviceInfo)
+  104          {
+*** ERROR C42 IN LINE 104 OF ..\VL53L0X\core\src\vl53l0x_api.c: 'VL53L0X_GetDeviceInfo': not in formal parameter list
+  105                  VL53L0X_Error Status = VL53L0X_ERROR_NONE;
+  106                  LOG_FUNCTION_START("");
+*** ERROR C307 IN LINE 106 OF ..\VL53L0X\core\src\vl53l0x_api.c: macro 'LOG_FUNCTION_START': parameter count mismatch
+  107          
+  108                  Status = VL53L0X_get_device_info(Dev, pVL53L0X_DeviceInfo);
+  109          
+  110                  LOG_FUNCTION_END(Status);
+*** ERROR C307 IN LINE 110 OF ..\VL53L0X\core\src\vl53l0x_api.c: macro 'LOG_FUNCTION_END': parameter count mismatch
+  111                  return Status;
+  112          }
+  113          
+  114          VL53L0X_Error VL53L0X_GetDeviceErrorStatus(VL53L0X_DEV Dev,
+  115                  VL53L0X_DeviceError *pDeviceErrorStatus)
+*** WARNING C34 IN LINE 115 OF ..\VL53L0X\core\src\vl53l0x_api.c: 'pDeviceErrorStatus': missing declaration specifiers
+*** ERROR C42 IN LINE 115 OF ..\VL53L0X\core\src\vl53l0x_api.c: 'pDeviceErrorStatus': not in formal parameter list
+  116          {
+  117                  VL53L0X_Error Status = VL53L0X_ERROR_NONE;
+  118                  uint8_t RangeStatus;
+  119          
+  120                  LOG_FUNCTION_START("");
+*** ERROR C307 IN LINE 120 OF ..\VL53L0X\core\src\vl53l0x_api.c: macro 'LOG_FUNCTION_START': parameter count mismatch
+  121          
+  122                  Status = VL53L0X_RdByte(Dev, VL53L0X_REG_RESULT_RANGE_STATUS,
+  123                          &RangeStatus);
+  124          
+  125                  *pDeviceErrorStatus = (VL53L0X_DeviceError)((RangeStatus & 0x78) >> 3);
+*** ERROR C142 IN LINE 125 OF ..\VL53L0X\core\src\vl53l0x_api.c: illegal initialization
+*** ERROR C67 IN LINE 125 OF ..\VL53L0X\core\src\vl53l0x_api.c: 'VL53L0X_DeviceError': undefined identifier
+*** ERROR C67 IN LINE 125 OF ..\VL53L0X\core\src\vl53l0x_api.c: 'RangeStatus': undefined identifier
+  126          
+  127                  LOG_FUNCTION_END(Status);
+*** ERROR C25 IN LINE 127 OF ..\VL53L0X\core\src\vl53l0x_api.c: syntax error near ')'
+*** ERROR C42 IN LINE 127 OF ..\VL53L0X\core\src\vl53l0x_api.c: '_LOG_FUNCTION_END': not in formal parameter list
+*** ERROR C307 IN LINE 127 OF ..\VL53L0X\core\src\vl53l0x_api.c: macro 'LOG_FUNCTION_END': parameter count mismatch
+  128                  return Status;
+*** ERROR C25 IN LINE 128 OF ..\VL53L0X\core\src\vl53l0x_api.c: syntax error near 'return'
+*** WARNING C34 IN LINE 128 OF ..\VL53L0X\core\src\vl53l0x_api.c: 'Status': missing declaration specifiers
+  129          }
+*** ERROR C25 IN LINE 129 OF ..\VL53L0X\core\src\vl53l0x_api.c: syntax error near '}'
+  130          
+  131          
+  132          VL53L0X_Error VL53L0X_GetDeviceErrorString(VL53L0X_DeviceError ErrorCode,
+*** ERROR C25 IN LINE 132 OF ..\VL53L0X\core\src\vl53l0x_api.c: syntax error near 'ErrorCode'
+  133                  char *pDeviceErrorString)
+  134          {
+*** ERROR C42 IN LINE 134 OF ..\VL53L0X\core\src\vl53l0x_api.c: 'VL53L0X_GetDeviceErrorString': not in formal parameter 
+             -list
+  135                  VL53L0X_Error Status = VL53L0X_ERROR_NONE;
+  136          
+  137                  LOG_FUNCTION_START("");
+*** ERROR C307 IN LINE 137 OF ..\VL53L0X\core\src\vl53l0x_api.c: macro 'LOG_FUNCTION_START': parameter count mismatch
+  138          
+C251 COMPILER V5.60.0,  vl53l0x_api                                                        13/04/24  20:07:04  PAGE 4   
+
+  139                  Status = VL53L0X_get_device_error_string(ErrorCode, pDeviceErrorString);
+  140          
+  141                  LOG_FUNCTION_END(Status);
+*** ERROR C307 IN LINE 141 OF ..\VL53L0X\core\src\vl53l0x_api.c: macro 'LOG_FUNCTION_END': parameter count mismatch
+  142                  return Status;
+  143          }
+  144          
+  145          VL53L0X_Error VL53L0X_GetRangeStatusString(uint8_t RangeStatus,
+  146                  char *pRangeStatusString)
+*** WARNING C34 IN LINE 146 OF ..\VL53L0X\core\src\vl53l0x_api.c: 'pRangeStatusString': missing declaration specifiers
+*** ERROR C42 IN LINE 146 OF ..\VL53L0X\core\src\vl53l0x_api.c: 'pRangeStatusString': not in formal parameter list
+  147          {
+  148                  VL53L0X_Error Status = VL53L0X_ERROR_NONE;
+  149                  LOG_FUNCTION_START("");
+*** ERROR C307 IN LINE 149 OF ..\VL53L0X\core\src\vl53l0x_api.c: macro 'LOG_FUNCTION_START': parameter count mismatch
+  150          
+  151                  Status = VL53L0X_get_range_status_string(RangeStatus,
+  152                          pRangeStatusString);
+  153          
+  154                  LOG_FUNCTION_END(Status);
+*** ERROR C307 IN LINE 154 OF ..\VL53L0X\core\src\vl53l0x_api.c: macro 'LOG_FUNCTION_END': parameter count mismatch
+  155                  return Status;
+  156          }
+  157          
+  158          VL53L0X_Error VL53L0X_GetPalErrorString(VL53L0X_Error PalErrorCode,
+  159                  char *pPalErrorString)
+*** WARNING C34 IN LINE 159 OF ..\VL53L0X\core\src\vl53l0x_api.c: 'pPalErrorString': missing declaration specifiers
+*** ERROR C42 IN LINE 159 OF ..\VL53L0X\core\src\vl53l0x_api.c: 'pPalErrorString': not in formal parameter list
+  160          {
+  161                  VL53L0X_Error Status = VL53L0X_ERROR_NONE;
+  162                  LOG_FUNCTION_START("");
+*** ERROR C307 IN LINE 162 OF ..\VL53L0X\core\src\vl53l0x_api.c: macro 'LOG_FUNCTION_START': parameter count mismatch
+  163          
+  164                  Status = VL53L0X_get_pal_error_string(PalErrorCode, pPalErrorString);
+  165          
+  166                  LOG_FUNCTION_END(Status);
+*** ERROR C307 IN LINE 166 OF ..\VL53L0X\core\src\vl53l0x_api.c: macro 'LOG_FUNCTION_END': parameter count mismatch
+  167                  return Status;
+  168          }
+  169          
+  170          VL53L0X_Error VL53L0X_GetPalStateString(VL53L0X_State PalStateCode,
+  171                  char *pPalStateString)
+*** WARNING C34 IN LINE 171 OF ..\VL53L0X\core\src\vl53l0x_api.c: 'pPalStateString': missing declaration specifiers
+*** ERROR C42 IN LINE 171 OF ..\VL53L0X\core\src\vl53l0x_api.c: 'pPalStateString': not in formal parameter list
+  172          {
+  173                  VL53L0X_Error Status = VL53L0X_ERROR_NONE;
+  174                  LOG_FUNCTION_START("");
+*** ERROR C307 IN LINE 174 OF ..\VL53L0X\core\src\vl53l0x_api.c: macro 'LOG_FUNCTION_START': parameter count mismatch
+  175          
+  176                  Status = VL53L0X_get_pal_state_string(PalStateCode, pPalStateString);
+  177          
+  178                  LOG_FUNCTION_END(Status);
+*** ERROR C307 IN LINE 178 OF ..\VL53L0X\core\src\vl53l0x_api.c: macro 'LOG_FUNCTION_END': parameter count mismatch
+  179                  return Status;
+  180          }
+  181          
+  182          VL53L0X_Error VL53L0X_GetPalState(VL53L0X_DEV Dev, VL53L0X_State *pPalState)
+*** WARNING C34 IN LINE 182 OF ..\VL53L0X\core\src\vl53l0x_api.c: 'pPalState': missing declaration specifiers
+*** ERROR C42 IN LINE 182 OF ..\VL53L0X\core\src\vl53l0x_api.c: 'pPalState': not in formal parameter list
+  183          {
+  184                  VL53L0X_Error Status = VL53L0X_ERROR_NONE;
+  185                  LOG_FUNCTION_START("");
+*** ERROR C307 IN LINE 185 OF ..\VL53L0X\core\src\vl53l0x_api.c: macro 'LOG_FUNCTION_START': parameter count mismatch
+  186          
+  187                  *pPalState = PALDevDataGet(Dev, PalState);
+*** ERROR C142 IN LINE 187 OF ..\VL53L0X\core\src\vl53l0x_api.c: illegal initialization
+C251 COMPILER V5.60.0,  vl53l0x_api                                                        13/04/24  20:07:04  PAGE 5   
+
+*** ERROR C67 IN LINE 187 OF ..\VL53L0X\core\src\vl53l0x_api.c: 'Dev': undefined identifier
+*** ERROR C67 IN LINE 187 OF ..\VL53L0X\core\src\vl53l0x_api.c: 'PalState': undefined identifier
+*** WARNING C140 IN LINE 187 OF ..\VL53L0X\core\src\vl53l0x_api.c: 'PALDevDataGet' undefined; assuming 'extern int PALDe
+             -vDataGet()'
+  188          
+  189                  LOG_FUNCTION_END(Status);
+*** ERROR C25 IN LINE 189 OF ..\VL53L0X\core\src\vl53l0x_api.c: syntax error near ')'
+*** ERROR C7 IN LINE 189 OF ..\VL53L0X\core\src\vl53l0x_api.c: compilation aborted
+
+C251 COMPILATION COMPLETE.  12 WARNING(S),  60 ERROR(S)
